@@ -1,0 +1,361 @@
+
+Main purpose : to propose gamification strategy in fitness management 
+
+
+
+- Setup all the database  	x
+- move website design		x
+	- understand inherit 	x
+	- understand the view command 
+	- how to dynamic load the page 
+
+- route to website 
+	- understand CRUD route 
+	- understand passing data using route 
+	
+- complete login 
+	- undersatnd how to craete login form 
+	- undersantd authentication 
+	- understand how to seperate role 
+	- link to database 
+		- understand how to use sql command in laravel 
+		- understand how to secure the password
+	- verify by email 
+		- understand how laravel can verify by email 
+		
+- complete new design 
+	
+	
+- Change UI
+- Think of unique point 
+- Complete all function : make it real
+- login password hash :  check how to do it 
+- think of security 
+
+1 - Login 
+	- 3 user 
+		- admin
+		- user 
+		- trainer 
+
+2 - admin 
+	- top menu	
+		- show admin name 
+	- content management 
+		- fitcamp
+			- create fitcamp 
+			- edit fitcamp
+			- delete fitcamp
+			- view fitcamp
+			- assign coach 
+		- acheivement
+			- create acheivement 
+			- edit achievement 
+			- delete achievement 
+			
+		- challenge
+			- create challenge 
+			- edit challenge 
+			- delete challenge 
+		- redeem
+			- create redeem 
+			- edit redeem 
+			- delete redeem 
+			
+		- product 
+			- create product 
+			- edit product 
+			- delete product 
+	- report managemnet 
+		- view totol user 
+		- view totol redeem 
+		- view top performace trainer 
+		- view top performance user 
+		- view statistic of the user 
+		- view statistic of fitcamp participant 
+	- user management 
+		- manage user account 
+		- manage trainer account 
+			- add trainner account 
+			- delete trainner account 
+			- edit trainner account 
+	- tracker 
+		- track user 
+	- dashboard 
+		- view summary 
+		- display timetable 
+		- display timeline 
+	- forum 
+		- create forum 
+		- edit forum 
+		- write comment 
+		- delet ecomment 
+		- edit comment 
+		- delete forum 
+	
+3 - trainer 
+	- top menu 
+		- show the point 
+		- show trainer name 
+	- ranking 
+		- show ranking 
+		- view other people point 
+	- dahsboard
+		- display timetable 
+		- display timeline 
+	- fitcamp
+		- create fitcamp 
+		- edit fitcamp
+		- delete fitcamp 
+		- assign trainer 
+	- forum  
+		- create forum 
+		- edit forum 
+		- write comment 
+		- delet ecomment 
+		- edit comment 
+		- delete forum 
+	- track 
+		- track user record 
+	- profile 
+		- edit profile 
+		- upload profile pic 
+	
+4 - User 
+	- top menu 
+		- display username 
+		- display user total score point 
+		- logout 
+		- dispaly notification : optional 
+		- popout for feedback after user complete the fitcamp 
+	- menu
+		- dashboard 
+			- view final goal 
+				- renew goal, goal achieve
+			- view timeline with photo , activity 
+			- view guideline 
+			- firs time login : 
+				- set goal 
+					- custom goal or common goal 					
+			- edit final goal 
+				- remind user everything will reset 
+				
+		- user
+			- profile 
+				- Edit profile 
+				- upload profile picture 				
+			- challenge 
+				- View challenge list 
+				- view completed challenge 
+				- view the requriement to achieve challenge 
+				- view challenge point 
+				- view how many people achieve
+				- view achieved time 
+			- ranking 
+				- view ranking list 	
+				- view ranking up or down  ( optional ) 
+				- view other user point 
+			- acheivement 
+				- view achievement list 
+				- view completed achievement 
+				- view achievement requirement 
+				- view achievement point 
+				- view how many people achieve
+				- view achived time 
+			- redeem 
+				- view product with point 
+				- can redeem with point 
+		- fitcamp
+			- view fitcamp list 
+			- view fitcamp detail 
+			- join the fitcamp
+			- cancel fitcamp 
+		- forum
+			- create forum
+			- write comment 
+			- delete forum
+			- delet comment 
+			- edit forum
+			- edit comment 			
+		- product 
+			- view product 
+			- buy product 
+				- contact admin 
+		- history
+			- view redeem history 
+			- view purchase history 
+			- view fitcamp history 
+				- timeline 
+	
+	
+table : 
+	user : userID ,img_url, userPass ,name ,email, age, roleId, address, gender, contact, username , created_at,updated_at 
+		- createUser()
+		- editUser()
+		- deleteUser()
+		- checkUserRole()
+		- checkUnique()
+		
+		** roleID : 1 = user , 2 = trainer, 3 = admin 
+	
+	userGoal : goalID, userID, goal_condition, goal_value, currentValue,status, verified, created_at,updated_at 
+		- addGoal()
+		- editGoal()  ? 
+		
+		** status : 0 = in progress, 1 = completed , 2 = give up ( edit goal ) 
+		** verified : 0 = false, 1 = true ( in order to verify the goal, coach have to insert initial attribute to user ) 
+	
+	attribute : userID, height , weight, water, visceral fat, bmr, pr , created_at,updated_at 
+		- addAttribute()
+		- updateAttribute()
+		
+	tracking_history : historyID, userID, coachID, height, weight, fat, water, visceral, fat, bmr, pr , created_at,updated_at  
+		- getHistory() 
+		
+	forum : forumID , userID, content  ,img_url  , created_at,updated_at 	
+		- createForum()
+		- deleteForum()
+		- editForum()
+	
+	forum_comment : forumID, commentID, content, date, userId, created_at,updated_at 
+		- addComment()
+		- deleteComment()
+		- editComment()
+	
+	product : productID ,name, img_url, description, quantity, price, created_at,updated_at 
+		- addProduct()
+		- editProduct()
+		- deleteProduct()
+		
+	redeem : redeemID, img_url, title, description, point, quantity, created_at,updated_at 
+		- addRedeem()
+		- editRedeem()
+		- deleteRedeem() 
+		
+	user_redeem : userID, redeemID, quantity, created_at,updated_at  
+		- addRedeem()
+		
+	achievement : achievementID, img_url, title, description, score_point, created_at,updated_at 
+		- addAcheivement()
+		- deleteAchievement()
+		- editAchievement()
+		
+		** acheivement is verify by system like loss 100 kg 
+		
+	achievement_condition : achievementID, goal_condition, goal_value	, created_at,updated_at 
+	
+	condition_list : conditionID, description, condition,created_at,updated_at 
+		- addCondition()
+		- deleteCondition()
+		- editCondition()
+		
+		** condition is based on attribute column 
+			
+	user_achieve : userID, achevieveId,  created_at,updated_at  
+		- addAchieve()
+		
+	challenge : challengeID, img_url, name, description, scorepoint, created_at,updated_at 
+		- addChallenge()
+		- deleteChallenge()
+		- editChallenge()
+		
+		** challenge is verify by coach like run 100 round 
+		
+	user_challenge : userID, challengeID  , created_at,updated_at 
+		- addUserChallenge()
+		
+	fitcamp : fitcampID, expired_date, start_date, title,limit , location, description , created_at,updated_at 
+		- addFitcamp()
+		- editFitcamp()
+		- deleteFitcamp()
+		
+	fitcamp_coach : fitcampID, coachID, created_at,updated_at 
+		- addCoach()
+		- editCoach()
+		- deleteCoach()
+		
+	fitcamp_attendance : fitcampID, userID, created_at,updated_at 	
+	
+	fitcamp_register : userID, fitcampID, created_at,updated_at  
+		- addUserCamp()
+		- editUserCamp()
+		- deleteUserCamp()
+		
+		
+	
+	
+Route :
+	- /dashboard
+		- admin : display summary 
+		- user : display timeline, goal and guideline 
+		- trainer : display timetable, timeline and guideline 
+	- /user 
+		- admin	: user management 
+		- user : profile 
+		- trainer : profile 
+	- /product
+		- admin
+		- user 
+		- trainer 
+	- /fitcamp
+		- admin
+		- user 
+		- trainer 
+	- /forum
+		- admin
+		- user 
+		- trainer 
+	- /history 
+		- admin
+		- user 
+		- trainer 	
+	- /redeem
+		- admin
+		- user 
+		- trainer 	
+	- /achievement 
+		- admin
+		- user 
+		- trainer 	
+	- /challenge 
+		- admin
+		- user 
+		- trainer 	
+	- /ranking 
+		- admin
+		- user 
+		- trainer 	
+	- /track
+		- admin
+		- user 
+		- trainer 	
+
+
+Controller :
+	- login 
+		- check user role 
+
+Midleware: ? 
+
+
+
+API :
+	- fitcamp
+	- product 
+	- achievemnet 
+	- challenge 
+	- ranking 
+	- track
+	- redeem
+	- history 
+	- forum 
+		- GET /api/forum/{id}
+		- POST /api/forum/{id}
+		- PUT /api/forum/{id}
+	- login / register 
+	- user 
+		- POST /api/user/{id} 
+		- GET /api/user/{id} 
+		
+	
+	
