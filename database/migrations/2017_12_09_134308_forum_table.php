@@ -16,6 +16,7 @@ class ForumTable extends Migration
         Schema::create('forum', function (Blueprint $table) {
             $table->increments('forumID');
 			$table->string('content',150);
+			$table->string('title',150);
 			$table->string('img_url',150);
             $table->integer('userID')->unsigned();
 			$table->dateTime('updated_at');

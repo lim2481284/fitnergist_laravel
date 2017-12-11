@@ -1,0 +1,7 @@
+Forum 
+	- Get all forum 
+		- 
+	- Create forum 
+	- Search forum 
+	- Delete forum 
+	- Edit forum 

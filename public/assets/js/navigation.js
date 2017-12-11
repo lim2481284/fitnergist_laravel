@@ -53,10 +53,10 @@ $(document).ready(function(){
 	  });
 
 	  $("#loginBack").click(function(){
-		    location.href = "index.html"; 
+		    location.href = "/"; 
 	  });
 	  $("#login").click(function(){
-		    location.href = "login.php"; 
+		    location.href = "/login"; 
 	  });
 
 });

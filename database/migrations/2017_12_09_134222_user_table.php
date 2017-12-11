@@ -15,16 +15,17 @@ class UserTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('userID');
-			$table->string('img_url',150);
+			$table->string('img_url',150)->nullable($value = true);	;
 			$table->string('user_pass',150);
-			$table->string('name',150);
+			$table->string('name',150)->nullable($value = true);	;
 			$table->string('email',150);
-			$table->string('address',150);
-			$table->string('gender',150);
+			$table->string('address',150)->nullable($value = true);	;
+			$table->string('gender',150)->nullable($value = true);	;
 			$table->string('username',150);
-			$table->string('contact',150);
-            $table->integer('age')->unsigned();
+			$table->string('contact',150)->nullable($value = true);	;
+            $table->integer('age')->unsigned()->nullable($value = true);	;
 			$table->integer('roleID')->unsigned();
+			$table->integer('profiled')->unsigned()->default(0);
 			$table->dateTime('updated_at');
 			$table->dateTime('created_at');
         });

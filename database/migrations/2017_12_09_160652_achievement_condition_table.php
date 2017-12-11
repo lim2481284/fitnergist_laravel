@@ -15,9 +15,11 @@ class AchievementConditionTable extends Migration
     {
 		Schema::create('achievement_condition', function (Blueprint $table) {
             $table->increments('conditionID');
-			$table->integer('goal_condition')->unsigned();
             $table->integer('achievementID')->unsigned();
 			$table->double('goal_value')->unsigned();
+			$table->string('description',150);
+			$table->string('goal_condition',150);
+			$table->string('goal_operate',150);
 			$table->dateTime('updated_at');
 			$table->dateTime('created_at');
         });

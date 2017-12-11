@@ -14,10 +14,10 @@ class ForumCommentTable extends Migration
     public function up()
     {
         Schema::create('forum_comment', function (Blueprint $table) {
-            $table->increments('forumID');
+            $table->increments('commentID');
 			$table->string('content',150);
-            $table->integer('commentID')->unsigned();
-			$table->integer('userId')->unsigned();
+            $table->integer('forumID')->unsigned();
+			$table->integer('userID')->unsigned();
 			$table->dateTime('updated_at');
 			$table->dateTime('created_at');
         });

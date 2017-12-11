@@ -1,36 +1,113 @@
 
-Main purpose : to propose gamification strategy in fitness management 
 
 
+=======================================================================================
 
-- Setup all the database  	x
-- move website design		x
-	- understand inherit 	x
-	- understand the view command 
-	- how to dynamic load the page 
+API section 
 
-- route to website 
-	- understand CRUD route 
-	- understand passing data using route 
+=======================================================================================
+
+
+- create API for login and register 
+	- how to use token 
+	- how to verify role 
+	- how to hash password 
+	- how to register with hashed password 
+
+- api how to upload image 
+
+- forum
+	- sort forum result by date 
+	- throw empty title and content exception for edit and create 
+	- put default img url for the empty img url 
+	- empty record 
 	
-- complete login 
-	- undersatnd how to craete login form 
-	- undersantd authentication 
-	- understand how to seperate role 
-	- link to database 
-		- understand how to use sql command in laravel 
-		- understand how to secure the password
-	- verify by email 
-		- understand how laravel can verify by email 
-		
-- complete new design 
+- comment 
+	- throw content is null exception 
+	- empty record 
+	- throw edit content null exception 
+
 	
+- fitcamp	
+	- null exception for create and edit 
+	- sort by date 
+	- test : delete update ,create, get ,get specific
+	- empty record 
 	
-- Change UI
+- fitcamp attendance 
+	- unique record 
+	- empty record 
+	
+- fitcamp coach
+
+- fitcamp register 
+
+- product 
+
+- redeem 
+
+- user redeem
+
+- challenge 
+
+- user challenge 
+
+
+=======================================================================================
+
+UI section 
+
+=======================================================================================
+
+- complete new design ( last step )
+
+
+
+
+=======================================================================================
+
+Other section 
+
+=======================================================================================
+- document table (1h)
+- document php database abit  (1h)
 - Think of unique point 
-- Complete all function : make it real
-- login password hash :  check how to do it 
-- think of security 
+
+
+		
+=======================================================================================
+
+Hosting section 
+
+=======================================================================================
+
+- buy domain
+- setup domain
+- buy hosting 
+- host the website 
+	- fitnergist.domain.com 
+
+	
+	
+	
+=======================================================================================
+
+Function section 
+
+=======================================================================================
+
+- forgot password 	-- later 
+	- verify by email : register and forgot password
+		- understand how laravel can verify by email 
+
+- complete admin function page 
+- compelte trainer function page 
+- complete user function page 
+
+
+
+
+
 
 1 - Login 
 	- 3 user 
@@ -186,176 +263,13 @@ Main purpose : to propose gamification strategy in fitness management
 			- view purchase history 
 			- view fitcamp history 
 				- timeline 
-	
-	
-table : 
-	user : userID ,img_url, userPass ,name ,email, age, roleId, address, gender, contact, username , created_at,updated_at 
-		- createUser()
-		- editUser()
-		- deleteUser()
-		- checkUserRole()
-		- checkUnique()
-		
-		** roleID : 1 = user , 2 = trainer, 3 = admin 
-	
-	userGoal : goalID, userID, goal_condition, goal_value, currentValue,status, verified, created_at,updated_at 
-		- addGoal()
-		- editGoal()  ? 
-		
-		** status : 0 = in progress, 1 = completed , 2 = give up ( edit goal ) 
-		** verified : 0 = false, 1 = true ( in order to verify the goal, coach have to insert initial attribute to user ) 
-	
-	attribute : userID, height , weight, water, visceral fat, bmr, pr , created_at,updated_at 
-		- addAttribute()
-		- updateAttribute()
-		
-	tracking_history : historyID, userID, coachID, height, weight, fat, water, visceral, fat, bmr, pr , created_at,updated_at  
-		- getHistory() 
-		
-	forum : forumID , userID, content  ,img_url  , created_at,updated_at 	
-		- createForum()
-		- deleteForum()
-		- editForum()
-	
-	forum_comment : forumID, commentID, content, date, userId, created_at,updated_at 
-		- addComment()
-		- deleteComment()
-		- editComment()
-	
-	product : productID ,name, img_url, description, quantity, price, created_at,updated_at 
-		- addProduct()
-		- editProduct()
-		- deleteProduct()
-		
-	redeem : redeemID, img_url, title, description, point, quantity, created_at,updated_at 
-		- addRedeem()
-		- editRedeem()
-		- deleteRedeem() 
-		
-	user_redeem : userID, redeemID, quantity, created_at,updated_at  
-		- addRedeem()
-		
-	achievement : achievementID, img_url, title, description, score_point, created_at,updated_at 
-		- addAcheivement()
-		- deleteAchievement()
-		- editAchievement()
-		
-		** acheivement is verify by system like loss 100 kg 
-		
-	achievement_condition : achievementID, goal_condition, goal_value	, created_at,updated_at 
-	
-	condition_list : conditionID, description, condition,created_at,updated_at 
-		- addCondition()
-		- deleteCondition()
-		- editCondition()
-		
-		** condition is based on attribute column 
-			
-	user_achieve : userID, achevieveId,  created_at,updated_at  
-		- addAchieve()
-		
-	challenge : challengeID, img_url, name, description, scorepoint, created_at,updated_at 
-		- addChallenge()
-		- deleteChallenge()
-		- editChallenge()
-		
-		** challenge is verify by coach like run 100 round 
-		
-	user_challenge : userID, challengeID  , created_at,updated_at 
-		- addUserChallenge()
-		
-	fitcamp : fitcampID, expired_date, start_date, title,limit , location, description , created_at,updated_at 
-		- addFitcamp()
-		- editFitcamp()
-		- deleteFitcamp()
-		
-	fitcamp_coach : fitcampID, coachID, created_at,updated_at 
-		- addCoach()
-		- editCoach()
-		- deleteCoach()
-		
-	fitcamp_attendance : fitcampID, userID, created_at,updated_at 	
-	
-	fitcamp_register : userID, fitcampID, created_at,updated_at  
-		- addUserCamp()
-		- editUserCamp()
-		- deleteUserCamp()
-		
-		
-	
-	
-Route :
-	- /dashboard
-		- admin : display summary 
-		- user : display timeline, goal and guideline 
-		- trainer : display timetable, timeline and guideline 
-	- /user 
-		- admin	: user management 
-		- user : profile 
-		- trainer : profile 
-	- /product
-		- admin
-		- user 
-		- trainer 
-	- /fitcamp
-		- admin
-		- user 
-		- trainer 
-	- /forum
-		- admin
-		- user 
-		- trainer 
-	- /history 
-		- admin
-		- user 
-		- trainer 	
-	- /redeem
-		- admin
-		- user 
-		- trainer 	
-	- /achievement 
-		- admin
-		- user 
-		- trainer 	
-	- /challenge 
-		- admin
-		- user 
-		- trainer 	
-	- /ranking 
-		- admin
-		- user 
-		- trainer 	
-	- /track
-		- admin
-		- user 
-		- trainer 	
-
-
-Controller :
-	- login 
-		- check user role 
-
-Midleware: ? 
 
 
 
-API :
-	- fitcamp
-	- product 
-	- achievemnet 
-	- challenge 
-	- ranking 
-	- track
-	- redeem
-	- history 
-	- forum 
-		- GET /api/forum/{id}
-		- POST /api/forum/{id}
-		- PUT /api/forum/{id}
-	- login / register 
-	- user 
-		- POST /api/user/{id} 
-		- GET /api/user/{id} 
+ 	
+
 		
+
+
 	
-	
+

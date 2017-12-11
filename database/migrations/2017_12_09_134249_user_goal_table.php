@@ -21,7 +21,7 @@ class UserGoalTable extends Migration
 			$table->integer('status')->unsigned();
 			$table->integer('verified')->unsigned();
 			$table->double('goal_value');
-			$table->double('currentValue');
+			$table->double('current_value');
 			$table->dateTime('updated_at');
 			$table->dateTime('created_at');			
         });

@@ -20,10 +20,10 @@ class FitcampTable extends Migration
 			$table->string('description',150);
 			$table->string('title',150);
 			$table->string('location',150);
-			$table->string('address',150);
             $table->integer('limit')->unsigned()->nullable($value = true);			
 			$table->dateTime('expired_date');
 			$table->dateTime('start_date');
+			$table->dateTime('end_date');
 			$table->dateTime('updated_at');
 			$table->dateTime('created_at');
         });
