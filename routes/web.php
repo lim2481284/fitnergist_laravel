@@ -3,7 +3,7 @@
 
 Route::get('/', function () {
 	
-    return view("homepage");
+    return view("auth/register");
 });
 
 
@@ -18,6 +18,6 @@ Route::get('/user', function () {
 
 
 
-//Auth::routes();
+Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');

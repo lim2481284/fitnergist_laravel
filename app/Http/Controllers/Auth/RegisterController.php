@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -22,12 +24,33 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+	public function register(Request $request)
+	{
+		
+		// A Registered event is created and will trigger any relevant
+		// observers, such as sending a confirmation email or any 
+		// code that needs to be run as soon as the user is created.
+		event(new Registered($user = $this->create($request->all())));
+		
+		// After the user is created, he's logged in.
+		$this->guard()->login($user);
+
+		// And finally this is the hook that we want. If there is no
+		// registered() method or it returns null, redirect him to
+		// some other URL. In our case, we just need to implement
+		// that method to return the correct response.
+		return $this->registered($request, $user);
+						
+	}	
+	
+		
+	
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -54,6 +77,17 @@ class RegisterController extends Controller
         ]);
     }
 
+	protected function registered(Request $request, $user)
+	{
+		$user->generateToken();
+
+		return response()->json(['data' => $user->toArray()], 201);
+	}	
+	
+	
+
+	
+	
     /**
      * Create a new user instance after a valid registration.
      *
@@ -62,10 +96,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+		try{
+			$result = Users::create([
+				'username' => $data['username'],
+				'email' => $data['email'],
+				'password' => bcrypt($data['password']),
+			]); 
+			return $result;
+		}catch(\Illuminate\Database\QueryException $ex){ 
+			dd($ex->getMessage()); 
+		}
+        
     }
 }

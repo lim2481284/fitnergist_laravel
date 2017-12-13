@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Users;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+
+
 
 class LoginController extends Controller
 {
@@ -20,12 +25,28 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+	public function login(Request $request)
+	{
+		//$this->validateLogin($request);
+
+		if ($this->attemptLogin($request)) {
+			$user = $this->guard()->user();
+			$user->generateToken();
+			return response()->json([
+				'data' => $user->toArray(),
+			]);
+		}
+
+		dd(1);
+	}	
+
+	
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
