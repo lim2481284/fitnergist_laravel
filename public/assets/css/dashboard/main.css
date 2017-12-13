@@ -1,0 +1,39 @@
+
+
+
+
+/*========================
+	Menu styling 
+=========================*/
+
+
+.sidebar-menu{
+	position:fixed ;
+	width: 10% !important;
+}
+
+
+.logo_img{
+	width:300%;
+}
+
+.menu-icon
+{
+	height:16%;
+}
+
+#menu{
+	height:90vh;
+}
+
+span{
+	opacity:1 !important;
+	font-weight:700;
+}
+
+
+
+/*========================
+	Header styling 
+=========================*/
+

@@ -1,0 +1,343 @@
+/*========================
+	Basic styling 
+=========================*/
+
+html, body{
+  font-family: 'Work Sans', sans-serif;
+   font-size: 100%;
+   background:#fff; 
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  text-decoration:none;
+}
+.fixed{
+	position: fixed;
+	top: 0;
+	 width:87%;
+    margin: 0 auto;
+	z-index: 1;
+	background:#fff;
+}
+
+/*=================================
+	header and side menu styling 
+===================================*/
+
+.page-container {
+  min-width: 1260px;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0px auto;
+}
+.left-content {
+    float: right;
+        width: 86.5%;
+}
+.page-container.sidebar-collapsed {
+  transition: all 100ms linear;
+  transition-delay: 300ms;
+
+}
+.page-container.sidebar-collapsed .left-content {
+   float: right;
+   width: 96%;
+}
+
+.page-container.sidebar-collapsed .sidebar-menu {
+  width: 65px;
+  transition: all 100ms ease-in-out;
+  transition-delay: 300ms;
+}
+
+.page-container.sidebar-collapsed .sidebar-icon {
+   transition: all 300ms ease-in-out;
+	   color: #fff;
+    background:#68AE00;
+
+}
+.page-container.sidebar-collapsed .logo {
+  box-sizing: border-box;
+  transition: all 100ms ease-in-out;
+  transition-delay: 300ms;
+      left: 18px;
+    
+}
+
+.page-container.sidebar-collapsed #logo {
+    opacity: 0;
+    transition: all 200ms ease-in-out;
+    display: none;
+}
+.page-container.sidebar-collapsed .down {
+    display: none;
+}
+
+
+.page-container.sidebar-collapsed #menu span {
+  opacity: 0;
+  transition: all 50ms linear;
+  
+}
+
+
+.sidebar-menu {
+  position: absolute;
+  float: left;
+  width: 220px;
+  top: 0px;
+  left:0px;
+  bottom: 0;
+  background-color:#202121;
+  color: #aaabae;
+  z-index: 999;
+}
+#menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+}
+#menu li {
+  position: relative;
+  margin: 0;
+  font-size: 12px;
+  padding: 0;
+}
+#menu li ul {
+  opacity: 0;
+  height: 0px;
+}
+#menu li a {
+    position: relative;
+    display: block;
+    padding: 13px 20px;
+    color: #FFFFFF;
+    white-space: nowrap;
+    z-index: 2;
+    font-size: 1.12em;
+        text-align: center;
+    font-family: 'Carrois Gothic', sans-serif;
+}
+#menu li a:hover {
+  color:#fdbb30;
+  transition: color 250ms ease-in-out, background-color 250ms ease-in-out;
+}
+#menu li.active > a {
+  background-color: #2b303a;
+  color: #ffffff;
+}
+#menu ul li { background-color:#202121; }
+#menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#menu li ul {
+  position: absolute;
+  visibility: hidden;
+  left: 100%;
+  top: 20px;
+  background-color: #2b303a;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.1s linear;
+  border-top: 1px solid rgba(69, 74, 84, 0.7);
+}
+#menu li:hover > ul {
+  visibility: visible;
+  opacity: 1;
+}
+#menu li li ul {
+  right: 100%;
+  visibility: hidden;
+  top: -1px;
+  opacity: 0;
+  transition: opacity 0.1s linear;
+}
+#menu li li:hover ul {
+  visibility: visible;
+  opacity: 1;
+}
+#menu .fa {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    display: block;
+}
+.menu {
+    padding:4.2em 0em 0em 0em;
+}
+/*----*/
+.page-container.sidebar-collapsed .left-content .fixed {
+    width: 97%;
+}
+/*----*/
+.logo {
+  width:22%;
+  box-sizing: border-box;
+  position: absolute;
+   top: 20px;
+   left: 170px;
+}
+.sidebar-icon {
+    position: relative;
+    float: left;
+    text-align: center;
+    line-height: 1;
+    font-size: 18px;
+    padding: 6px 8px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius:3px;
+    -o-border-radius:3px;
+    color: #FFF;
+    background-clip: padding-box;
+    background:#68AE00;
+}
+.sidebar-icon:hover{
+	 color: #FFF;
+}
+.fa-html5 {
+  color: #fff;
+  margin-left: 50px;
+}
+/*--nav strip start here--*/
+.header-main {
+    background:#fff;
+    padding: 1em 2em;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+.header-right {
+    float: right;
+    width: 50%;
+}
+.header-left {
+    float: left;
+    width: 45%;
+}
+.logo-name {
+    float: left;
+    width: 30%;
+    margin: 0% 3% 0% 2%;
+}
+.logo-name h1 {
+    font-size: 2.5em;
+    color: #FC8213;
+    margin: 0em;
+    font-weight: 700;
+    text-decoration: none;
+}
+.logo-name  h1 a{
+	 color: #910048;
+}
+.logo-name a {
+    display:inline-block;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+    background: none !important;
+}
+span.logo-clr{
+	color:#fdbb30;
+}
+
+
+/*=================================
+	header profile styling 
+===================================*/
+
+ul.dropdown-menu.drp-mnu i.fa {
+    margin-right: 0.5em;
+}
+ul.dropdown-menu {
+    padding: 0;
+    min-width: 230px;
+    top:101%;
+}
+.dropdown-menu > li > a {
+    padding: 3px 15px;
+	font-size: 1em;
+}
+.profile_details {
+    float: right;
+}
+.profile_details_drop .fa.fa-angle-up{
+	display:none;
+}
+.profile_details_drop.open .fa.fa-angle-up{
+    display:block;
+}
+.profile_details_drop.open .fa.fa-angle-down{
+	display:none;
+}
+.profile_details_drop a.dropdown-toggle {
+    display:block;
+	padding:0em 3em 0 1em;
+}
+.profile_img span.prfil-img{
+	float:left;
+}
+.user-name{
+	 float:left;
+	 margin-top:7px;
+	 margin-left:11px;
+	 height:35px;
+}
+.profile_details ul li{
+	list-style-type:none;
+	position:relative;
+}
+.profile_details li a i.fa.logout {
+    position: absolute;
+    top: 34%;
+    right: 8%;
+    color: #68AE00;
+    font-size: 1.6em;
+}
+.profile_details ul li ul.dropdown-menu.drp-mnu {
+    padding: 1em;
+    min-width: 190px;
+    top: 122%;
+    left:0%;
+}
+ul.dropdown-menu.drp-mnu li {
+    list-style-type: none;
+    padding: 3px 0;
+}
+.user-name p{
+	font-size:1em;
+	color:#FC8213;
+	line-height:2.5em;
+	padding-right:10px;
+	font-weight:700;
+}
+.user-name span {
+    font-size: .75em;
+    font-style: italic;
+    color: #424f63;
+    font-weight: normal;
+    margin-top: .3em;
+}
+.profile_details ul {
+    padding: 0px;
+}
+
+
+/*=================================
+	Body content styling 
+===================================*/
+
+.inner-block {
+    padding: 3em 2em 4em 8%;
+    background: #fafafa;
+}

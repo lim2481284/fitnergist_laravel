@@ -1,4 +1,11 @@
 
+1 - allow ajax call 
+2 - done admin function 
+3 - done trainer function 
+4 - done user function 
+5 - done auth 
+6 - done role 
+7 - go deep 
 
 
 =======================================================================================
@@ -7,6 +14,8 @@ API section
 
 =======================================================================================
 
+
+- how to allow localhost ajax call to api 
 
 - create API for login and register 
 	- how to use token 

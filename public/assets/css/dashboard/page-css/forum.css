@@ -1,0 +1,217 @@
+
+
+/*==================
+  Forum page style
+==================*/
+
+body{
+
+	text-align:center;
+	font-family: Tahoma, sans-serif;
+}
+.forumSection{	
+	margin-top:10%;
+	margin-bottom:8%;		
+}
+
+.postBtn {
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	color: white;
+	font-weight:bold;
+	border-radius:10px;
+	border: 2px solid #e7e7e7;
+	background-color: #80E9AF;
+	width: 100%;
+	margin-bottom:10%;
+
+}
+.postBtn:hover{
+		background-color: white;
+		border: 2px solid #80E9AF;
+		color :#80E9AF;
+}
+.textarea{
+	width:80%;
+	height:40vh;	
+	border: 2px solid lightgrey;
+	font-family: Tahoma, sans-serif;
+	font-size:20px;
+	background-image: url(bg.gif);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	border-radius:3px;
+	color:grey;
+	outline:none;
+}
+.tableHeader{
+	width:100%;
+	border: 3px solid #4A4A4A;
+	border-width:0;
+	border-bottom-width:5px;
+	padding-bottom:3%;
+	margin-top:7%;
+	
+}
+.tableBody{
+	width:100%;
+}
+
+.tableHeaderLabel_1{
+		
+		width:60%;text-align:left;float:left;color:#21966B;font-size:15px;font-weight:bold;
+	}
+.tableHeaderLabel_2{
+	
+	width:14%;float:left;color:#21966B;font-size:15px;font-weight:bold;
+}
+.deleteBtn{
+	border:none;
+	outline:none;
+	background-color:rgba(0,0,0,0);
+	cursor:pointer;
+	font-size:20px;
+	font-weight:bold;
+	color:	#DD3E3E;
+	z-index:999;
+}
+.forumItem{	
+	width:100%;
+	padding-bottom:4%;
+	padding-top:3%;
+	border: 3px solid lightgrey;
+	border-width:0;
+	border-bottom-width:2px;
+	cursor:pointer;
+	-webkit-transition: width 2s, height 2s, background-color 1s, -webkit-transform 2s;
+	transition: width 2s, height 2s, background-color 1s, color 2s, transform 2s;
+}
+.forumItem:hover{
+	background-color:#7CDCB8;
+	color:#368D6D;
+	
+}
+.forumHead{
+	overflow: hidden;
+	width:60%;
+	float:left;
+	text-align:left;
+	padding-left:5%;
+}
+
+.forumTail{
+	width:13%;
+	float:left;
+}
+
+.createBtn:hover{
+	background-color:#21966B;
+	color:white;
+	cursor:pointer;
+	width:35vh;
+	
+}
+.createBtn{
+	border:none;
+	outline:none;
+	background-color:white;
+	color:#21966B;
+	font-weight:bold;
+	font-size:100%;
+	padding:0.8%;
+	width:28vh;	
+	border:1px solid #21966B;
+	transition:1s;
+}
+.searchInput{	
+	float:right;
+	border:1px solid lightgray;
+	outline:none;
+	background-color:white;
+	color:gray;
+	font-weight:bold;
+	font-size:100%;
+	padding:0.8%;
+	width:30%;
+	transition:1s;
+}
+#all_text span
+{
+    text-decoration:underline;
+    background-color:yellow;    
+}
+
+
+
+
+
+/*==================
+   Popup style
+==================*/
+
+.popupBox{
+	font-size:30px;margin-top:6%;color:grey;
+
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index:100;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+.popupBox {
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 60%;
+  position: relative;
+
+}
+.popupBox h2 {
+  margin-top: 0;
+  color: #333;
+	font-family: 'Lato', sans-serif;
+}
+.popupBox .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popupBox .close:hover {
+  color: #06D85F;
+}
+.popupBox .content {
+	font-size: 15px;
+
+  overflow: auto;
+}
+
+
+
+
+
+
+

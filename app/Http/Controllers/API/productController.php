@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator, Input, Redirect; 
 use App\Product;
 
 class productController extends Controller
@@ -12,6 +13,24 @@ class productController extends Controller
 		Controller for the product section 
 	
 	*/
+    public function ajaxImageUploadPost(Request $request)
+	{
+		$imageName = $request->name . '.' . 
+			$request->file('image')->getClientOriginalExtension();
+
+		$request->file('image')->move(
+			base_path() . '/public/images/product/', $imageName
+		);
+		
+		return response()->json(['success'=>true,'message'=>'Image uploaded']); 
+    }
+	
+    public function getProductCount()
+    {		
+        $product = Product::all()->count();
+		return response()->json(['success'=>true,'total'=>$product]);
+    }
+	
     public function getProduct()
     {		
         $product = Product::all();

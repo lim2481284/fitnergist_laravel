@@ -170,12 +170,13 @@ Route::put('tracking/{id}', 'API\trackingController@editTracking');
 	Product API section 
 	
 */
-
+Route::get('product/total/', 'API\productController@getProductCount');
 Route::get('product/', 'API\productController@getProduct');
 Route::get('product/{id}', 'API\productController@searchProduct');
 Route::post('product/', 'API\productController@createProduct');
 Route::put('product/{id}', 'API\productController@editProduct');
 Route::delete('product/{id}', 'API\productController@deleteProduct');
+Route::post('product/image/', 'API\productController@ajaxImageUploadPost');
 
 
 
