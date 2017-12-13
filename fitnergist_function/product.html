@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+	<head>				
+		<!--meta list-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+			
+		<!--css for this page -->		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link href="assets/css/page-css/product.css" rel="stylesheet" type="text/css" media="all"/>	
+		
+	</head>
+	<body>	
+
+	
+		  <div class='productList'>
+			<div class="wrapper">
+				<div class="product-img">
+				  <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+				</div>
+				<div class="product-info">
+				  <div class="product-text">
+					<h1>Harvest Vase</h1>
+					<h2>by studio and friends</h2>
+					<p>Harvest Vases are a reinterpretation<br> of peeled fruits and vegetables as<br> functional objects. The surfaces<br> appear to be sliced and pulled aside,<br> allowing room for growth. </p>
+				  </div>
+				  <div class="product-price-btn">
+					<p><span>78</span>$</p>
+					<button type="button">buy now</button>
+				  </div>
+				</div>
+			</div>	
+		  </div>
+	
+		 <form action="{{ route('ajaxImageUpload') }}" enctype="multipart/form-data" method="POST">
+
+			<div class='imageSection'>
+				<img id="uploadedImage" src="#" alt="your image" />
+			</div>			
+			<div class="file-input-wrapper">
+			  <button class="btn-file-input" type="button">Upload File</button>
+			  <input  id='image' type="file" name="image"  class='profileFileUpload' accept="image/*" onchange="readURL(this);"/>
+			</div>
+		</form>	
+		
+
+
+		  </form>
+		  
+			   
+		  
+		  
+		<div class='container'>
+			<div class='col-sm-12'>
+				Product name  
+				<input type='text' class='productName'/>
+			</div>
+			<div class='col-sm-12'>
+				img-url 
+				<input type='text' class='productImg'/>
+			</div>
+			<div class='col-sm-12'>
+				Description 
+				<input type='text' class='productDescription'/>
+			</div>
+			<div class='col-sm-12'>
+				Price
+				<input type='number' class='productPrice'/>
+			</div>
+			<div class='col-sm-12'>
+				Quantity
+				<input type='number' class='productQuantity'/>
+			</div>
+			<div class='col-sm-12'>
+					<button type='button' class='createProductBtn'>Create product</button>
+			</div>
+		</div>
+
+
+	</body>
+	
+	<!--script for all page -->	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="assets/js/js.cookie.js"></script>	
+	<script src="assets/js/main-api.js"></script>	
+	<script src="assets/js/main-api-action.js"></script>	
+	<script src="assets/js/main-api-response.js"></script>		
+	<script src="assets/js/utility.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.all.min.js"></script>
+
+	<!--script for this page -->
+	<script src="assets/js/page-js/product.js"></script>	
+	
+</html>                     

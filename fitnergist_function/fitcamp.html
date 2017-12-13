@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+	<head>				
+		<!--meta list-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+			
+		<!--css for this page -->		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link href="assets/css/page-css/fitcamp.css" rel="stylesheet" type="text/css" media="all"/>	
+		
+	</head>
+	<body>	
+	
+		<form>
+			<div class='imageSection'>
+				<img id="uploadedImage" src="#" alt="your image" />
+			</div>			
+			<div class="file-input-wrapper">
+			  <button class="btn-file-input">Upload File</button>
+			  <input type="file" name="file"  class='profileFileUpload' accept="image/*" onchange="readURL(this);"/>
+			</div>
+		</form>
+		<div class='container'>
+			<div class='col-sm-12'>
+				Description 
+				<input type='text' class='fitcampDescription'/>
+			</div>
+			<div class='col-sm-12'>
+				Title 
+				<input type='text' class='fitcampTitle'/>
+			</div>
+			<div class='col-sm-12'>
+				Location 
+				<input type='text' class='fitcampLocation'/>
+			</div>
+			<div class='col-sm-12'>
+				Start time 
+				<input type='text' class='fitcampStartTime'/>
+			</div>
+			<div class='col-sm-12'>
+				End time 
+				<input type='text' class='fitcampEndTime'/>
+			</div>
+			<div class='col-sm-12'>
+					<button type='button' class='createFitcampBtn'>Create fitcamp</button>
+			</div>
+		</div>
+
+	</body>
+	
+	<!--script for all page -->	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="assets/js/js.cookie.js"></script>	
+	<script src="assets/js/main-api.js"></script>	
+	<script src="assets/js/main-api-action.js"></script>	
+	<script src="assets/js/main-api-response.js"></script>		
+	<script src="assets/js/utility.js"></script>
+
+	<!--script for this page -->
+	<script src="assets/js/page-js/fitcamp.js"></script>	
+	
+</html>                     
