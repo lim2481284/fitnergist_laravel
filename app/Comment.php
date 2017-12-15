@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
 	protected $primaryKey = 'commentID';
-    protected $fillable = ['forumID', 'content','userId'];
+    protected $fillable = ['forumID', 'content','userID'];
 	protected $table = 'forum_comment';
 }

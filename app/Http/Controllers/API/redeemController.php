@@ -13,6 +13,25 @@ class redeemController extends Controller
 		Controller for the redeemment section 
 	
 	*/
+    public function ajaxImageUploadPost(Request $request)
+	{
+		$imageName = $request->name . '.jpg';
+
+		$request->file('image')->move(
+			base_path() . '/public/assets/img/redeem/', $imageName
+		);
+		
+		return response()->json(['success'=>true,'message'=>'Image uploaded']); 
+    }
+			
+	
+    public function getTotal()
+    {		
+        $redeem = Redeem::all()->count();
+		return response()->json(['success'=>true,'total'=>$redeem]);
+    }
+		
+	
     public function getRedeem()
     {		
         $redeem = Redeem::all();

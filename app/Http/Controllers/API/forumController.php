@@ -16,6 +16,26 @@ class forumController extends Controller
 		Controller for the forum section 
 	
 	*/
+	
+    public function ajaxImageUploadPost(Request $request)
+	{
+		$imageName = $request->name . '.jpg';
+
+		$request->file('image')->move(
+			base_path() . '/public/assets/img/forum/', $imageName
+		);
+		
+		return response()->json(['success'=>true,'message'=>'Image uploaded']); 
+    }
+		
+	
+    public function getTotal()
+    {		
+        $forum = Forum::all()->count();
+		return response()->json(['success'=>true,'total'=>$forum]);
+    }
+	
+		
     public function getForum()
     {
 		

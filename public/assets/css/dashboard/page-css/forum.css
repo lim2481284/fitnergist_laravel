@@ -1,212 +1,145 @@
-
-
-/*==================
-  Forum page style
-==================*/
-
-body{
-
-	text-align:center;
-	font-family: Tahoma, sans-serif;
+.createForum,
+.backBtn{
+	display:none;
 }
-.forumSection{	
-	margin-top:10%;
-	margin-bottom:8%;		
+a{
+	text-decoration:none !important;
+	color:#444444;
 }
-
-.postBtn {
-	border: none;
-	color: white;
-	padding: 16px 32px;
-	text-align: center;
-	text-decoration: none;
-	font-size: 16px;
-	-webkit-transition-duration: 0.4s;
-	transition-duration: 0.4s;
-	cursor: pointer;
-	color: white;
-	font-weight:bold;
-	border-radius:10px;
-	border: 2px solid #e7e7e7;
-	background-color: #80E9AF;
-	width: 100%;
-	margin-bottom:10%;
-
-}
-.postBtn:hover{
-		background-color: white;
-		border: 2px solid #80E9AF;
-		color :#80E9AF;
-}
-.textarea{
+.forumContentSection{
 	width:80%;
-	height:40vh;	
-	border: 2px solid lightgrey;
-	font-family: Tahoma, sans-serif;
-	font-size:20px;
-	background-image: url(bg.gif);
-	background-position: bottom right;
-	background-repeat: no-repeat;
-	border-radius:3px;
-	color:grey;
-	outline:none;
+	margin:auto;
+	display:none;
 }
-.tableHeader{
-	width:100%;
-	border: 3px solid #4A4A4A;
-	border-width:0;
-	border-bottom-width:5px;
-	padding-bottom:3%;
-	margin-top:7%;
-	
+.commentArea{
+	border-top:2px solid gray;
+	margin-top:10%;
+	padding:0;
 }
-.tableBody{
+.commentDate{
+	position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 3%;
+    font-weight: bold;
+    color: lightgray;
+}
+
+.comment{
+	position: relative;
+	margin-top:2%;
+	border-bottom:1px solid lightgray;
+	padding-bottom:2%;	
+	padding-top:2%;
+	vertical-align:middle;
+}
+.userPicture img{
 	width:100%;
 }
 
-.tableHeaderLabel_1{
-		
-		width:60%;text-align:left;float:left;color:#21966B;font-size:15px;font-weight:bold;
-	}
-.tableHeaderLabel_2{
+.commentInput{
 	
-	width:14%;float:left;color:#21966B;font-size:15px;font-weight:bold;
+	padding:0;
 }
-.deleteBtn{
-	border:none;
-	outline:none;
-	background-color:rgba(0,0,0,0);
-	cursor:pointer;
-	font-size:20px;
-	font-weight:bold;
-	color:	#DD3E3E;
-	z-index:999;
-}
-.forumItem{	
-	width:100%;
-	padding-bottom:4%;
-	padding-top:3%;
-	border: 3px solid lightgrey;
-	border-width:0;
-	border-bottom-width:2px;
-	cursor:pointer;
-	-webkit-transition: width 2s, height 2s, background-color 1s, -webkit-transform 2s;
-	transition: width 2s, height 2s, background-color 1s, color 2s, transform 2s;
-}
-.forumItem:hover{
-	background-color:#7CDCB8;
-	color:#368D6D;
-	
-}
-.forumHead{
-	overflow: hidden;
-	width:60%;
-	float:left;
-	text-align:left;
-	padding-left:5%;
+.authorDateArea{
+	margin-top:3%;
+	margin-bottom:5%;
 }
 
-.forumTail{
-	width:13%;
-	float:left;
-}
-
-.createBtn:hover{
-	background-color:#21966B;
-	color:white;
-	cursor:pointer;
-	width:35vh;
-	
-}
-.createBtn{
-	border:none;
-	outline:none;
-	background-color:white;
-	color:#21966B;
-	font-weight:bold;
-	font-size:100%;
-	padding:0.8%;
-	width:28vh;	
-	border:1px solid #21966B;
-	transition:1s;
-}
-.searchInput{	
-	float:right;
-	border:1px solid lightgray;
-	outline:none;
-	background-color:white;
+.authorDateArea .author{
 	color:gray;
-	font-weight:bold;
-	font-size:100%;
-	padding:0.8%;
-	width:30%;
-	transition:1s;
+	float:left;
 }
-#all_text span
-{
-    text-decoration:underline;
-    background-color:yellow;    
+
+.authorDateArea .date{
+	color:gray;
+	font-weight:lighter;
+	float:right;
+}
+.imgArea img{
+	max-width:400px;
+}
+.imgArea,
+.titleArea{
+	text-align:center;
+}
+
+.file-input-wrapper {
+	margin:auto;
+	width: 200px;
+	height: 40px;
+	overflow: hidden;
+	position: relative;
+	text-align: center;	
+}
+.file-input-wrapper > input[type="file"] {
+	font-size: 200px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: 0;
+
+}
+.file-input-wrapper > .btn-file-input {
+	display: inline-block;
+	width: 200px;
+	height: 40px;
+    background: #3DBAD9;
+    color: white;
+    outline: none;
+    border: none;	
+}
+
+.profileFileUpload{
+	cursor:pointer;
+}
+
+#uploadedImage{
+	max-height:400px;
+	max-width:400px;	
+}
+
+.imageSection{
+	margin-bottom:2%;
+	margin-top:2%;
+	text-align:center;
 }
 
 
 
 
 
-/*==================
-   Popup style
-==================*/
+/* Forum list design */
+.author{
+	color:lightgray;
+	font-weight:lighter;
+}
+.creationDate{
+	float:right;
+	color:gray;
+	font-weight:lighter;
+	padding-right:3%;
+}
+.forumList li img {
+  float: left;
+  margin: 0 15px 0 0;  
+  padding-right:3%;
+  max-width:200px;
+  min-width:200px;
+}
+.forumList{
+	padding-left:0;
+}
 
-.popupBox{
-	font-size:30px;margin-top:6%;color:grey;
-
-}
-.overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index:100;
-  background: rgba(0, 0, 0, 0.7);
-  transition: opacity 500ms;
-  visibility: hidden;
-  opacity: 0;
-}
-.overlay:target {
-  visibility: visible;
-  opacity: 1;
-}
-.popupBox {
-  margin: 50px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 5px;
-  width: 60%;
-  position: relative;
-
-}
-.popupBox h2 {
-  margin-top: 0;
-  color: #333;
-	font-family: 'Lato', sans-serif;
-}
-.popupBox .close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  transition: all 200ms;
-  font-size: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #333;
-}
-.popupBox .close:hover {
-  color: #06D85F;
-}
-.popupBox .content {
-	font-size: 15px;
-
+.forumList li {
+  padding: 10px;
   overflow: auto;
+  
+}
+ 
+.forumList li:hover {
+  background: #eee;
+  cursor: pointer;
 }
 
 
@@ -215,3 +148,196 @@ body{
 
 
 
+
+/* --- Product Card ---- */
+.make-3D-space{
+    position: relative;
+	float:left;
+    transition: transform 5s;
+
+}
+.product-front, .product-back{
+	width:335px;
+	height:500px;
+	background:#fff;
+	position:absolute;
+	left:-5px;
+	top:-5px;
+	-webkit-transition: all 100ms ease-out; 
+       -moz-transition: all 100ms ease-out; 
+         -o-transition: all 100ms ease-out; 
+            transition: all 100ms ease-out; 
+}
+.product-card.animate .product-back,.product-card.animate .product-front{
+	top:0px;
+	left:0px;
+	-webkit-transition: all 100ms ease-out; 
+       -moz-transition: all 100ms ease-out; 
+         -o-transition: all 100ms ease-out; 
+            transition: all 100ms ease-out; 
+}
+.product-card{
+	width:325px;
+	height:490px;
+	position:relative;    
+	top:10px;
+	left:10px;	
+	overflow:hidden;
+    transform-style: preserve-3d;
+	-webkit-transition:  100ms ease-out; 
+       -moz-transition:  100ms ease-out; 
+         -o-transition:  100ms ease-out; 
+            transition:  100ms ease-out;
+}
+.product-card.animate{
+	top:5px;
+	left:5px;
+	width:335px;
+	height:500px;
+	box-shadow:0px 13px 21px -5px rgba(0, 0, 0, 0.3);
+	-webkit-transition:  100ms ease-out; 
+       -moz-transition:  100ms ease-out; 
+         -o-transition:  100ms ease-out; 
+            transition:  100ms ease-out; 
+}
+.stats-container{
+	background:#fff;	
+	position:absolute;
+	top: 250px;
+	left:0;
+	width:100%;
+	height:300px;
+	padding:27px 35px 35px;	
+	-webkit-transition: all 200ms ease-out; 
+       -moz-transition: all 200ms ease-out; 
+         -o-transition: all 200ms ease-out; 
+            transition: all 200ms ease-out;
+}
+.product-card.animate .stats-container{
+	top:272px;
+	-webkit-transition: all 200ms ease-out; 
+       -moz-transition: all 200ms ease-out; 
+         -o-transition: all 200ms ease-out; 
+            transition: all 200ms ease-out; 
+}
+.stats-container .product_name{
+	font-size:22px;
+	color:#393c45;	
+}
+.stats-container p{
+	font-size:16px;
+	color:#b1b1b3;	
+	padding:2px 0 20px 0;
+}
+.stats-container .product_price{
+	float:right;
+	color:#48cfad;
+	font-size:22px;
+	font-weight:600;
+}
+.image_overlay{
+	position:absolute;
+	top:0;
+	left:0; 
+	width:100%;
+	height:100%;
+	background:#48daa1;
+	opacity:0;	
+}
+.product-card.animate .image_overlay{
+	opacity:0.7;	
+	-webkit-transition: all 200ms ease-out; 
+       -moz-transition: all 200ms ease-out; 
+         -o-transition: all 200ms ease-out; 
+            transition: all 200ms ease-out; 
+}
+.product-options{
+	padding:2px 0 0;
+}
+.product-options strong{
+	font-weight:700;
+	color:#393c45;
+	font-size:14px;
+}
+.product-options span{	
+	color:#969699;
+	font-size:14px;
+	display:block;
+	margin-bottom:8px;
+}
+.view_details{	
+	position:absolute;
+	top:112px;
+	left:50%;
+	margin-left:-85px;	
+	border:2px solid #fff;
+	color:#fff;
+	font-size:19px;
+	text-align:center;
+	text-transform:uppercase;
+	font-weight:700;
+	padding:10px 0;
+	width:172px;	
+	opacity:0;
+	-webkit-transition: all 200ms ease-out; 
+       -moz-transition: all 200ms ease-out; 
+         -o-transition: all 200ms ease-out; 
+            transition: all 200ms ease-out; 
+}
+.view_details:hover{	
+	background:#fff;
+	color:#48cfad;
+	cursor:pointer;
+
+}
+.product-card.animate .view_details{
+	opacity:1;
+	width:152px;
+	font-size:15px;
+	margin-left:-75px;
+	top:115px;
+	-webkit-transition: all 200ms ease-out; 
+       -moz-transition: all 200ms ease-out; 
+         -o-transition: all 200ms ease-out; 
+            transition: all 200ms ease-out; 		
+}
+div.colors div{
+	margin-top:3px;
+	width:15px; 
+	height:15px; 	
+	margin-right:5px;
+	float:left;
+}
+div.colors div span{
+	width:15px; 
+	height:15px; 
+	display:block;
+	border-radius:50%;
+}
+div.colors div span:hover{
+	width:17px;
+	height:17px;
+	margin:-1px 0 0 -1px;
+}
+div.c-blue span{background:#6e8cd5;}
+div.c-red span{background:#f56060;}
+div.c-green span{background:#44c28d;}
+div.c-white span{
+	background:#fff;
+	width:14px;
+	height:14px; 
+	border:1px solid #e8e9eb;
+}
+div.shadow{
+	width:335px;height:520px;
+	opacity:0;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:3;
+	display:none;
+	background: -webkit-linear-gradient(left,rgba(0,0,0,0.1),rgba(0,0,0,0.2));
+    background: -o-linear-gradient(right,rgba(0,0,0,0.1),rgba(0,0,0,0.2)); 
+    background: -moz-linear-gradient(right,rgba(0,0,0,0.1),rgba(0,0,0,0.2)); 
+    background: linear-gradient(to right, rgba(0,0,0,0.1), rgba(0,0,0,0.2)); 
+}

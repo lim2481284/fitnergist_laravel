@@ -15,11 +15,10 @@ class productController extends Controller
 	*/
     public function ajaxImageUploadPost(Request $request)
 	{
-		$imageName = $request->name . '.' . 
-			$request->file('image')->getClientOriginalExtension();
+		$imageName = $request->name . '.jpg';
 
 		$request->file('image')->move(
-			base_path() . '/public/images/product/', $imageName
+			base_path() . '/public/assets/img/product/', $imageName
 		);
 		
 		return response()->json(['success'=>true,'message'=>'Image uploaded']); 

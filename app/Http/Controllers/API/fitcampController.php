@@ -16,6 +16,25 @@ class fitcampController extends Controller
 		Controller for the fitcamp section 
 	
 	*/
+    public function ajaxImageUploadPost(Request $request)
+	{
+		$imageName = $request->name . '.jpg';
+
+		$request->file('image')->move(
+			base_path() . '/public/assets/img/fitcamp/', $imageName
+		);
+		
+		return response()->json(['success'=>true,'message'=>'Image uploaded']); 
+    }
+			
+	
+    public function getTotal()
+    {		
+        $fitcamp = Fitcamp::all()->count();
+		return response()->json(['success'=>true,'total'=>$fitcamp]);
+    }
+		
+	
     public function getFitcamp()
     {
 		

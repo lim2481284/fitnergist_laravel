@@ -13,6 +13,25 @@ class achievementController extends Controller
 		Controller for the achievement section 
 	
 	*/
+	
+    public function ajaxImageUploadPost(Request $request)
+	{
+		$imageName = $request->name . '.jpg';
+
+		$request->file('image')->move(
+			base_path() . '/public/assets/img/achievement/', $imageName
+		);
+		
+		return response()->json(['success'=>true,'message'=>'Image uploaded']); 
+    }
+		
+    public function getTotal()
+    {		
+        $achievement = Achievement::all()->count();
+		return response()->json(['success'=>true,'total'=>$achievement]);
+    }
+			
+	
     public function getAchievement()
     {		
         $achieve = Achievement::all();

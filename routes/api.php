@@ -9,19 +9,22 @@ use App\Users;
 |
 */
 
+Route::middleware('auth:api')
+    ->get('/usera', function (Request $request) {
+        return $request->user();
+    });
+
 Route::get('/users', function() {
     return Users::all();
 });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 
 Route::post('/register', 'Auth\RegisterController@register');
 Route::post('/login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout');
-
+Route::group(['middleware' => ['web']], function () {
+	Route::post('/logout', 'Auth\LoginController@logout');
+});
 /*
 |--------------------------------------------------------------------------
 | Other section 
@@ -40,12 +43,13 @@ Route::post('logout', 'Auth\LoginController@logout');
 	Redeem API section 
 	
 */
+Route::get('redeem/total/', 'API\redeemController@getTotal');
 Route::get('redeem/', 'API\redeemController@getRedeem');
 Route::get('redeem/{id}', 'API\redeemController@findRedeem');
 Route::post('redeem/', 'API\redeemController@createRedeem');
 Route::put('redeem/{id}', 'API\redeemController@editRedeem');
 Route::delete('redeem/{id}', 'API\redeemController@deleteRedeem');
-
+Route::post('redeem/image/', 'API\redeemController@ajaxImageUploadPost');
 
 /*
 
@@ -197,12 +201,13 @@ Route::post('product/image/', 'API\productController@ajaxImageUploadPost');
 	
 */
 
+Route::get('challenge/total/', 'API\challengeController@getTotal');
 Route::get('challenge/', 'API\challengeController@getChallenge');
 Route::get('challenge/{id}', 'API\challengeController@findChallenge');
 Route::post('challenge/', 'API\challengeController@createChallenge');
 Route::put('challenge/{id}', 'API\challengeController@editChallenge');
 Route::delete('challenge/{id}', 'API\challengeController@deleteChallenge');
-
+Route::post('challenge/image/', 'API\challengeController@ajaxImageUploadPost');
 
 /*
 
@@ -230,13 +235,13 @@ Route::delete('challenge/user/{id}', 'API\challengeController@deleteUserChalleng
 	Acheivement API section 
 	
 */
-
+Route::get('achievement/total/', 'API\achievementController@getTotal');
 Route::get('achievement/', 'API\achievementController@getAchievement');
 Route::get('achievement/{id}', 'API\achievementController@findAchievement');
 Route::post('achievement/', 'API\achievementController@createAchievement');
 Route::put('achievement/{id}', 'API\achievementController@editAchievement');
 Route::delete('achievement/{id}', 'API\achievementController@deleteAchievement');
-
+Route::post('achievement/image/', 'API\achievementController@ajaxImageUploadPost');
 /*
 
 	User achievement API section 
@@ -276,13 +281,13 @@ Route::delete('achievement/condition/{id}', 'API\achievementController@deleteAch
 	Fitcamp API section 
 	
 */
-
+Route::get('fitcamp/total/', 'API\fitcampController@getTotal');
 Route::get('fitcamp/', 'API\fitcampController@getFitcamp');
 Route::get('fitcamp/{id}', 'API\fitcampController@findFitcamp');
 Route::post('fitcamp/', 'API\fitcampController@createFitcamp');
 Route::put('fitcamp/{id}', 'API\fitcampController@updateFitcamp');
 Route::delete('fitcamp/{id}', 'API\fitcampController@deleteFitcamp');
-
+Route::post('fitcamp/image/', 'API\fitcampController@ajaxImageUploadPost');
 
 /*
 
@@ -341,7 +346,8 @@ Route::delete('comment/{id}', 'API\forumController@deleteComment');
 	Forum API section 
 	
 */
-
+Route::get('forum/total/', 'API\forumController@getTotal');
+Route::post('forum/image/', 'API\forumController@ajaxImageUploadPost');
 Route::get('forum', 'API\forumController@getForum');
 Route::get('forum/{id}', 'API\forumController@searchForum');
 Route::post('forum', 'API\forumController@createForum');

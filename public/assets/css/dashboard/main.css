@@ -1,39 +1,90 @@
-
-
-
-
-/*========================
-	Menu styling 
-=========================*/
-
-
-.sidebar-menu{
-	position:fixed ;
-	width: 10% !important;
+.container-top-menu{
+	margin-top:3%;
+	margin-left:3% !important; 
 }
 
-
-.logo_img{
-	width:300%;
+.row{
+	position:relative;
 }
 
-.menu-icon
-{
-	height:16%;
+.form-group-input{
+	padding-top:5%;
 }
 
-#menu{
-	height:90vh;
+html{
+	overflow-x:hidden !important;
 }
+#boxscroll{
+	overflow-x:hidden;
 
-span{
-	opacity:1 !important;
-	font-weight:700;
 }
 
 
 
-/*========================
-	Header styling 
-=========================*/
+/*
+	Styling for popout
+*/
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index:1;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+  min-height: 100vh;
+  height: -webkit-fill-available;
+}
+.popout {
+  margin: 10px auto;
+  padding: 1%;  
+  padding-left:3%;
+  padding-right:3%;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+
+}
+.popout h3 {
+  padding-left: 15px;
+}
+.popout .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popout .close:hover {
+  color: #06D85F;
+}
+.popout .content {
+	font-size: 15px;
+
+  overflow: auto;
+}
+.box{
+	margin-top:1%;
+	max-height:650px;
+	border:0px solid #ccc;
+    width: 80% !important;
+    margin: auto;
+	overflow:auto;
+	overflow-x:hidden;
+	padding-right:5%;
+}
+
+
 

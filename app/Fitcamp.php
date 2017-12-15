@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Fitcamp extends Model
 {
 	protected $primaryKey = 'fitcampID';
-    protected $fillable = ['img_url', 'description','title','location','limit','expired_date','start_date','end_date'];
+    protected $fillable = ['img_url', 'description','title','location','limit','start_date','end_date','price'];
 	protected $table = 'fitcamp';
 }

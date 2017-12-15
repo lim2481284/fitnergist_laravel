@@ -14,6 +14,26 @@ class challengeController extends Controller
 		Controller for the challenge section 
 	
 	*/
+	
+    public function ajaxImageUploadPost(Request $request)
+	{
+		$imageName = $request->name . '.jpg';
+
+		$request->file('image')->move(
+			base_path() . '/public/assets/img/challenge/', $imageName
+		);
+		
+		return response()->json(['success'=>true,'message'=>'Image uploaded']); 
+    }
+			
+	
+    public function getTotal()
+    {		
+        $challenge = Challenge::all()->count();
+		return response()->json(['success'=>true,'total'=>$challenge]);
+    }
+	
+	
     public function getChallenge()
     {		
         $challenge = Challenge::all();

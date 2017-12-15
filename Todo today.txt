@@ -1,11 +1,71 @@
+fix jquery error 
 
-1 - allow ajax call 
+
+
+1 - done registration and role swithcing 
+	https://laracasts.com/discuss/channels/tips/middleware-to-show-items-based-on-user-roles 
+	http://laravelcode.com/post/laravel-passport-create-rest-api-with-authentication
 2 - done admin function 
+
+	- product 
+		- edit 
+		- delete 
+		- view detail 
+		
+	- forum		
+		- edit forum
+		- delete forum		
+		- userIDFunction()
+		- view forum			
+			- delete comment 
+			- edit comment
+			- userIDFunction()
+			
+			
+	- fitcamp
+		- create fitcamp
+		- edit fitcamp
+		- add coach 
+		- delete fitcamp 
+		- view all fitcamp 
+		- location : optinal 
+		- calnder : optional;
+		- view specific fitcamp 
+		- register fitcamp 
+			- userIDFunction()
+		
+	- Challenge		
+		- edit Challenge
+		- delete Challenge 				
+		- user achieve challege 
+		- achieve challenge 
+			- userIDFunction()
+		
+	- achieve		
+		- edit achieve
+		- delete achieve 		
+		- view specific achieve 
+		- add condition 
+		- user acheive 
+			- userIDFunction()
+
+	- tracking 
+		- track user record 
+		- get tracking history
+	
+	- redeem
+		- add redeem
+		- edit redeem
+		- delete redeem
+		- view redeem list 
+		- view redeem history
+		- user redeem 
+			- userIDFunction()
+			
 3 - done trainer function 
 4 - done user function 
-5 - done auth 
-6 - done role 
-7 - go deep 
+7 - go deep ( api token , email verification, error exception, input validation ) 
+8 - document everything ( UI, function, how api auth , advacne role based and permission, passport package  ) 
 
 
 =======================================================================================

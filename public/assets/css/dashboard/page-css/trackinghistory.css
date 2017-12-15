@@ -1,0 +1,14 @@
+table{
+	height: -webkit-fill-available;
+}
+th {
+    min-width: 200px;
+	border-right: 1px solid lightgray;
+}
+
+td{
+	text-align:center;
+	width:150px;
+	padding-left:20px;
+	padding-right:20px;
+}
