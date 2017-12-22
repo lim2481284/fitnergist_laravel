@@ -12,3 +12,6 @@ function readURL(input) {
 		reader.readAsDataURL(input.files[0]);
 	}
 }
+
+$('.userMenu').attr('class','userMenu active');
+fitnergistAPI.getAllRedeemAPI();

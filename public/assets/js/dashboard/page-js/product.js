@@ -14,24 +14,23 @@ function readURL(input) {
 
 
 $(document).ready(function(){
-	
+
 	// Lift card and show stats on Mouseover
 	$(document).on('mouseover','.product-card',function(){
 			$(this).addClass('animate');
-			$('div.carouselNext, div.carouselPrev').addClass('visible');			
-	 });	 
+			$('div.carouselNext, div.carouselPrev').addClass('visible');
+	 });
 	 $(document).on('mouseout','.product-card',function(){
-			$(this).removeClass('animate');			
+			$(this).removeClass('animate');
 			$('div.carouselNext, div.carouselPrev').removeClass('visible');
-	});	
-	
+	});
+
 	// View detail button
-	$('.view_details').click(function(){		
-		
-	});			
-	
+	$('.view_details').click(function(){
+
+	});
+
 });
 
-
+$('.productMenu').attr('class','userMenu active');
 fitnergistAPI.getProductAPI();
-

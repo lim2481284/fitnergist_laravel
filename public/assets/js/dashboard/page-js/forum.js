@@ -10,7 +10,10 @@ function readURL(input) {
 		reader.readAsDataURL(input.files[0]);
 	}
 }
+$('.closeBtn').click(function(){
+	location.href='#';
 
+})
 
 var getUrlParameter = function getUrlParameter(sParam) {
 	var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -33,12 +36,12 @@ if(forumID)
 	$('.forumListSection').hide();
 	$('.forumContentSection').show();
 	$('.backBtn').show();
-	fitnergistAPI.getForumAPI(forumID);	
-	fitnergistAPI.getCommentAPI(forumID);	
+	fitnergistAPI.getForumAPI(forumID);
+	fitnergistAPI.getCommentAPI(forumID);
 }
-else 
+else
 {
 	$('.createForum').show();
-	$('.forumListSection').show();	
+	$('.forumListSection').show();
 	fitnergistAPI.getAllForumAPI();
 }

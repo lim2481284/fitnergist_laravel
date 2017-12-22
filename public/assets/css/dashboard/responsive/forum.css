@@ -14,3 +14,46 @@
 .box{
 	width: 100%;
 }
+.col-sm-11.container.container-top-menu{
+		margin-top:0%;
+		padding-top:70%;
+
+}
+.createForum {
+    top: 70%;
+    padding: 6% 8% 6% 8%;
+}
+#bodyContent {
+	    width: 100%;
+	    margin: auto;
+}
+.forumList{
+	width:100%;
+}
+.forumListContent {
+    overflow: hidden;
+    position: relative;
+    height: 140px;
+    background: white;
+    margin: auto;
+}
+.forumImg,.forumImg_even {
+    width: 110px;
+}
+.forumBody {
+    padding-left: 100px;
+}
+.forumBody_even {
+    padding-right: 100px;
+}
+.forumTitleLabel {
+    font-size: 120%;
+}
+p{
+	margin-bottom:0;
+		margin-top:5px;
+}
+
+.forumFooter,.forumFooter_even {
+    font-size: 70%;
+}

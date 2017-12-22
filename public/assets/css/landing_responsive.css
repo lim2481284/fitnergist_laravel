@@ -1,0 +1,61 @@
+.topBannerSection{
+	width:100vw;
+	background-image: url('../img/mobileBanner.png');
+	height:90vw;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+
+.menuBoxArea{
+	margin-top:5%;
+}
+.slide1{
+	background-image: url('../img/step1_mobile.png');
+}
+.slide2{
+	background-image: url('../img/step2_mobile.png');
+}
+.slide3{
+	background-image: url('../img/step3_mobile.png');
+}
+.slide4{
+	background-image: url('../img/step4_mobile.png');
+}
+.slide5{
+	background-image: url('../img/step5_mobile.png');
+}
+.slide6{
+	background-image: url('../img/step6_mobile.png');
+}
+.logo{
+	position:absolute;
+	margin:auto;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	width:25%;
+	margin-top:25%;
+	-webkit-animation: beat 1s linear infinite;
+}
+.bannerLogo{
+
+	height:70%;
+}
+
+@-webkit-keyframes beat {
+   0%{
+	   width: 25%;
+
+   }
+   75%{
+	    width: 30%;
+   }
+   80%{
+	    width:36%;
+   }
+   100{
+		width: 25%;
+   }
+}

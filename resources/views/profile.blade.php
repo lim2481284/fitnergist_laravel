@@ -1,28 +1,119 @@
-@extends('layouts.website')
+@extends('layouts.dashboard_layout_user')
+
+
+@section('css')
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="assets/css/dashboard/page-css/forum.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="assets/css/dashboard/responsive/forum.css" rel="stylesheet" type="text/css" media="all"/>
+
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+@stop
+
+
 
 @section('content')
 
-	<div id="body">
-		<div id="featured">
-			<img src="assets/img/background.jpg" alt="">
-			<div id='homeDesign'>
-				<h1>
-					Shred fat ,<br>
-					get fit, <br>
-					get lean. <br>
-				
-				</h1>
-				<br>
-				<span>Diets Don't Work. With Fitnergist fit camp You Will See Great Results Whatever Your Current Shape Or Fitness
-				</span>
-			
-				
-			</div>
-			<div id='homeDesignRight'>
-				<h2 id='join' > Join Now !</h2>					
-			</div>
+
+	<div class='loader'>
+		<img src='assets/img/logo.png'/>
+		<label class='loader-label'> Loading ... </label>
+	</div>
+	<div id='bodyContent' class='fade-out'>
+		<div class='container'>
+		<form class="form-horizontal" >
+		<fieldset>
+
+		<!-- Form Name -->
+
+		<div class="control-group">
+			<form action="#" enctype="multipart/form-data" method="POST">
+				<div class='imageSection'>
+					<img id="uploadedImage" src="#" />
+				</div>
+				<div class="file-input-wrapper">
+					<input type='hidden' class='userImg' />
+					<button class="btn btn-default" type="button">Upload Profile Image</button>
+					<input  id='image' type="file" name="image"  class='userFileUpload' accept="image/*" onchange="readURL(this);"/>
+				</div>
+			</form>
 		</div>
 
+		<!-- Text input-->
+		<div class="control-group">
+		<label class="control-label" for="textinput-0">Name</label>
+		<div class="controls">
+			<input id="textinput-0" name="textinput-0" type="text" placeholder="Text here ..." class="input-xlarge name">
+
+		</div>
+		</div>
+
+		<!-- Text input-->
+		<div class="control-group">
+		<label class="control-label" for="textinput-1">Email</label>
+		<div class="controls">
+			<input id="textinput-1" name="textinput-1" type="text" placeholder="Text here ..." class="input-xlarge email">
+
+		</div>
+		</div>
+
+		<!-- Text input-->
+		<div class="control-group">
+		<label class="control-label" for="textinput-2">Contact </label>
+		<div class="controls">
+			<input id="textinput-2" name="textinput-2" type="text" placeholder="Text here ..." class="input-xlarge contact">
+
+		</div>
+		</div>
+
+		<!-- Text input-->
+		<div class="control-group">
+		<label class="control-label" for="textinput-3">Age</label>
+		<div class="controls">
+			<input id="textinput-3" name="textinput-3" type="text" placeholder="" class="input-xlarge age">
+
+		</div>
+		</div>
+
+		<!-- Select Basic -->
+		<div class="control-group">
+		<label class="control-label" for="selectbasic-0">Gender</label>
+		<div class="controls">
+			<select id="selectbasic-0" name="selectbasic-0" class="input-xlarge gender">
+				<option value ='male' >Male</option>
+				<option value='female'>Female</option>
+			</select>
+		</div>
+		</div>
+
+		<!-- Textarea -->
+		<div class="control-group">
+		<label class="control-label" for="textarea-0">Address</label>
+		<div class="controls">
+			<textarea id="textarea-0" name="textarea-0" class='address'></textarea>
+		</div>
+
+		</div>
+
+
+		<div class="control-group">
+
+		<div class="controls">
+				<button type='button' class='btn btn-default updateProfile'> Update profile </button>
+		</div>
+		</div>
+
+		</fieldset>
+
+		</form>
+
 	</div>
-	
-@endsection
+</div>
+@stop
+
+
+
+
+@section('javascript')
+ <script src="assets/js/dashboard/page-js/profile.js"></script>
+@stop

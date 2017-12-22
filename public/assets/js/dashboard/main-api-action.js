@@ -1,21 +1,275 @@
 $(document).ready(function () {
 
 
-	/*=============================================	
-	
-			  Achievement API action section 	
-		
+		/*=============================================
+
+				  Redeem API action section
+
+		===============================================*/
+
+
+		//Upload picture on change
+		$(".redeemFileUpload").change(function(){
+
+			var image = $('#image')[0].files[0];
+			var form = new FormData();
+
+			//Get totol redeem number to generate image name
+			$.get(fitnergistAPI.url+'api/redeem/total/', function(data, status){
+				var total = data.total+1;
+				var imageName = "image_"+ total;
+				form.append('image', image);
+				form.append('name', imageName);
+				//Upload image
+				$.ajax({
+					url: fitnergistAPI.url+'api/redeem/image',
+					data: form,
+					crossDomain: false,
+					cache: false,
+					contentType: false,
+					processData: false,
+					type: 'POST',
+					success:function(response) {
+						console.log(response);
+						$('.redeemImg').attr('value',imageName);
+					}
+				});
+
+			});
+		});
+
+		//Remove redeem action
+		 $(document).on('click','.deleteRedeem',function () {
+			var postId= $(this).attr('value');
+			tutorAPI.deleteBlogAPI(postId);
+		});
+
+		//Edit redeem action
+		$(document).on("click", ".editRedeemBtn", function(){
+
+			 var blogId = $('.editBlogBtn').attr('value');
+			 var blogTagArray = [];
+			 var blogTag = $(".blogTag");
+			 if(blogTag)
+			 {
+				for(var i = 0; i < blogTag.length; i++){
+					var tagName = $(blogTag[i]).val();
+					blogTagArray.push(tagName);
+					console.log(tagName);
+				}
+
+			 }
+			 //Get text editor value
+			 var blogContent = $("#editor").Editor("getText");
+
+
+			 //Get redeem title
+			 var blogTitle = $('.gTitle').val();
+
+			 tutorAPI.modifyBlogAPI(blogId,blogTitle,blogContent,blogTagArray);
+
+		});
+
+
+		//Create product action
+		$(document).on("click", ".createRedeemBtn", function(){
+			var redeemName = $('.redeemName').val();
+			var redeemImg = $('.redeemImg').val();
+			var redeemDescription = $('.redeemDescription').val();
+			var redeemPoint = $('.redeemPoint').val();
+			var redeemQuantity = $('.redeemQuantity').val();
+			if(!redeemImg)
+				redeemImg='default';
+
+			if(!redeemName || !redeemDescription || !redeemPoint || !redeemQuantity)
+				swal('Please fill in all the field' ,'','error');
+			else
+				fitnergistAPI.createRedeemAPI(redeemName,redeemImg,redeemDescription,redeemPoint,redeemQuantity);
+
+		});
+
+
+		//Upload picture on change
+		$(".profileFileUpload").change(function(){
+
+			var image = $('#image')[0].files[0];
+			var form = new FormData();
+
+			//Get totol product number to generate image name
+			$.get(fitnergistAPI.url+'api/product/total/', function(data, status){
+				var total = data.total+1;
+				var imageName = "image_"+ total;
+				form.append('image', image);
+				form.append('name', imageName);
+				//Upload image
+				$.ajax({
+					url: fitnergistAPI.url+'api/product/image',
+					data: form,
+					crossDomain: false,
+					cache: false,
+					contentType: false,
+					processData: false,
+					type: 'POST',
+					success:function(response) {
+						console.log(response);
+						$('.productImg').attr('value',imageName);
+					}
+				});
+
+			});
+
+		});
+
+
+
+
+
+		/*=============================================
+
+				  User  API action section
+
+		===============================================*/
+
+		//Upload user profile picture
+		$(".userFileUpload").change(function(){
+
+			var image = $('#image')[0].files[0];
+			var form = new FormData();
+
+			//Get totol product number to generate image name
+
+				var imageName = "image_"+ fitnergistAPI.userID;
+				form.append('image', image);
+				form.append('name', imageName);
+				//Upload image
+				$.ajax({
+					url: fitnergistAPI.url+'api/users/image',
+					data: form,
+					crossDomain: false,
+					cache: false,
+					contentType: false,
+					processData: false,
+					type: 'POST',
+					success:function(response) {
+						console.log(response);
+						$('.userImg').attr('value',imageName);
+					}
+
+
+			});
+
+		});
+
+
+		//Remove user action
+		 $(document).on('click','.changePasswordBtn',function () {
+
+		});
+
+
+
+		//Edit user  action
+		$(document).on("click", ".updateProfile", function(){
+
+			 var name = $('.name').val();
+			 var email = $('.email').val();
+			 var contact = $('.contact').val();
+			 var age = $('.age').val();
+			 var gender = $('.gender').val();
+			 var address = $('.address').val();
+			 var img_url = $('.userImg').val();
+
+			 fitnergistAPI.editUserAPI(name,email,contact,age,gender,address,img_url);
+
+		});
+
+
+
+		//Login user action
+		$(document).on("click", ".loginBtn", function(){
+
+			var username = $('.loginUsername').val();
+			var pass = $('.loginPass').val();
+
+			//validate input field
+			if(!username || !pass )
+				swal('Please fill in all the field' ,'','error');
+			else
+				fitnergistAPI.loginAPI(username,pass);
+
+		});
+
+		//Register user action
+		$(document).on("click", ".createUserBtn", function(){
+
+			var username = $('.registerUser').val();
+			var pass = $('.registerPass').val();
+			var confirmPass = $('.registerConPass').val();
+			var email = $('.email').val();
+
+			if(pass!=confirmPass){
+					swal('Password not same with confirm password' ,'','error');
+					return 0;
+			}
+			//validate input field
+			if(!username || !pass || !email)
+				swal('Please fill in all the field' ,'','error');
+			else
+				fitnergistAPI.createUserAPI(username,pass,email);
+
+		});
+
+
+		//Upload picture on change
+		$(".achievementFileUpload").change(function(){
+
+			var image = $('#image')[0].files[0];
+			var form = new FormData();
+
+			//Get totol product number to generate image name
+			$.get(fitnergistAPI.url+'api/achievement/total/', function(data, status){
+				var total = data.total+1;
+				var imageName = "image_"+ total;
+				form.append('image', image);
+				form.append('name', imageName);
+				//Upload image
+				$.ajax({
+					url: fitnergistAPI.url+'api/achievement/image',
+					data: form,
+					crossDomain: false,
+					cache: false,
+					contentType: false,
+					processData: false,
+					type: 'POST',
+					success:function(response) {
+						console.log(response);
+						$('.achievementImg').attr('value',imageName);
+					}
+				});
+
+			});
+
+		});
+
+
+
+
+
+	/*=============================================
+
+			  Achievement API action section
+
 	===============================================*/
-	
-	//Remove blog action 
-	 $(document).on('click','.deleteChallengeBtn',function () {		
-		var postId= $(this).attr('value');		
-		tutorAPI.deleteBlogAPI(postId);				
+
+	//Remove blog action
+	 $(document).on('click','.deleteChallengeBtn',function () {
+		var postId= $(this).attr('value');
+		tutorAPI.deleteBlogAPI(postId);
 	});
-	
-	//Edit blog action 
+
+	//Edit blog action
 	$(document).on("click", ".editChallengeBtn", function(){
-		
+
 		 var blogId = $('.editBlogBtn').attr('value');
 		 var blogTagArray = [];
 		 var blogTag = $(".blogTag");
@@ -28,49 +282,49 @@ $(document).ready(function () {
 			}
 
 		 }
-		 //Get text editor value 
-		 var blogContent = $("#editor").Editor("getText");		 
-		 
-		 
-		 //Get blog title 
+		 //Get text editor value
+		 var blogContent = $("#editor").Editor("getText");
+
+
+		 //Get blog title
 		 var blogTitle = $('.blogTitle').val();
-		 
-		 tutorAPI.modifyBlogAPI(blogId,blogTitle,blogContent,blogTagArray);	
-		
+
+		 tutorAPI.modifyBlogAPI(blogId,blogTitle,blogContent,blogTagArray);
+
 	});
 
-	
-	//Create product action 
+
+	//Create product action
 	$(document).on("click", ".createAchievementBtn", function(){
 		var achievementName = $('.achievementName').val();
 		var achievementDescription = $('.achievementDescription').val();
 		var achievementPoint = $('.achievementPoint').val();
-		var achievementImg = $('.achievementImg').val();		
+		var achievementImg = $('.achievementImg').val();
 		if(!achievementImg)
 			achievementImg='default';
-		
+
 		//validate input field
 		if(!achievementName || !achievementDescription || !achievementPoint)
 			swal('Please fill in all the field' ,'','error');
-		else 
+		else
 			fitnergistAPI.createAchievementAPI(achievementImg,achievementDescription,achievementName,achievementPoint);
-		
+
 	});
-	
-	
+
+
 	//Upload picture on change
 	$(".achievementFileUpload").change(function(){
-		
+
 		var image = $('#image')[0].files[0];
-		var form = new FormData();		
-		
-		//Get totol product number to generate image name 
+		var form = new FormData();
+
+		//Get totol product number to generate image name
 		$.get(fitnergistAPI.url+'api/achievement/total/', function(data, status){
 			var total = data.total+1;
 			var imageName = "image_"+ total;
 			form.append('image', image);
-			form.append('name', imageName);			
-			//Upload image 
+			form.append('name', imageName);
+			//Upload image
 			$.ajax({
 				url: fitnergistAPI.url+'api/achievement/image',
 				data: form,
@@ -83,33 +337,33 @@ $(document).ready(function () {
 					console.log(response);
 					$('.achievementImg').attr('value',imageName);
 				}
-			});	
-						
+			});
+
 		});
-		
+
 	});
-	
 
 
-	
-	
 
 
-	/*=============================================	
-	
-			  Challenge API action section 	
-		
+
+
+
+	/*=============================================
+
+			  Challenge API action section
+
 	===============================================*/
-	
-	//Remove blog action 
-	 $(document).on('click','.deleteChallengeBtn',function () {		
-		var postId= $(this).attr('value');		
-		tutorAPI.deleteBlogAPI(postId);				
+
+	//Remove blog action
+	 $(document).on('click','.deleteChallengeBtn',function () {
+		var postId= $(this).attr('value');
+		tutorAPI.deleteBlogAPI(postId);
 	});
-	
-	//Edit blog action 
+
+	//Edit blog action
 	$(document).on("click", ".editChallengeBtn", function(){
-		
+
 		 var blogId = $('.editBlogBtn').attr('value');
 		 var blogTagArray = [];
 		 var blogTag = $(".blogTag");
@@ -122,49 +376,49 @@ $(document).ready(function () {
 			}
 
 		 }
-		 //Get text editor value 
-		 var blogContent = $("#editor").Editor("getText");		 
-		 
-		 
-		 //Get blog title 
+		 //Get text editor value
+		 var blogContent = $("#editor").Editor("getText");
+
+
+		 //Get blog title
 		 var blogTitle = $('.blogTitle').val();
-		 
-		 tutorAPI.modifyBlogAPI(blogId,blogTitle,blogContent,blogTagArray);	
-		
+
+		 tutorAPI.modifyBlogAPI(blogId,blogTitle,blogContent,blogTagArray);
+
 	});
 
-	
-	//Create product action 
+
+	//Create product action
 	$(document).on("click", ".createChallengeBtn", function(){
 		var challengeName = $('.challengeName').val();
 		var challengeDescription = $('.challengeDescription').val();
 		var challengePoint = $('.challengePoint').val();
-		var challengeImg = $('.challengeImg').val();		
+		var challengeImg = $('.challengeImg').val();
 		if(!challengeImg)
 			challengeImg='default';
-		
+
 		//validate input field
 		if(!challengeName || !challengeDescription || !challengePoint)
 			swal('Please fill in all the field' ,'','error');
-		else 
+		else
 			fitnergistAPI.createChallengeAPI(challengeImg,challengeDescription,challengeName,challengePoint);
-		
+
 	});
-	
-	
+
+
 	//Upload picture on change
 	$(".challengeFileUpload").change(function(){
-		
+
 		var image = $('#image')[0].files[0];
-		var form = new FormData();		
-		
-		//Get totol product number to generate image name 
+		var form = new FormData();
+
+		//Get totol product number to generate image name
 		$.get(fitnergistAPI.url+'api/challenge/total/', function(data, status){
 			var total = data.total+1;
 			var imageName = "image_"+ total;
 			form.append('image', image);
-			form.append('name', imageName);			
-			//Upload image 
+			form.append('name', imageName);
+			//Upload image
 			$.ajax({
 				url: fitnergistAPI.url+'api/challenge/image',
 				data: form,
@@ -177,32 +431,32 @@ $(document).ready(function () {
 					console.log(response);
 					$('.challengeImg').attr('value',imageName);
 				}
-			});	
-						
+			});
+
 		});
-		
+
 	});
-	
 
 
 
 
 
-	/*=============================================	
-	
-			  Forum API action section 	
-		
+
+	/*=============================================
+
+			  Forum API action section
+
 	===============================================*/
-	
-	//Remove blog action 
-	 $(document).on('click','.deleteBlog',function () {		
-		var postId= $(this).attr('value');		
-		tutorAPI.deleteBlogAPI(postId);				
+
+	//Remove blog action
+	 $(document).on('click','.deleteBlog',function () {
+		var postId= $(this).attr('value');
+		tutorAPI.deleteBlogAPI(postId);
 	});
-	
-	//Edit blog action 
+
+	//Edit blog action
 	$(document).on("click", ".editBlogBtn", function(){
-		
+
 		 var blogId = $('.editBlogBtn').attr('value');
 		 var blogTagArray = [];
 		 var blogTag = $(".blogTag");
@@ -215,59 +469,59 @@ $(document).ready(function () {
 			}
 
 		 }
-		 //Get text editor value 
-		 var blogContent = $("#editor").Editor("getText");		 
-		 
-		 
-		 //Get blog title 
+		 //Get text editor value
+		 var blogContent = $("#editor").Editor("getText");
+
+
+		 //Get blog title
 		 var blogTitle = $('.blogTitle').val();
-		 
-		 tutorAPI.modifyBlogAPI(blogId,blogTitle,blogContent,blogTagArray);	
-		
+
+		 tutorAPI.modifyBlogAPI(blogId,blogTitle,blogContent,blogTagArray);
+
 	});
 
-	//Create forum comment action 
+	//Create forum comment action
 	$(document).on("click", ".createCommentBtn", function(){
 		var commentInputField = $('.commentInputField').val();
 		var userID = 1;
 		var forumID = $('.forumID').attr('value');
 
 		fitnergistAPI.createCommentAPI(forumID,userID,commentInputField);
-		
-	});
-	
 
-	
-	//Create forum action 
+	});
+
+
+
+	//Create forum action
 	$(document).on("click", ".createForumBtn", function(){
 		var forumTitle = $('.forumTitle').val();
 		var forumContent = $('.forumContent').val();
 		var forumImg = $('.forumImg').val();
-		var forumUserID = $('.forumUserID').val();		
+		var forumUserID = $('.forumUserID').val();
 		if(!forumImg)
 			forumImg='default';
-		
+
 		if(!forumTitle || !forumContent)
 			swal('Please fill in all the field' ,'','error');
-		else 
+		else
 			fitnergistAPI.createForumAPI(forumTitle,forumContent,forumUserID,forumImg);
-		
+
 	});
-	
-	
+
+
 	//Upload picture on change
 	$(".forumFileUpload").change(function(){
-		
+
 		var image = $('#image')[0].files[0];
-		var form = new FormData();		
-		
-		//Get totol product number to generate image name 
+		var form = new FormData();
+
+		//Get totol product number to generate image name
 		$.get(fitnergistAPI.url+'api/forum/total/', function(data, status){
 			var total = data.total+1;
 			var imageName = "image_"+ total;
 			form.append('image', image);
-			form.append('name', imageName);			
-			//Upload image 
+			form.append('name', imageName);
+			//Upload image
 			$.ajax({
 				url: fitnergistAPI.url+'api/forum/image',
 				data: form,
@@ -280,12 +534,11 @@ $(document).ready(function () {
 					console.log(response);
 					$('.forumImg').attr('value',imageName);
 				}
-			});	
-						
+			});
+
 		});
-		
+
 	});
-	
 
 
 
@@ -293,21 +546,22 @@ $(document).ready(function () {
 
 
 
-	/*=============================================	
-	
-			  Fitcamp  API action section 	
-		
+
+	/*=============================================
+
+			  Fitcamp  API action section
+
 	===============================================*/
-	
-	//Remove blog action 
-	 $(document).on('click','.deleteFitcampBtn',function () {		
-		var postId= $(this).attr('value');		
-		tutorAPI.deleteBlogAPI(postId);				
+
+	//Remove blog action
+	 $(document).on('click','.deleteFitcampBtn',function () {
+		var postId= $(this).attr('value');
+		tutorAPI.deleteBlogAPI(postId);
 	});
-	
-	//Edit blog action 
+
+	//Edit blog action
 	$(document).on("click", ".editFitcampBtn", function(){
-		
+
 		 var blogId = $('.editBlogBtn').attr('value');
 		 var blogTagArray = [];
 		 var blogTag = $(".blogTag");
@@ -320,19 +574,19 @@ $(document).ready(function () {
 			}
 
 		 }
-		 //Get text editor value 
-		 var blogContent = $("#editor").Editor("getText");		 
-		 
-		 
-		 //Get blog title 
+		 //Get text editor value
+		 var blogContent = $("#editor").Editor("getText");
+
+
+		 //Get blog title
 		 var blogTitle = $('.blogTitle').val();
-		 
-		 tutorAPI.modifyBlogAPI(blogId,blogTitle,blogContent,blogTagArray);	
-		
+
+		 tutorAPI.modifyBlogAPI(blogId,blogTitle,blogContent,blogTagArray);
+
 	});
 
-	
-	//Create product action 
+
+	//Create product action
 	$(document).on("click", ".createFitcampBtn", function(){
 		var fitcampName = $('.fitcampName').val();
 		var fitcampDescription = $('.fitcampDescription').val();
@@ -343,28 +597,28 @@ $(document).ready(function () {
 		var fitcampImg = $('.fitcampImg').val();
 		if(!fitcampImg)
 			fitcampImg='default';
-		
+
 		if(!fitcampName || !fitcampDescription || !fitcampLocation || !fitcampPrice || !fitcampStartDate|| !fitcampEndDate)
 			swal('Please fill in all the field' ,'','error');
-		else 
+		else
 			fitnergistAPI.createFitcampAPI(fitcampImg,fitcampDescription,fitcampName,fitcampLocation,fitcampPrice,fitcampStartDate,fitcampEndDate);
-		
+
 	});
-	
-	
+
+
 	//Upload picture on change
 	$(".profileFileUpload").change(function(){
-		
+
 		var image = $('#image')[0].files[0];
-		var form = new FormData();		
-		
-		//Get totol product number to generate image name 
+		var form = new FormData();
+
+		//Get totol product number to generate image name
 		$.get(fitnergistAPI.url+'api/fitcamp/total/', function(data, status){
 			var total = data.total+1;
 			var imageName = "image_"+ total;
 			form.append('image', image);
-			form.append('name', imageName);			
-			//Upload image 
+			form.append('name', imageName);
+			//Upload image
 			$.ajax({
 				url: fitnergistAPI.url+'api/fitcamp/image',
 				data: form,
@@ -377,28 +631,28 @@ $(document).ready(function () {
 					console.log(response);
 					$('.fitcampImg').attr('value',imageName);
 				}
-			});	
-						
-		});
-		
-	});
-	
+			});
 
-	/*=============================================	
-	
-			  Product API action section 	
-		
-	===============================================*/
-	
-	//Remove blog action 
-	 $(document).on('click','.deleteBlog',function () {		
-		var postId= $(this).attr('value');		
-		tutorAPI.deleteBlogAPI(postId);				
+		});
+
 	});
-	
-	//Edit blog action 
+
+
+	/*=============================================
+
+			  Product API action section
+
+	===============================================*/
+
+	//Remove blog action
+	 $(document).on('click','.deleteBlog',function () {
+		var postId= $(this).attr('value');
+		tutorAPI.deleteBlogAPI(postId);
+	});
+
+	//Edit blog action
 	$(document).on("click", ".editBlogBtn", function(){
-		
+
 		 var blogId = $('.editBlogBtn').attr('value');
 		 var blogTagArray = [];
 		 var blogTag = $(".blogTag");
@@ -411,19 +665,19 @@ $(document).ready(function () {
 			}
 
 		 }
-		 //Get text editor value 
-		 var blogContent = $("#editor").Editor("getText");		 
-		 
-		 
-		 //Get blog title 
+		 //Get text editor value
+		 var blogContent = $("#editor").Editor("getText");
+
+
+		 //Get blog title
 		 var blogTitle = $('.blogTitle').val();
-		 
-		 tutorAPI.modifyBlogAPI(blogId,blogTitle,blogContent,blogTagArray);	
-		
+
+		 tutorAPI.modifyBlogAPI(blogId,blogTitle,blogContent,blogTagArray);
+
 	});
 
-	
-	//Create product action 
+
+	//Create product action
 	$(document).on("click", ".createProductBtn", function(){
 		var productName = $('.productName').val();
 		var productImg = $('.productImg').val();
@@ -432,28 +686,28 @@ $(document).ready(function () {
 		var productQuantity = $('.productQuantity').val();
 		if(!productImg)
 			productImg='default';
-		
+
 		if(!productName || !productDescription || !productPrice || !productQuantity)
 			swal('Please fill in all the field' ,'','error');
-		else 
+		else
 			fitnergistAPI.createProductAPI(productName,productImg,productDescription,productPrice,productQuantity);
-		
+
 	});
-	
-	
+
+
 	//Upload picture on change
 	$(".profileFileUpload").change(function(){
-		
+
 		var image = $('#image')[0].files[0];
-		var form = new FormData();		
-		
-		//Get totol product number to generate image name 
+		var form = new FormData();
+
+		//Get totol product number to generate image name
 		$.get(fitnergistAPI.url+'api/product/total/', function(data, status){
 			var total = data.total+1;
 			var imageName = "image_"+ total;
 			form.append('image', image);
-			form.append('name', imageName);			
-			//Upload image 
+			form.append('name', imageName);
+			//Upload image
 			$.ajax({
 				url: fitnergistAPI.url+'api/product/image',
 				data: form,
@@ -466,13 +720,12 @@ $(document).ready(function () {
 					console.log(response);
 					$('.productImg').attr('value',imageName);
 				}
-			});	
-						
-		});
-		
-	});
-	
-	
-	
-});
+			});
 
+		});
+
+	});
+
+
+
+});

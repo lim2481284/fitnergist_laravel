@@ -1,0 +1,242 @@
+/* Font declare */
+
+@font-face {
+    font-family: Hobo;
+    src:url('/assets/fonts/Hobo.woff') format('woff');
+}
+.scoreArrow_mobile{
+    display:none;
+}
+.goalArrow_mobile{
+    display:none;
+}
+
+
+.scoreArrow{
+      position: absolute;
+      right: 0;
+      width: 25%;
+      right: 20%;
+
+}
+.goalArrow{
+    left:0;
+    position: absolute;
+    width: 25%;
+    top: 40%;
+    left:10%;
+}
+
+body{
+	background:white;
+	overflow-x:hidden;
+}
+
+.soilArea{
+	background-image: url('/assets/img/soilVector.png');
+	background-repeat: repeat;
+	margin-left:-1.5%;
+	height: 100vh;
+}
+
+
+.topBannerSection{
+	height:30vh;
+	margin:0;
+	padding:0;
+	margin-top:5%;
+}
+
+
+.menuLabel{
+
+	height:45px;
+    background: #6fc9d8;
+    position: relative;
+    float: right;
+    width: auto;
+	line-height:45px;
+	vertical-align:middle;
+	color:white;
+	font-family:Hobo;
+	font-weight:lighter;
+	padding-left:10px;
+	padding-right:5px;
+	display:none;
+	transition:all 1s;
+}
+.logo{
+	position:absolute;
+	margin:auto;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	width:15%;
+	-webkit-animation: beat 1s linear infinite;
+}
+.topBannerSection{
+	width:100vw;
+	height:35vh;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.bannerLogo{
+	height:60%;
+	position:relative;
+	width:100vw;
+}
+.bannerScore{
+	text-align:center;
+	font-family:Hobo;
+	text-transform:uppercase;
+	color:#3d86be;
+	height:10vw;
+	font-size:180%;
+	width:100vw;
+}
+
+
+
+
+.menuBoxArea{
+	position: fixed;
+	z-index:10;
+    right:0;
+    width: 300px;
+    height: auto;
+	margin:2%;
+	margin-right:4%;
+}
+.menuBox,
+.subMenuBox{
+	width:45px;
+	height:45px;
+	background:#6fc9d8;
+	position:relative;
+	float:right;
+	margin-right:2%;
+	cursor:pointer;
+}
+.subMenuBox{
+	display:none;
+}
+.homeIcon{
+	background:tomato;
+}
+.profileIcon{
+	background:lightgreen;
+}
+.challengeIcon{
+	background:violet;
+}
+.achievementIcon{
+	background:springgreen;
+}
+.redeemIcon{
+	background:salmon;
+}
+.forumIcon{
+	background:rosybrown;
+}
+.productIcon{
+	background:pink;
+}
+.logoutIcon{
+	background:mediumslateblue;
+}
+
+.iconImage{
+	width:45px;
+}
+.menuIcon {
+  width: 25px;
+  height: 20px;
+  position: absolute;
+  top:0;
+  right:0;
+  left:0;bottom:0;
+  margin:auto;
+
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+}
+
+.menuIcon span{
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: white;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .25s ease-in-out;
+  -moz-transition: .25s ease-in-out;
+  -o-transition: .25s ease-in-out;
+  transition: .25s ease-in-out;
+}
+
+.menuIcon span:nth-child(1) {
+  top: 0px;
+}
+
+.menuIcon span:nth-child(2) {
+  top: 8px;
+}
+
+.menuIcon span:nth-child(3) {
+  top: 16px;
+}
+
+.menuIcon.open span:nth-child(1) {
+  top: 10px;
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+.menuIcon.open span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+.menuIcon.open span:nth-child(3) {
+  top: 10px;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+.vector{
+	width:40%;
+}
+
+@-webkit-keyframes beat {
+   0%{
+	   width: 15%;
+
+   }
+   75%{
+	    width: 20%;
+   }
+   80%{
+	    width:26%;
+   }
+   100{
+		width: 15%;
+   }
+}

@@ -16,6 +16,6 @@ function readURL(input) {
 
 
 
+$('.userMenu').attr('class','userMenu active');
 
 fitnergistAPI.getAllAchievementAPI();
-
