@@ -5,19 +5,66 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="assets/css/dashboard/page-css/challenge.css" rel="stylesheet" type="text/css" media="all"/>
-<link href="assets/css/dashboard/responsive/challenge.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="assets/css/dashboard/responsive/challenge.css" rel="stylesheet" type="text/css"  media="screen and (max-width : 768px)"/>
 
 @stop
 
 
 
 @section('content')
+<div class='loader'>
+	<img src='assets/img/logo.png'/>
+	<label class='loader-label'> Loading ... </label>
+</div>
+<div id='bodyContent' class='fade-out'>
 
-	<div class="wrapper">
-	  <div class="cards challengeListSection">
+  <div class="tab">
+
+			<ul class="tabs">
+				<li>
+					<a class='target' href="#">
+	            <div class='tabTitle'>
+	    					<p class='tabNumber_challenge'>0 </p>
+	    					<p class='tabLabel'>Incomplete </p>
+	            </div>
+					</a>
+					<span class="targetArrow  tabArrow glyphicon glyphicon-triangle-bottom"></span>
+				</li>
+				<li>
+					<a href="#">
+	          <div class='tabTitle'>
+	            <p class='tabNumber_completed'> 0</p>
+	            <p class='tabLabel'>Completed </p>
+	          </div>
+					</a>
+					<span  class="tabArrow tabArrow_second  glyphicon glyphicon-triangle-bottom"></span>
+				</li>
+			</ul> <!-- / tabs -->
+
+
+
+
+	  <!-----------------------------------------------
+
+					Challenge Content
+
+		-------------------------------------------------->
+	  <div class="tab_content">
+
+	     <!-- first tabs_item -->
+	    <div class="tabs_item">
+				<div class="cards challengeListSection">
+			  </div>
+	    </div>
+	     <!-- second tabs_item -->
+	    <div class="tabs_item">
+				<div class="cards achievedChallengeListSection">
+			  </div>
+	    </div>
+
 	  </div>
 	</div>
-
+</div>
 @stop
 
 

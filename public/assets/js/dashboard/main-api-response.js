@@ -9,6 +9,53 @@ $(document).ready(function () {
 
 		==============================================*/
 
+		//User redeem API response
+	    $(document).off('createUserRedeemAPIResponse').on('createUserRedeemAPIResponse', function (e, data, status) {
+				swal('Redeem Success', "" ,"success").then(() => {
+					location.reload();
+				});
+	    });
+
+
+			//Get current User redeem API response
+		    $(document).off('getUserRedeemAPIResponse').on('getUserRedeemAPIResponse', function (e, data, status) {
+						console.log(data);
+
+						var userRedeem = data.body;
+
+						for(var i =0 ; i < userRedeem.length; i++ )
+						{
+							var redeemID = userRedeem[i].redeemID;
+							var redeemDate = userRedeem[i].updated_at;
+							$.get(fitnergistAPI.url+'api/redeem/'+ redeemID, function(data, status){
+					        console.log(data);
+									var redeem = data.body;
+									var redeemTitle = redeem.title;
+									var redeemContent = redeem.description;
+									var redeemPoint = redeem.point;
+									var redeemImg = redeem.img_url;
+									var userRedeemHTML=`
+									<div class='redeemHistoryList col-sm-12'>
+											<div class='col-sm-2 historyImageSection'>
+													<img class='historyImage' src='assets/img/redeem/`+redeemImg+`.jpg'/>
+											</div>
+											<div class='historyContent col-sm-8'>
+													<p class='historyTite'>`+redeemTitle+`  </p>
+													<p class='historyDescription'> `+redeemContent+`  </p>
+													<p class='historyPoint'>-- `+redeemPoint+` pt -- </p>
+											</div>
+											<div class='historyDate col-sm-2'>
+													`+redeemDate+`
+											</div>
+									</div>
+									`;
+
+									$('.redeemHistory').append(userRedeemHTML);
+
+					    });
+						}
+		    });
+
 		// create redeem API response
 	    $(document).off('createRedeemAPIResponse').on('createRedeemAPIResponse', function (e, data, status) {
 				swal('Create Redeem Success', "" ,"success").then(() => {
@@ -19,37 +66,33 @@ $(document).ready(function () {
 
 		// get product API response
 		$(document).off('getAllRedeemAPIResponse').on('getAllRedeemAPIResponse', function (e, data, status) {
-			var productList = data.body;
+			var redeemList = data.body;
 			console.log(data);
-			for(var i =0;i <productList.length;i++)
+			for(var i =0;i <redeemList.length;i++)
 			{
-				console.log(productList[i]);
-				var product = productList[i];
-				var productHTML = `
-					<div class="make-3D-space">
-						<div class="product-card">
-							<div class="product-front">
-								<div class="shadow"></div>
-								<img src="assets/img/product/`+product.img_url+`.jpg" alt="" />
-								<div class="image_overlay"></div>
-								<div class="view_details">View details</div>
-								<div class="stats">
-									<div class="stats-container">
-										<span class="product_price">`+product.price+`</span>
-										<span class="product_name">`+product.name+`</span>
-										<p>`+product.description+`</p>
-										<div class="product-options">
-										<strong>Stock left</strong>
-										<span>`+product.quantity+`</span>
-									</div>
-									</div>
-								</div>
-							</div>
+				var redeem = redeemList[i];
 
+				var redeemHTML = `
+					<div class="redeemCard col-sm-12">
+						<div class="redeemImgSection col-sm-12">
+							<center>
+								<img class='redeemImg' src="assets/img/redeem/`+redeem.img_url+`.jpg" alt="" />
+							</center>
+						</div>
+						<div class="redeemContent col-sm-12">
+								<div class='redeemTitle'>`+redeem.title+`</div>
+								<div class='redeemDescription'>`+redeem.description+`</div>
+						</div>
+						<div class="redeemScorePoint col-sm-12">
+								<div class='redeemScore'>-- `+redeem.point+`PT  --</div>
+						</div>
+						<div class="redeemButtonArea col-sm-12" value='`+redeem.redeemID+`'>
+									REDEEM
 						</div>
 					</div>
+
 				`;
-				$('.redeemListSection').append(productHTML);
+				$('.redeemListSection').append(redeemHTML);
 			}
 
 		});
@@ -64,6 +107,7 @@ $(document).ready(function () {
 		==============================================*/
 
 		$(document).off('getUserProfileAPIResponse').on('getUserProfileAPIResponse', function (e, data, status) {
+			 console.log(data);
 				var user = data.body[0];
 				var name = user.name;
 				var email = user.email;
@@ -76,16 +120,43 @@ $(document).ready(function () {
 				if(!img)
 					img = 'default';
 
-				$('.name').val(name);
-				$('.age').val(age);
-				$('.email').val(email);
-				$('.contact').val(contact);
-				$('.address').val(address);
-				$('.gender').val(gender);
-				$('.gender').change();
-				$('#uploadedImage').attr('src',"assets/img/profile/"+img+".jpg");
+				$('.name').html(name);
+				$('.age').html(age);
+				$('.email').html(email);
+				$('.contact').html(contact);
+				$('.address').html(address);
+				$('.gender').html(gender);
+				$('.profilePictureImg').attr('src',"assets/img/profile/"+img+".jpg");
 
     });
+
+
+
+			$(document).off('getUserSetupProfileAPIResponse').on('getUserProfileAPIResponse', function (e, data, status) {
+					var user = data.body[0];
+					var name = user.name;
+					var email = user.email;
+					var contact = user.contact;
+					var age = user.age;
+					var gender = user.gender;
+					var address= user.address;
+					var img = user.img_url;
+
+					if(!img)
+						img = 'default';
+
+					$('.name').val(name);
+					$('.age').val(age);
+					$('.email').val(email);
+					$('.contact').val(contact);
+					$('.address').val(address);
+					$('.gender').val(gender);
+					$('.gender').change();
+					$('#uploadedImage').attr('src',"assets/img/profile/"+img+".jpg");
+
+	    });
+
+
 
 		$(document).off('createUserAPIResponse').on('createUserAPIResponse', function (e, data, status) {
 			swal('Register Success', "" ,"success").then(() => {
@@ -129,7 +200,7 @@ $(document).ready(function () {
 									if(profiled == 0 )
 										window.location.href='/landing';
 									else
-										window.location.href='/dashboard';
+										window.location.href='/home';
 							});
 
 					}
@@ -147,7 +218,18 @@ $(document).ready(function () {
 		swal('Create Achievement Success', "" ,"success").then(() => {
 			location.reload();
 		});
-    });
+  });
+
+
+	// get current user acheivement
+    $(document).off('getUserAchievementAPIResponse').on('getUserAchievementAPIResponse', function (e, data, status) {
+
+					 var acheivement= data.body;
+					 for(var i =0; i < acheivement.length; i++)
+						{
+								userAchievement.push(acheivement[i].achieveID);
+						}
+  });
 
 
 
@@ -155,24 +237,57 @@ $(document).ready(function () {
     $(document).off('getAllAchievementAPIResponse').on('getAllAchievementAPIResponse', function (e, data, status) {
 		var achievementList = data.body;
 		console.log(data);
+
+		var count =0;
+		var achieved_count = 0;
 		for(var i =0;i <achievementList.length;i++)
 		{
 			var achievement = achievementList[i];
 			var achievementHTML = `
 				<div class=" card [ is-collapsed ] ">
 				  <div class="card__inner [ js-expander ]">
-					<img class='challengeIcon' src="assets/img/challenge/`+achievement.img_url+`.jpg" />
-					<span>`+achievement.title+`</span>
-					<label class='scorePoint'> `+achievement.score_point+`PT</label>
+						<div class='col-sm-12 imgSection'>
+							<img class='achievementIconImg' src="assets/img/achievement/`+achievement.img_url+`.jpg" />
+						</div>
+						<div class='col-sm-12'>
+							<span>`+achievement.title+`</span>
+						</div>
+
+
 				  </div>
 				  <div class="card__expander">
 					`+achievement.description+`
+					<label class='scorePoint'> `+achievement.score_point+`PT</label>
 				  </div>
 				</div>
 
 			`;
-			$('.achievementListSection').append(achievementHTML);
+
+			var check = 0;
+			//Check if user register the fitcamp
+			for(var j =0; j <userAchievement.length;j++)
+			{
+					if(achievement.achievementID == userAchievement[j]){
+						check++;
+						break;
+					}
+
+			}
+
+			// if user didnt register yet
+			if(check == 0){
+					$('.achievementListSection').append(achievementHTML);
+					count++;
+			}
+			else{
+					$('.achievedAchievementListSection').append(achievementHTML);
+					achieved_count++;
+			}
+
 		}
+		$('.tabNumber').html(count);
+		$('.tabNumber_completed').html(achieved_count);
+
 
 		$(document).ready(function () {
 				// dynamic created card function
@@ -222,6 +337,25 @@ $(document).ready(function () {
 
 	==============================================*/
 
+	// register fitcmap API response
+		$(document).off('createfitcampRegisterAPIResponse').on('createfitcampRegisterAPIResponse', function (e, data, status) {
+			swal('Fitcamp registered', "" ,"success").then(() => {
+				location.reload();
+			});
+		});
+
+
+	// Get current user reigster fitcamp API repsonse
+		$(document).off('getAllUserRegisterAPIResponse').on('getAllUserRegisterAPIResponse', function (e, data, status) {
+
+			 var fitcamp= data.body;
+			 for(var i =0; i < fitcamp.length; i++)
+				{
+						userRegisterFitcampID.push(fitcamp[i].fitcampID);
+				}
+		});
+
+
 	// create fitcmap API response
     $(document).off('createFitcampAPIResponse').on('createFitcampAPIResponse', function (e, data, status) {
 		swal('Create Fitcamp Success', "" ,"success").then(() => {
@@ -234,46 +368,121 @@ $(document).ready(function () {
 	// get all fitcmap API response
     $(document).off('getAllFitcampAPIResponse').on('getAllFitcampAPIResponse', function (e, data, status) {
 		var fitcampList = data.body;
-		console.log(fitcampList);
+		var count = 0;
+		var count_register=0;
 		for(var i =0;i <fitcampList.length;i++)
 		{
 			var fitcamp = fitcampList[i];
+			var check = 0;
 			var fitcampHTML='';
-			if(i%2==0)
-				fitcampHTML+='<div class="blog-card">';
-			else
-				fitcampHTML+='<div class="blog-card alt">';
+			//Check if user register the fitcamp
+			for(var j =0; j <userRegisterFitcampID.length;j++)
+			{
+					if(fitcamp.fitcampID == userRegisterFitcampID[j]){
+						check++;
+						break;
+					}
 
-			fitcampHTML+=`
-			<div class="photo photo`+i+`"></div>
-				<ul class="details">
-					<li class="author"><a href="#">Coach : John</a></li>
-					<li class="startDate">Start : `+fitcamp.start_date+`</li>
-					<li class="endDate">End : `+fitcamp.end_date+`</li>
-					<li class="price">Price : RM `+fitcamp.price+`</li>
-				</ul>
-				<div class="description">
-					<h1>`+fitcamp.title+`</h1>
-					<h2>`+fitcamp.location+`</h2>
-					<p class="summary">`+fitcamp.description+`</p>
-					<a href="#">Join now </a>
+			}
+
+			// if user didnt register yet
+			if(check == 0)
+			{
+					if(count%2==0)
+						fitcampHTML+='<div class="blog-card">';
+					else
+						fitcampHTML+='<div class="blog-card alt">';
+
+					fitcampHTML+=`
+					<div class="photo photo`+i+`"></div>
+						<ul class="details">
+							<li class="author"><a href="#">Coach : John</a></li>
+							<li class="startDate">Start : `+fitcamp.start_date+`</li>
+							<li class="endDate">End : `+fitcamp.end_date+`</li>
+							<li class="price">Price : RM `+fitcamp.price+`</li>
+						</ul>
+						<div class="description">
+							<h1>`+fitcamp.title+`</h1>
+							<h2>`+fitcamp.location+`</h2>
+							<p class="summary">`+fitcamp.description+`</p>
+							<a href="#" class='joinFitcampBtn' value='`+fitcamp.fitcampID+`'>Join now </a>
+						</div>
+					</div>
+
+					`;
+					$('.fitcampListection').prepend(fitcampHTML);
+					if(fitcamp.img_url=='default')
+					{
+						$('.photo'+i).css({
+							'background-image' : 'url("assets/img/fitcamp/'+fitcamp.img_url+'.gif")',
+							'background-repeat': 'no-repeat',
+							'backgroundPosition': 'center',
+							'background-size': 'cover'
+						});
+					}
+					else
+					{
+						$('.photo'+i).css({
+							'background-image' : 'url("assets/img/fitcamp/'+fitcamp.img_url+'.jpg")',
+							'background-repeat': 'no-repeat',
+							'backgroundPosition': 'center',
+							'background-size': 'cover'
+						});
+					}
+					count++;
+			}
+
+			//If user already register
+			else {
+				if(count_register%2==0)
+					fitcampHTML+='<div class="blog-card">';
+				else
+					fitcampHTML+='<div class="blog-card alt">';
+
+				fitcampHTML+=`
+				<div class="photo photo`+i+`"></div>
+					<ul class="details">
+						<li class="author"><a href="#">Coach : John</a></li>
+						<li class="startDate">Start : `+fitcamp.start_date+`</li>
+						<li class="endDate">End : `+fitcamp.end_date+`</li>
+						<li class="price">Price : RM `+fitcamp.price+`</li>
+					</ul>
+					<div class="description">
+						<h1>`+fitcamp.title+`</h1>
+						<h2>`+fitcamp.location+`</h2>
+						<p class="summary">`+fitcamp.description+`</p>
+						<a href="#" class='quitFitcampBtn' value='`+fitcamp.fitcampID+`'>Cancel </a>
+					</div>
 				</div>
-			</div>
 
-			`;
-			$('.fitcampListection').prepend(fitcampHTML);
-			$('.photo'+i).css({
-				'background-image' : 'url("assets/img/fitcamp/'+fitcamp.img_url+'.jpg")',
-				'background-repeat': 'no-repeat',
-				'backgroundPosition': 'center',
-				'background-size': 'cover'
-			});
+				`;
+				$('.registeredFitcampListection').prepend(fitcampHTML);
+				if(fitcamp.img_url=='default')
+				{
+					$('.photo'+i).css({
+						'background-image' : 'url("assets/img/fitcamp/'+fitcamp.img_url+'.gif")',
+						'background-repeat': 'no-repeat',
+						'backgroundPosition': 'center',
+						'background-size': 'cover'
+					});
+				}
+				else
+				{
+					$('.photo'+i).css({
+						'background-image' : 'url("assets/img/fitcamp/'+fitcamp.img_url+'.jpg")',
+						'background-repeat': 'no-repeat',
+						'backgroundPosition': 'center',
+						'background-size': 'cover'
+					});
+				}
+				count_register++;
 
-
-
+			}
 
 		}
-    });
+		$('.tabNumber_upcoming').html(count);
+		$('.tabNumber_registered').html(count_register);
+	});
 
 
 
@@ -294,29 +503,68 @@ $(document).ready(function () {
     });
 
 
+	// Get current user completed challenge API response
+		$(document).off('getUserChallengeAPIResponse').on('getUserChallengeAPIResponse', function (e, data, status) {
+					var challenge= data.body;
+					for(var i =0; i < challenge.length; i++)
+					 {
+							 userChallenge.push(challenge[i].challengeID);
+					 }
+		});
+
 
 	// get all challenge API response
     $(document).off('getAllChallengeAPIResponse').on('getAllChallengeAPIResponse', function (e, data, status) {
 		var challengeList = data.body;
 		console.log(data);
+
+		var count_completed=0;
+		var count =0;
 		for(var i =0;i <challengeList.length;i++)
 		{
 			var challenge = challengeList[i];
+
+
+			var check = 0;
+			var fitcampHTML='';
+			//Check if user register the fitcamp
+			for(var j =0; j <userChallenge.length;j++)
+			{
+					if(challenge.challengeID == userChallenge[j]){
+						check++;
+						break;
+					}
+
+			}
+
 			var challengeHTML = `
 				<div class=" card [ is-collapsed ] ">
-				  <div class="card__inner [ js-expander ]">
-					<img class='challengeIcon' src="assets/img/challenge/`+challenge.img_url+`.jpg" />
+					<div class="card__inner [ js-expander ]">
+					<img class='challengeIconImg' src="assets/img/challenge/`+challenge.img_url+`.jpg" />
 					<span>`+challenge.title+`</span>
 					<label class='scorePoint'> `+challenge.score_point+`PT</label>
-				  </div>
-				  <div class="card__expander">
+					</div>
+					<div class="card__expander">
 					`+challenge.description+`
-				  </div>
+					</div>
 				</div>
 
 			`;
-			$('.challengeListSection').append(challengeHTML);
+
+			// if user didnt complete challenge yet
+			if(check == 0)
+			{
+
+					$('.challengeListSection').append(challengeHTML);
+					count++;
+			}
+			else {
+				$('.achievedChallengeListSection').append(challengeHTML);
+				count_completed++;
+			}
 		}
+		$('.tabNumber_challenge').html(count);
+		$('.tabNumber_completed').html(count_completed);
 
 		$(document).ready(function () {
 				// dynamic created card function
@@ -385,39 +633,79 @@ $(document).ready(function () {
     $(document).off('getCommentAPIResponse').on('getCommentAPIResponse', function (e, data, status) {
 		var commentList = data.body;
 		console.log(comment);
+
 		$('.commentSection').empty();
 		for(var i =0;i <commentList.length;i++)
 		{
 			var comment = commentList[i];
-			var commentHTML = `
-				<div class='col-sm-12 comment'>
-					<input type='hidden' class='commentID'/>
-					<div class='col-sm-1 userPicture'>
-						<img src='assets/img/icon.png'/>
+			if(comment.userID == fitnergistAPI.userID){
+				var commentHTML = `
+					<div class='col-sm-12 comment'>
+						<input type='hidden' class='commentID'/>
+						<div class='col-sm-1 userPicture'>
+							<img src='assets/img/icon.png'/>
+						</div>
+						<div class='col-sm-11 userComment'>
+							<label class='userName'>`+comment.userID+`  </label>
+							<p class='commentContent'> `+comment.content+`</p>
+							<button class='btn btn-danger deleteCommentBtn' value='`+comment.commentID+`'> x </button>
+						</div>
+						<label class='commentDate'> `+comment.updated_at+` </label>
 					</div>
-					<div class='col-sm-11'>
-						<label class='userName'>`+comment.userID+`  </label>
-						<p class='commentContent'> `+comment.content+`</p>
+				`;
+			}
+			else
+			{
+				var commentHTML = `
+					<div class='col-sm-12 comment'>
+						<input type='hidden' class='commentID'/>
+						<div class='col-sm-1 userPicture'>
+							<img src='assets/img/icon.png'/>
+						</div>
+						<div class='col-sm-11 userComment'>
+							<label class='userName'>`+comment.userID+`  </label>
+							<p class='commentContent'> `+comment.content+`</p>
+						</div>
+						<label class='commentDate'> `+comment.updated_at+` </label>
 					</div>
-					<label class='commentDate'> `+comment.updated_at+` </label>
-				</div>
-			`;
+				`;
+			}
 			$('.commentSection').append(commentHTML);
 		}
 
     });
+
+		// Delete forum API response
+			$(document).off('editForumAPIResponse').on('editForumAPIResponse', function (e, data, status) {
+				swal('Forum edited', "" ,"success").then(() => {
+					location.reload();
+				});
+			});
 
 
 	// get specific forum API response
     $(document).off('getForumAPIResponse').on('getForumAPIResponse', function (e, data, status) {
 		var forum = data.body;
 		console.log(data);
+		//Check if forum is user created
+
+		if(forum.userID == fitnergistAPI.userID)
+		{
+			console.log(forum.userID);
+			console.log( fitnergistAPI.userID);
+				$('.backBtnArea').append(`
+						<button class='btn btn-default editForumBtn'  value='`+forum.forumID+`'>Edit </button>
+						<button class='btn btn-danger deleteForumBtn' value='`+forum.forumID+`'>Delete </button>
+					`);
+
+		}
+
 		//Put data into forum content section
-		$('.imgArea').html("<img src='assets/img/forum/"+forum.img_url+".jpg' />");
-		$('.titleArea').html("<h2>"+forum.title+"</h2>");
+		$('.imgArea').html("<img class='forumImage' src='assets/img/forum/"+forum.img_url+".jpg' />");
+		$('.titleArea').html("<h2 class='forumTitleForEdit'>"+forum.title+"</h2>");
 		$('.author').html(forum.userID);
 		$('.date').html(forum.created_at);
-		$('.contentArea').html("<p>"+forum.content+"</p>");
+		$('.contentArea').html("<p class='forumContentForEdit'>"+forum.content+"</p>");
 		$('.forumID').attr('value',forum.forumID);
     });
 
@@ -471,7 +759,7 @@ $(document).ready(function () {
 							<div class='rightSection'>
 								<div class='listBorder'></div>
 								<div class='forumBody'>
-										<p class='forumTitle'>`+forum.title+`</p>
+										<p class='forumTitleLabel'>`+forum.title+`</p>
 										<p class='forumAuthor'>`+forum.userID+`</p>
 								</div>
 								<div class='forumFooter'>
@@ -497,7 +785,7 @@ $(document).ready(function () {
 				`;
 			}
 
-			$('.forumListSection').append(forumHTML);
+			$('.forumListSection').prepend(forumHTML);
 		}
 
 

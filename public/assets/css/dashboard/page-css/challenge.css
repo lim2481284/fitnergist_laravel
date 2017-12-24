@@ -1,4 +1,99 @@
 
+.tab {
+
+	text-align: center;
+  padding-top: 50px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  width: 70%;
+  margin: 0 auto;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #888;
+  -webkit-font-smoothing: antialiased;
+	padding-top:10%;
+}
+
+.tabs {
+  display: table;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  width: 100%;
+}
+.tabs li {
+  float: left;
+  line-height: 15px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  margin-right: 1%;
+}
+.tabArrow_second{
+	display: none;
+}
+.tabArrow{
+	color: lightgreen !important;
+}
+.tabTitle{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	line-height: 10px;
+	vertical-align: 15px;
+	height: 30px;
+}
+.tabs a {
+	height: 60px;
+	width: 120px;
+	position: relative;
+	text-align: center;
+  background-color: transparent;
+  color: lightgreen;
+  font-weight: 500;
+  display: block;
+  letter-spacing: 0;
+  outline: none;
+  padding: 0 40px;
+	font-size:85%;
+  text-decoration: none !important;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+	border:1px solid lightgreen;
+}
+
+.tabs_item {
+  display: none;
+  padding: 30px 0;
+}
+.tabs_item h4 {
+  font-weight: bold;
+  color: blue;
+  font-size: 20px;
+}
+.tabs_item img {
+  width: 200px;
+	border-radius: 100%;
+  float: left;
+  margin-right: 30px;
+}
+.tabs_item:first-child {
+  display: block;
+}
+
+.current a {
+  color: #fff;
+	background: lightgreen;
+}
+
+
+
 .file-input-wrapper {
 	margin:auto;
 	width: 200px;
@@ -21,7 +116,7 @@
     background: #3DBAD9;
     color: white;
     outline: none;
-    border: none;	
+    border: none;
 }
 
 .profileFileUpload{
@@ -30,7 +125,7 @@
 
 #uploadedImage{
 	max-height:400px;
-	max-width:400px;	
+	max-width:400px;
 }
 
 .imageSection{
@@ -94,8 +189,8 @@
   }
 }
 
-.challengeIcon{
-	
+.challengeIconImg{
+
 	min-width:80px;
 	max-width:80px;
 	min-height:80px;
@@ -105,30 +200,55 @@
 .card:hover .card__inner {
 
   background-color: #5DADE2;
-  color:white;
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
+  color:white !important;
+	-webkit-animation: grow 3s infinite linear;
+
+}
+.targetArrow{
+
+	color:#fc7d7d !important;
 }
 
+.tabs .target{
+	color:#fc7d7d;
+	border:1px solid #fc7d7d;
+}
+
+.current .target{
+	color:white;
+	background: #fc7d7d;
+	border:1px solid #fc7d7d;
+}
+
+.card:hover  .scorePoint{
+	color:white !important;
+}
+.card.is-expanded .scorePoint{
+
+		color:white !important;
+}
 .scorePoint{
-	position: absolute;
+		position: absolute;
     bottom: 0;
+		color:#265e7e;
     right: 0;
-	margin-right:3%;
-	font-size:130%;
+		margin-right:3%;
+		font-size:110%;
+		opacity: 0.8;
 }
 
 .card__inner {
+	height: 110px;
+	border:1px solid lightgray;
   width: 100%;
-  padding: 30px;
+  padding: 15px;
   position: relative;
   cursor: pointer;
   background-color: transparent;
   color: gray;
-  font-size: 1.5em;  
-  text-align: center;
+  font-size: 1.5em;
+  text-align: left;
   font-size:120%;
-  box-shadow:0px 5px 21px -5px rgba(0, 0, 0, 0.3);
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -146,7 +266,10 @@
 .card__expander {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  background-color: #333a45;
+  background-color: transparent;
+	border:1px solid #668fa6;
+	color:#668fa6;
+
   width: 100%;
   position: relative;
   display: -webkit-box;
@@ -159,8 +282,8 @@
       -ms-flex-align: center;
           align-items: center;
   text-transform: uppercase;
-  color: #eceef1;
   font-size: 1.5em;
+
 }
 
 .card__expander .fa {
@@ -204,7 +327,7 @@
   left: calc(50% - 15px);
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-bottom: 15px solid #333a45;
+  border-bottom: 15px solid #668fa6;
 }
 
 .card.is-expanded .card__inner .fa:before {
@@ -230,7 +353,8 @@
 }
 
 .card.is-inactive:hover .card__inner {
-  background-color: #949fb0;
+  background-color: #bcd2d9;
+	color:white !important;
   -webkit-transform: scale(1);
           transform: scale(1);
 }
@@ -265,12 +389,22 @@
 
 
 
+@-webkit-keyframes grow {
+   0%{
+		 -webkit-transform: scale(1.00);
+   }
+	 25%{
+		-webkit-transform: scale(1.08);
 
+	 }
+	 50%{
+		 -webkit-transform: scale(1.00);
+	 }
+   75%{
+	  -webkit-transform: scale(0.92);
+   }
 
-
-
-
-
-
-
-
+   100{
+		-webkit-transform: scale(1.00);
+   }
+}

@@ -4,8 +4,8 @@
 @section('css')
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link href="assets/css/dashboard/page-css/forum.css" rel="stylesheet" type="text/css" media="all"/>
-<link href="assets/css/dashboard/responsive/forum.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="assets/css/dashboard/page-css/profile.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="assets/css/dashboard/responsive/profile.css" rel="stylesheet" type="text/css"  media="screen and (max-width : 768px)"/>
 
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 @stop
@@ -15,99 +15,136 @@
 @section('content')
 
 
-	<div class='loader'>
-		<img src='assets/img/logo.png'/>
-		<label class='loader-label'> Loading ... </label>
-	</div>
-	<div id='bodyContent' class='fade-out'>
-		<div class='container'>
-		<form class="form-horizontal" >
-		<fieldset>
+<div class='loader'>
+	<img src='assets/img/logo.png'/>
+	<label class='loader-label'> Loading ... </label>
+</div>
+<div id='bodyContent' class='fade-out'>
 
-		<!-- Form Name -->
+			<div class='profileTopSection'>
+				<center>
+					<div class='profileBg'>
+						<img class='profilePictureImg'/>
+					</div>
+				</center>
+			</div>
 
-		<div class="control-group">
-			<form action="#" enctype="multipart/form-data" method="POST">
-				<div class='imageSection'>
-					<img id="uploadedImage" src="#" />
+		  <!--------------------------------
+
+		        Tab Section
+
+		  ------------------------------------>
+
+		  <div class="tab">
+
+				<ul class="tabs">
+					<li>
+						<a href="#">
+		            <div class='tabTitle'>
+		    					<p class='tabLabel'>PROFILE </p>
+		            </div>
+						</a>
+						<span class=" tabArrow glyphicon glyphicon-triangle-bottom"></span>
+					</li>
+					<li>
+						<a href="#">
+		          <div class='tabTitle'>
+		            <p class='tabLabel'> SUMMARY</p>
+		          </div>
+						</a>
+						<span  class="tabArrow tabArrow_second  glyphicon glyphicon-triangle-bottom"></span>
+					</li>
+					<li>
+						<a href="#">
+		          <div class='tabTitle'>
+		            <p class='tabLabel'> STATISTIC</p>
+		          </div>
+						</a>
+						<span  class="tabArrow tabArrow_second  glyphicon glyphicon-triangle-bottom"></span>
+					</li>
+					<li>
+						<a class='rankingTab' href="#">
+		          <div class='tabTitle'>
+		            <p class='tabLabel'> RANKING</p>
+		          </div>
+						</a>
+						<span  class="tabArrow tabArrow_second  glyphicon glyphicon-triangle-bottom"></span>
+					</li>
+				</ul> <!-- / tabs -->
+
+
+
+
+		  <!-----------------------------------------------
+
+						Redeem Content
+
+			-------------------------------------------------->
+		  <div class="tab_content">
+
+		     <!-- first tabs_item -->
+		    <div class="tabs_item">
+					<div class='col-sm-11 container container-top-menu profileSection'>
+							<div class='profileArea'>
+									<div class='profileField col-sm-12'>
+											<div class='col-sm-3 profileFieldLabel'>Name </div>
+											<div class='col-sm-9 profileFieldValue name'> </div>
+									</div>
+									<div class='profileField col-sm-12'>
+											<div class='col-sm-3 profileFieldLabel'>Email </div>
+											<div class='col-sm-9 profileFieldValue email'> </div>
+									</div>
+									<div class='profileField col-sm-12'>
+											<div class='col-sm-3 profileFieldLabel'>Age </div>
+											<div class='col-sm-9 profileFieldValue age'></div>
+									</div>
+									<div class='profileField col-sm-12'>
+											<div class='col-sm-3 profileFieldLabel'>Contact </div>
+											<div class='col-sm-9 profileFieldValue contact'> </div>
+									</div>
+									<div class='profileField col-sm-12'>
+											<div class='col-sm-3 profileFieldLabel'>Gender </div>
+											<div class='col-sm-9 profileFieldValue gender'></div>
+									</div>
+									<div class='profileField col-sm-12'>
+											<div class='col-sm-3 profileFieldLabel'> Address</div>
+											<div class='col-sm-9 profileFieldValue address'> </div>
+									</div>
+							</div>
+					</div>
+		    </div>
+
+
+
+		     <!-- second tabs_item -->
+		    <div class="tabs_item">
+					<div class='col-sm-11 container container-top-menu summarySection'>
+					</div>
+		    </div>
+				<!-- third tabs_item -->
+			 <div class="tabs_item">
+				 <div class='col-sm-11 container container-top-menu statisticSection'>
+				 </div>
+			 </div>
+
+
+			 <!-- ranking item -->
+			<div class="tabs_item">
+				<div class='col-sm-11 container container-top-menu rankingSection'>
+						<iframe id='targetFrame' class='rankingFrame' src="assets/iframe/ranking/index.html"></iframe>
 				</div>
-				<div class="file-input-wrapper">
-					<input type='hidden' class='userImg' />
-					<button class="btn btn-default" type="button">Upload Profile Image</button>
-					<input  id='image' type="file" name="image"  class='userFileUpload' accept="image/*" onchange="readURL(this);"/>
-				</div>
-			</form>
-		</div>
+				<div class='scroll'></div>
+			</div>
 
-		<!-- Text input-->
-		<div class="control-group">
-		<label class="control-label" for="textinput-0">Name</label>
-		<div class="controls">
-			<input id="textinput-0" name="textinput-0" type="text" placeholder="Text here ..." class="input-xlarge name">
-
-		</div>
-		</div>
-
-		<!-- Text input-->
-		<div class="control-group">
-		<label class="control-label" for="textinput-1">Email</label>
-		<div class="controls">
-			<input id="textinput-1" name="textinput-1" type="text" placeholder="Text here ..." class="input-xlarge email">
-
-		</div>
-		</div>
-
-		<!-- Text input-->
-		<div class="control-group">
-		<label class="control-label" for="textinput-2">Contact </label>
-		<div class="controls">
-			<input id="textinput-2" name="textinput-2" type="text" placeholder="Text here ..." class="input-xlarge contact">
-
-		</div>
-		</div>
-
-		<!-- Text input-->
-		<div class="control-group">
-		<label class="control-label" for="textinput-3">Age</label>
-		<div class="controls">
-			<input id="textinput-3" name="textinput-3" type="text" placeholder="" class="input-xlarge age">
-
-		</div>
-		</div>
-
-		<!-- Select Basic -->
-		<div class="control-group">
-		<label class="control-label" for="selectbasic-0">Gender</label>
-		<div class="controls">
-			<select id="selectbasic-0" name="selectbasic-0" class="input-xlarge gender">
-				<option value ='male' >Male</option>
-				<option value='female'>Female</option>
-			</select>
-		</div>
-		</div>
-
-		<!-- Textarea -->
-		<div class="control-group">
-		<label class="control-label" for="textarea-0">Address</label>
-		<div class="controls">
-			<textarea id="textarea-0" name="textarea-0" class='address'></textarea>
-		</div>
-
+		  </div>
 		</div>
 
 
-		<div class="control-group">
 
-		<div class="controls">
-				<button type='button' class='btn btn-default updateProfile'> Update profile </button>
-		</div>
-		</div>
 
-		</fieldset>
 
-		</form>
 
-	</div>
+
 </div>
 @stop
 

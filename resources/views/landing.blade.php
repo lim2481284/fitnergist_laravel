@@ -28,7 +28,7 @@
 		 <div class="swiper-slide slide5">
 		</div>
 		 <div class="swiper-slide slide6">
-			<a href='/dashboard'> <button class=' startBtn btn btn-default'>Start now </button> </a>
+			<a href='/home'> <button class=' startBtn btn btn-default'>Start now </button> </a>
 		</div>
         ...
     </div>

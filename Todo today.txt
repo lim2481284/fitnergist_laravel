@@ -1,76 +1,82 @@
 
-*********************************************************************
-Todo
-*********************************************************************
 
-	- Homepage / Login  (done)
-			- Optional : Error handle
-			- Optional : Field verification
+*********************************************************************
+Todo : admin side
+*********************************************************************
+- admin dashboard
+
+- attendance
+- fitcamp
+	- delete, edit
+	- time ( calander )
+	- assign coach
+- redeem
+	- edit , delete ( add status to column, should not delete directly )
+- chalelnge
+ 	- edit , delete  ( add status to column, should not delete directly )
+- achievemnet
+ 	- edit , delete  ( add status to column, should not delete directly )
+ -forum
+ 		- delete all
+
+*********************************************************************
+Todo : trainer side
+*********************************************************************
+-  same as admin first 
+
+*********************************************************************
+Todo : user side
+*********************************************************************
+- all
+		- add background
+		- change pt to F coin
+		- display coin on the top menu
+
+- Homepage / Login  (done)
 			- Optional : Forgot password, email verification, remember me
 
-	- Dashboard
-			- Display goal progress
+- Dashboard
+			- goal progress
+			- fitcamp timeline
+			- notify unlock achievement / challenge  https://ned.im/noty/#/
 
-	- forum
-			- display content
-			- mobile view
-			- create forum
+- redeem
+		 - point management
 
 
-			
-	- fitcamp
-		- display timeline
-		- register fitcamp
-		- unregister fitcamp
-		- display fitcamp
+- profile
+		- mobile screen
+		- point and user name on top
+		- ranking tab
+		- statistic tab
+				- attribute chart
+				- fitcamp attandance chart
+		- summary tab
+				- achievement
+				- challeneg
+				- fitcamp  : total
+		- profile tab
+				- goal
+				- edit
+		- setup
+				- 1 : picture
+				- 2 : detail
+				- 3 : goal
 
 *********************************************************************
 
 
-- dashboard
-	- score point
-	- goal
-- profile
-	- profile card
-	- attribute
-	- setup profile
-	- setup goal
-	- statistic
-	- fitcmap timeline
-- forum : just forum
-- fitcamp
-	- register fitcamp
-	- view fitcamp
-- Redeem
-	- view product
-	- redeem product
-- achievement
-- chllaege
 
-
-
-fix side bar error
-
--- new feature
-	- machine learning and data analysis?
-
--- user manual
-	1- Setup profile and set your fitness goal
-	2- join more fitcamp
-	3- achieve challnege and achievement to gain score point and unlock avatar
-	4- redeem your item by using score point
-	5 - view your ranking and competet with your friend
-	6 - fitness is fun
 
 -- flow
-	1 - user register account
-	2 - user login account
+	1 - user register account			x
+	2 - user login account			x
 	3 - user setup profile
 	4 - user set fitness goal
-	5 - trainer verify user goal + record their attribute
-	6 - user able to view their goal on dashboard
+	5 - trainer verify user goal + record their attribute : first time attend fitcamp
+	6 - user able to view their goal on dashboard ( receive notification : email and popout message  )
 	7 - user achieve achievement
-	8 - user gain point
+	8 - user gain point ( receive notification )
 	9 - user achieve challenge
 	10 - trainer verify the challenge and add point to user
 	11 - user use point to redeem item
@@ -84,367 +90,12 @@ fix side bar error
 	19 - user share their story from forum
 
 
--- todo
-
-		- add level and exp
-		- able to redeem item
-		- view ranking
-		- ahceivement method
-		- setup goal
-		- top menu
-			- display username
-			- display user total score point
-			- logout
-			- dispaly notification : optional
-			- popout for feedback after user complete the fitcamp
-
-
-		- dashboard
-			- add timeline
-			- add calander
-			- add notfication
-			- add goal display
-
-	- fitcamp
-		- join fitcamp
-
-		- history
-			- check tracking statisti ( change history to statistic )
-			- check redeem history (in the redeem page )
-
-	- done admin and trainer side function
---
-	- change UI
 
 
 
+
+--------------------------------------------------
 1 - done registration and role swithcing
 	https://laracasts.com/discuss/channels/tips/middleware-to-show-items-based-on-user-roles
 	http://laravelcode.com/post/laravel-passport-create-rest-api-with-authentication
 2 - done admin function
-
-	- product
-		- edit
-		- delete
-		- view detail
-
-	- forum
-		- edit forum
-		- delete forum
-		- userIDFunction()
-		- view forum
-			- delete comment
-			- edit comment
-			- userIDFunction()
-
-
-	- fitcamp
-		- create fitcamp
-		- edit fitcamp
-		- add coach
-		- delete fitcamp
-		- view all fitcamp
-		- location : optinal
-		- calnder : optional;
-		- view specific fitcamp
-		- register fitcamp
-			- userIDFunction()
-
-	- Challenge
-		- edit Challenge
-		- delete Challenge
-		- user achieve challege
-		- achieve challenge
-			- userIDFunction()
-
-	- achieve
-		- edit achieve
-		- delete achieve
-		- view specific achieve
-		- add condition
-		- user acheive
-			- userIDFunction()
-
-	- tracking
-		- track user record
-		- get tracking history
-
-	- redeem
-		- add redeem
-		- edit redeem
-		- delete redeem
-		- view redeem list
-		- view redeem history
-		- user redeem
-			- userIDFunction()
-
-3 - done trainer function
-4 - done user function
-7 - go deep ( api token , email verification, error exception, input validation )
-8 - document everything ( UI, function, how api auth , advacne role based and permission, passport package  )
-
-
-=======================================================================================
-
-API section
-
-=======================================================================================
-
-
-- how to allow localhost ajax call to api
-
-- create API for login and register
-	- how to use token
-	- how to verify role
-	- how to hash password
-	- how to register with hashed password
-
-- api how to upload image
-
-- forum
-	- sort forum result by date
-	- throw empty title and content exception for edit and create
-	- put default img url for the empty img url
-	- empty record
-
-- comment
-	- throw content is null exception
-	- empty record
-	- throw edit content null exception
-
-
-- fitcamp
-	- null exception for create and edit
-	- sort by date
-	- test : delete update ,create, get ,get specific
-	- empty record
-
-- fitcamp attendance
-	- unique record
-	- empty record
-
-- fitcamp coach
-
-- fitcamp register
-
-- product
-
-- redeem
-
-- user redeem
-
-- challenge
-
-- user challenge
-
-
-=======================================================================================
-
-UI section
-
-=======================================================================================
-
-- complete new design ( last step )
-
-
-
-
-=======================================================================================
-
-Other section
-
-=======================================================================================
-- document table (1h)
-- document php database abit  (1h)
-- Think of unique point
-
-
-
-=======================================================================================
-
-Hosting section
-
-=======================================================================================
-
-- buy domain
-- setup domain
-- buy hosting
-- host the website
-	- fitnergist.domain.com
-
-
-
-
-=======================================================================================
-
-Function section
-
-=======================================================================================
-
-- forgot password 	-- later
-	- verify by email : register and forgot password
-		- understand how laravel can verify by email
-
-- complete admin function page
-- compelte trainer function page
-- complete user function page
-
-
-
-
-
-
-1 - Login
-	- 3 user
-		- admin
-		- user
-		- trainer
-
-2 - admin
-	- top menu
-		- show admin name
-	- content management
-		- fitcamp
-			- create fitcamp
-			- edit fitcamp
-			- delete fitcamp
-			- view fitcamp
-			- assign coach
-		- acheivement
-			- create acheivement
-			- edit achievement
-			- delete achievement
-
-		- challenge
-			- create challenge
-			- edit challenge
-			- delete challenge
-		- redeem
-			- create redeem
-			- edit redeem
-			- delete redeem
-
-		- product
-			- create product
-			- edit product
-			- delete product
-	- report managemnet
-		- view totol user
-		- view totol redeem
-		- view top performace trainer
-		- view top performance user
-		- view statistic of the user
-		- view statistic of fitcamp participant
-	- user management
-		- manage user account
-		- manage trainer account
-			- add trainner account
-			- delete trainner account
-			- edit trainner account
-	- tracker
-		- track user
-	- dashboard
-		- view summary
-		- display timetable
-		- display timeline
-	- forum
-		- create forum
-		- edit forum
-		- write comment
-		- delet ecomment
-		- edit comment
-		- delete forum
-
-3 - trainer
-	- top menu
-		- show the point
-		- show trainer name
-	- ranking
-		- show ranking
-		- view other people point
-	- dahsboard
-		- display timetable
-		- display timeline
-	- fitcamp
-		- create fitcamp
-		- edit fitcamp
-		- delete fitcamp
-		- assign trainer
-	- forum
-		- create forum
-		- edit forum
-		- write comment
-		- delet ecomment
-		- edit comment
-		- delete forum
-	- track
-		- track user record
-	- profile
-		- edit profile
-		- upload profile pic
-
-4 - User
-	- top menu
-		- display username
-		- display user total score point
-		- logout
-		- dispaly notification : optional
-		- popout for feedback after user complete the fitcamp
-	- menu
-		- dashboard
-			- view final goal
-				- renew goal, goal achieve
-			- view timeline with photo , activity
-			- view guideline
-			- firs time login :
-				- set goal
-					- custom goal or common goal
-			- edit final goal
-				- remind user everything will reset
-
-		- user
-			- profile
-				- Edit profile
-				- upload profile picture
-			- challenge
-				- View challenge list
-				- view completed challenge
-				- view the requriement to achieve challenge
-				- view challenge point
-				- view how many people achieve
-				- view achieved time
-			- ranking
-				- view ranking list
-				- view ranking up or down  ( optional )
-				- view other user point
-			- acheivement
-				- view achievement list
-				- view completed achievement
-				- view achievement requirement
-				- view achievement point
-				- view how many people achieve
-				- view achived time
-			- redeem
-				- view product with point
-				- can redeem with point
-		- fitcamp
-			- view fitcamp list
-			- view fitcamp detail
-			- join the fitcamp
-			- cancel fitcamp
-		- forum
-			- create forum
-			- write comment
-			- delete forum
-			- delet comment
-			- edit forum
-			- edit comment
-		- product
-			- view product
-			- buy product
-				- contact admin
-		- history
-			- view redeem history
-			- view purchase history
-			- view fitcamp history
-				- timeline

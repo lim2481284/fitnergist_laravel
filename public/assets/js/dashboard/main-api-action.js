@@ -8,6 +8,22 @@ $(document).ready(function () {
 		===============================================*/
 
 
+		//User redeem ction
+		 $(document).on('click','.redeemButtonArea',function () {
+			 swal({
+				 title: 'Are you sure you want to redeem this item?',
+				 type: 'info',
+				 showCancelButton: true,
+				 confirmButtonText: 'Yes!'
+			 }).then((result) => {
+				 var redeemID= $(this).attr('value');
+	 				fitnergistAPI.createUserRedeemAPI(redeemID);
+			 })
+
+		});
+
+
+
 		//Upload picture on change
 		$(".redeemFileUpload").change(function(){
 
@@ -448,37 +464,57 @@ $(document).ready(function () {
 
 	===============================================*/
 
-	//Remove blog action
-	 $(document).on('click','.deleteBlog',function () {
-		var postId= $(this).attr('value');
-		tutorAPI.deleteBlogAPI(postId);
-	});
-
-	//Edit blog action
-	$(document).on("click", ".editBlogBtn", function(){
-
-		 var blogId = $('.editBlogBtn').attr('value');
-		 var blogTagArray = [];
-		 var blogTag = $(".blogTag");
-		 if(blogTag)
-		 {
-			for(var i = 0; i < blogTag.length; i++){
-				var tagName = $(blogTag[i]).val();
-				blogTagArray.push(tagName);
-				console.log(tagName);
-			}
-
-		 }
-		 //Get text editor value
-		 var blogContent = $("#editor").Editor("getText");
-
-
-		 //Get blog title
-		 var blogTitle = $('.blogTitle').val();
-
-		 tutorAPI.modifyBlogAPI(blogId,blogTitle,blogContent,blogTagArray);
+	//Remove forum action
+	 $(document).on('click','.deleteForumBtn',function () {
+		 swal({
+		  title: 'Are you sure?',
+		  type: 'warning',
+		  showCancelButton: true,
+		  confirmButtonText: 'Yes, delete it!'
+		}).then((result) => {
+			var forumID= $(this).attr('value');
+			fitnergistAPI.deleteForumAPI(forumID);
+		})
 
 	});
+
+	//Edit forum action
+	$(document).on("click", ".editForum", function(){
+
+		 var forumID = $('.forumID').attr('value');
+		 var forumTitle = $('.editForumTitleInput').val();
+		 var forumContent = $('.editForumContent').val();
+	 		var forumImg = $('.forumImg').val();
+	 		var forumUserID = 1;
+	 		if(!forumImg)
+	 			forumImg='default';
+
+	 		if(!forumTitle || !forumContent)
+	 			swal('Please fill in all the field' ,'','error');
+	 		else
+	 		{
+	 			fitnergistAPI.editForumAPI(forumID,forumTitle,forumContent,forumUserID,forumImg);
+	 			location.href='#';
+	 		}
+
+	});
+
+
+
+	//Remove comment action
+	 $(document).on('click','.deleteCommentBtn',function () {
+		 swal({
+		  title: 'Are you sure?',
+		  type: 'warning',
+		  showCancelButton: true,
+		  confirmButtonText: 'Yes, delete it!'
+		}).then((result) => {
+			var forumID= $(this).attr('value');
+			fitnergistAPI.deleteCommentAPI(forumID);
+		})
+
+	});
+
 
 	//Create forum comment action
 	$(document).on("click", ".createCommentBtn", function(){
@@ -494,7 +530,7 @@ $(document).ready(function () {
 
 	//Create forum action
 	$(document).on("click", ".createForumBtn", function(){
-		var forumTitle = $('.forumTitle').val();
+		var forumTitle = $('.forumTitleInput').val();
 		var forumContent = $('.forumContent').val();
 		var forumImg = $('.forumImg').val();
 		var forumUserID = $('.forumUserID').val();
@@ -504,8 +540,10 @@ $(document).ready(function () {
 		if(!forumTitle || !forumContent)
 			swal('Please fill in all the field' ,'','error');
 		else
+		{
 			fitnergistAPI.createForumAPI(forumTitle,forumContent,forumUserID,forumImg);
-
+			location.href='#';
+		}
 	});
 
 
@@ -542,6 +580,37 @@ $(document).ready(function () {
 
 
 
+		//Upload picture on change -- edit
+		$(".forumFileUpload_Edit").change(function(){
+
+			var image = $('#image_edit')[0].files[0];
+			var form = new FormData();
+
+			//Get totol product number to generate image name
+			$.get(fitnergistAPI.url+'api/forum/total/', function(data, status){
+				var total = data.total+1;
+				var imageName = "image_"+ total;
+				form.append('image', image);
+				form.append('name', imageName);
+				//Upload image
+				$.ajax({
+					url: fitnergistAPI.url+'api/forum/image',
+					data: form,
+					crossDomain: false,
+					cache: false,
+					contentType: false,
+					processData: false,
+					type: 'POST',
+					success:function(response) {
+						console.log(response);
+						$('.forumImg_edit').attr('value',imageName);
+					}
+				});
+
+			});
+
+		});
+
 
 
 
@@ -552,6 +621,20 @@ $(document).ready(function () {
 			  Fitcamp  API action section
 
 	===============================================*/
+
+
+	//Register fitcamp action
+	 $(document).on('click','.joinFitcampBtn',function () {
+		var fitcampID= $(this).attr('value');
+		fitnergistAPI.createfitcampRegisterAPI(fitcampID);
+	});
+
+
+	//Delete fitcamp register action
+	 $(document).on('click','.quitFitcampBtn',function () {
+		var fitcampID= $(this).attr('value');
+		fitnergistAPI.deletefitcampRegisterAPI(fitcampID);
+	});
 
 	//Remove blog action
 	 $(document).on('click','.deleteFitcampBtn',function () {

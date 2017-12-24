@@ -4,7 +4,6 @@
 
 @section('css')
 
-
 @stop
 
 
@@ -39,6 +38,22 @@
 
 	<img class='goalArrow' src='assets/img/GoalArrow.png'/>
 	<img class='scoreArrow' src='assets/img/ScoreArrow.png'/>
+
+
+	<div class="ship-wrap">
+		<div class="wave1 wave"></div>
+		<div class="wave2 wave"></div>
+
+	</div>
+	<div class='sea'>
+
+			<div id="content-wrapper">
+				<div class='timelineLabel'>Your Timeline</div>
+				<div id="timeline" class="timeCube"></div>
+				<div id="swipe"></div>
+				<a href="#" onclick="return false;" id="next-link"></a> <a href="#" onclick="return false;" id="prev-link" class="disabled"></a>
+			</div>
+		</div>
 </div>
 @stop
 
@@ -46,6 +61,8 @@
 
 
 @section('javascript')
+<script type="text/javascript" src="assets/js/dashboard/timecube.jquery.js"></script>
+<script type="text/javascript" src="assets/js/dashboard/timecube.example.js"></script>
 
 @stop
 

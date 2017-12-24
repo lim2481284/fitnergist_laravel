@@ -1,5 +1,13 @@
 /* Font declare */
 
+@font-face {
+    font-family: Hobo;
+    src:url('/assets/fonts/Hobo.woff') format('woff');
+}
+/* BASIC THEME CONFIGURATION */
+body {
+    font-family: 'Hobo' !important;
+}
 input::placeholder{
 	color:#dadada;
 }

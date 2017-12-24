@@ -1,0 +1,35 @@
+.tab{
+	width: 100%;
+	padding-top: 30%;
+}
+
+.redeemListSection{
+	-webkit-column-count: 2; /* Chrome, Safari, Opera */
+	-moz-column-count: 2; /* Firefox */
+	column-count: 2
+
+}
+.redeemCard{
+	min-width: 150px;
+	min-height: 300px;
+}
+.redeemImg{
+	width:120px;
+	height:120px;
+}
+.redeemImgSection{
+	height:150px;
+}
+.redeemButtonArea{
+	width: 100%;
+}
+.redeemScorePoint{
+	width: 100%;
+}
+.historyPoint{
+	text-align: center;
+	font-size:120%;
+}
+.historyContent{
+	text-align: center;
+}

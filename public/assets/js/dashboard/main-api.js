@@ -28,6 +28,21 @@ function Api() {
 		console.log(xhr.responseText);
 		console.log(err);
 	}
+  this.forumDeleted = (xhr, status, err) =>{
+    swal('Forum Deleted', "" ,"success").then(() => {
+      location.href='#';
+    });
+  }
+  this.commentDeleted = (xhr, status, err) =>{
+    swal('Comment Deleted', "" ,"success").then(() => {
+      location.reload();
+    });
+  }
+  this.deleteFitcampRegister = (xhr, status, err) =>{
+    swal('Fitcamp register cancelled', "" ,"success").then(() => {
+      location.reload();
+    });
+  }
 
 
 	/*=============================================
@@ -65,7 +80,12 @@ function Api() {
 	            $(document).trigger("deleteUserAPIResponse", [data, status]);
 	        }, this.error);
 	    }
-
+      //Delete user
+      this.deleteUserAPI = (userID) => {
+            $.deleteAjax(this.url+'api/users/' + userID,(data, status, xhr) => {
+                $(document).trigger("deleteUserAPIResponse", [data, status]);
+            }, this.error);
+        }
 
 	 	//Edit user
 	    this.editUserAPI = (name,email,contact,age,gender,address,img_url) => {
@@ -102,12 +122,19 @@ function Api() {
 	        }, this.error);
 	    }
 
-      // Get all user
-  	    this.getUserProfileAPI = () => {
-  			$.getAjax(this.url+'api/users/profile/' + this.userID , (data, status, xhr) => {
-  	           $(document).trigger("getUserProfileAPIResponse", [data, status,xhr]);
-  	        }, this.error);
-  	    }
+      // Get current user
+	    this.getUserProfileAPI = (type) => {
+
+
+			$.getAjax(this.url+'api/users/profile/' + this.userID , (data, status, xhr) => {
+            if(type=='profile'){
+              $(document).trigger("getUserProfileAPIResponse", [data, status,xhr]);
+            }
+            else {
+	           $(document).trigger("getUserSetupProfileAPIResponse", [data, status,xhr]);
+           }
+	        }, this.error);
+	    }
 
 
 
@@ -228,13 +255,13 @@ function Api() {
 
 
 	// Create user redeem
-    this.createUserRedeemAPI = (userID,redeemID,quantity) => {
+    this.createUserRedeemAPI = (redeemID) => {
 
-		var data = {
-			"userID":userID,
-			"redeemID":redeemID,
-			"quantity":quantity
-		};
+    		var data = {
+    			"userID":this.userID,
+    			"redeemID":redeemID,
+    			"quantity":1
+    		};
 
         $.postAjax(this.url + "api/redeem/user/", data, (data, status, xhr) => {
             $(document).trigger("createUserRedeemAPIResponse", [data, status]);
@@ -248,9 +275,9 @@ function Api() {
         }, this.error);
     }
 
-	// Get user redeem
-    this.getUserRedeemAPI = (userID) => {
-		$.getAjax(this.url+'api/redeem/user/' + userID, (data, status, xhr) => {
+	// Get current user redeem
+    this.getUserRedeemAPI = () => {
+		$.getAjax(this.url+'api/redeem/user/' + this.userID, (data, status, xhr) => {
            $(document).trigger("getUserRedeemAPIResponse", [data, status,xhr]);
         }, this.error);
     }
@@ -415,8 +442,8 @@ function Api() {
 
 
 	// Get user achievement
-    this.getUserAchievementAPI = (userAchievementID) => {
-		$.getAjax(this.url+'api/achievement/user/' + userAchievementID, (data, status, xhr) => {
+    this.getUserAchievementAPI = () => {
+		$.getAjax(this.url+'api/achievement/user/' + this.userID, (data, status, xhr) => {
            $(document).trigger("getUserAchievementAPIResponse", [data, status,xhr]);
         }, this.error);
     }
@@ -522,15 +549,12 @@ function Api() {
     }
 
 
-	// Get user challenge
-    this.getUserChallengeAPI = (userChallengeID) => {
-		$.getAjax(this.url+'api/challenge/user/' + userChallengeID, (data, status, xhr) => {
+	// Get current user completed challenge
+    this.getUserChallengeAPI = () => {
+		$.getAjax(this.url+'api/challenge/user/' + this.userID, (data, status, xhr) => {
            $(document).trigger("getUserChallengeAPIResponse", [data, status,xhr]);
         }, this.error);
     }
-
-
-
 
 
 
@@ -607,10 +631,10 @@ function Api() {
 
 
 	// Create fitcamp register
-    this.createfitcampRegisterAPI = (userID,fitcampID) => {
+    this.createfitcampRegisterAPI = (fitcampID) => {
 
 		var data = {
-			"userID":userID,
+			"userID":this.userID,
 			"fitcampID":fitcampID
 		};
 
@@ -620,10 +644,10 @@ function Api() {
     }
 
  	//Delete fitcamp register
-	this.deletefitcampRegisterAPI = (userID, fitcampID) => {
-        $.deleteAjax(this.url+'api/fitcamp/register/' + fitcampID + "?userID = " + userID,(data, status, xhr) => {
+	this.deletefitcampRegisterAPI = (fitcampID) => {
+        $.deleteAjax(this.url+'api/fitcamp/register/' + fitcampID + "?userID=" + this.userID,(data, status, xhr) => {
             $(document).trigger("deletefitcampRegisterAPIResponse", [data, status]);
-        }, this.error);
+        }, this.deleteFitcampRegister);
     }
 
 
@@ -642,7 +666,12 @@ function Api() {
         }, this.error);
     }
 
-
+    // 	 Get current user register
+      this.getCurrentUserRegisterFitcampAPI = () => {
+      $.getAjax(this.url+'api/fitcamp/register/userID/' + this.userID , (data, status, xhr) => {
+             $(document).trigger("getAllUserRegisterAPIResponse", [data, status,xhr]);
+          }, this.error);
+      }
 
 
 
@@ -665,7 +694,7 @@ function Api() {
 
  	//Delete fitcamp coach
 	this.deleteFitcampCoachAPI = (userID, fitcampID) => {
-        $.deleteAjax(this.url+'api/fitcamp/coach/' + fitcampID + "?userID = " + userID,(data, status, xhr) => {
+        $.deleteAjax(this.url+'api/fitcamp/coach/' + fitcampID + "?userID = " +userID,(data, status, xhr) => {
             $(document).trigger("deleteFitcampCoachAPIResponse", [data, status]);
         }, this.error);
     }
@@ -806,7 +835,7 @@ function Api() {
 
 		var data = {
 			"forumID":forumID,
-			"userID":userID,
+			"userID":this.userID,
 			"content":content
 		};
 
@@ -819,7 +848,7 @@ function Api() {
 	this.deleteCommentAPI = (commentID) => {
         $.deleteAjax(this.url+'api/comment/' + commentID,(data, status, xhr) => {
             $(document).trigger("deleteCommentAPIResponse", [data, status]);
-        }, this.error);
+        }, this.commentDeleted);
     }
 
 
@@ -857,7 +886,7 @@ function Api() {
 		var data = {
 			"title":title,
 			"content":content,
-			"userID":userID,
+			"userID":this.userID,
 			"img_url":img_url
 		};
 
@@ -870,7 +899,7 @@ function Api() {
 	this.deleteForumAPI = (forumID) => {
         $.deleteAjax(this.url+'api/forum/' + forumID,(data, status, xhr) => {
             $(document).trigger("deleteForumAPIResponse", [data, status]);
-        }, this.error);
+        }, this.forumDeleted);
     }
 
 
@@ -879,7 +908,7 @@ function Api() {
         var data = {
 			"title":title,
 			"content":content,
-			"userID":userID,
+			"userID":this.userID,
 			"img_url":img_url
 		};
         $.putAjax(this.url+'api/forum/' + forumID, data,(data, status, xhr) => {

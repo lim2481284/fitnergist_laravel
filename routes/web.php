@@ -26,7 +26,7 @@ Route::get('/landing', function () {
 	Dashboard routing
 
 */
-Route::get('/dashboard', 'navigation@dashboard');
+Route::get('/home', 'navigation@dashboard');
 Route::get('/profile', 'navigation@profile');
 Route::get('/challenge', 'navigation@challenge');
 Route::get('/achievement', 'navigation@achievement');

@@ -4,13 +4,39 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 }
+.timeCube > .container > .event{
+	margin-top:60px;
+}
+#swipe{
+	margin: auto;
+    text-align: center;
+    left: 0;
+    right: 0;
+}
+
+a#prev-link,#next-link{
+
+	display:none;
+}
+.swipe{
+	display:block;
+}
+#content-wrapper{
+	width: 90%;
+}
+.timeCube > .nav{
+	padding:0;
+	margin:0;
+}
 .vector{
 	width:100%;
 }
 .soilArea{
 	margin-left:-5.5%;
 }
-
+.loader-label {
+    margin-top: 25%;
+}
 
 .scoreArrow_mobile{
     display:block;
@@ -71,5 +97,27 @@
    }
    100{
 		width: 60%;
+   }
+}
+
+.ship-wrap {
+
+      margin-top:-30%;
+}
+@-webkit-keyframes float {
+   0%{
+	      margin-top: 0%;
+
+   }25%{
+        margin-top: -5%;
+   }
+   50%{
+	     margin-top: 0%;
+   }
+   75%{
+	       margin-top: 5%;
+   }
+   100%{
+		    margin-top: 0%;
    }
 }

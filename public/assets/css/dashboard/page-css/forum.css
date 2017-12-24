@@ -2,8 +2,23 @@
 .backBtn{
 	display:none;
 }
+
+.deleteCommentBtn {
+    top: 0;
+    position: absolute;
+    right: 0;
+}
+.backBtnArea {
+    width: 80%;
+    margin: auto;
+}
+.createForumArea{
+	position: relative;
+		margin-top:10%;
+		padding-bottom: 10%
+}
 .col-sm-11.container.container-top-menu{
-	margin-top:20%;
+
 	margin-bottom: 5%;
 }
 .forumListContent{
@@ -124,14 +139,15 @@ a{
 	border-top:2px solid gray;
 	margin-top:10%;
 	padding:0;
+	    margin-bottom: 20%;
 }
 .commentDate{
 	position: absolute;
     bottom: 0;
     right: 0;
     margin-right: 3%;
-    font-weight: bold;
     color: lightgray;
+		font-size: 80%;
 }
 
 .comment{
@@ -203,9 +219,9 @@ a{
 	cursor:pointer;
 }
 
-#uploadedImage{
+#uploadedImage,#uploadedImage_edit{
 	width:170px !important;
-	height:auto !important;
+	height:170px !important;
 	border-radius:500%;
 	clip: rect(0px,170px,200px,0px);
 }

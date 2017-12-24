@@ -1,4 +1,97 @@
 
+.tab {
+
+	text-align: center;
+  padding-top: 50px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  width: 70%;
+  margin: 0 auto;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #888;
+  -webkit-font-smoothing: antialiased;
+	padding-top:10%;
+}
+
+.tabs {
+  display: table;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  width: 100%;
+}
+.tabs li {
+  float: left;
+  line-height: 15px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  margin-right: 1%;
+}
+.tabArrow_second{
+	display: none;
+}
+.tabArrow{
+	color: lightsalmon !important;
+}
+.tabTitle{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	line-height: 10px;
+	vertical-align: 15px;
+	height: 30px;
+}
+.tabs a {
+	height: 60px;
+	width: 120px;
+	position: relative;
+	text-align: center;
+  background-color: transparent;
+  color: lightsalmon;
+  font-weight: 500;
+  display: block;
+  letter-spacing: 0;
+  outline: none;
+  padding: 0 40px;
+	font-size:85%;
+  text-decoration: none !important;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+	border:1px solid lightsalmon;
+}
+
+.tabs_item {
+  display: none;
+  padding: 30px 0;
+}
+.tabs_item h4 {
+  font-weight: bold;
+  color: blue;
+  font-size: 20px;
+}
+.tabs_item img {
+  float: left;
+  margin-right: 30px;
+}
+.tabs_item:first-child {
+  display: block;
+}
+
+.current a {
+  color: #fff;
+	background: lightsalmon;
+}
+
+
+
 .file-input-wrapper {
 	margin:auto;
 	width: 200px;
@@ -28,7 +121,93 @@
 .profileFileUpload{
 	cursor:pointer;
 }
+.redeemImg{
+	border-radius: 100%;
+	width:150px;
+	height:150px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin:auto !important;
 
+}
+.redeemTitle{
+	font-size:110%;
+}.redeemDescription{
+	opacity: 0.8;
+}
+.redeemScorePoint{
+	position: absolute;
+	bottom: 50px;
+	height:50px;
+	transition:1s opacity;
+	line-height: 50px;
+	vertical-align: middle;
+	font-size: 110%;
+	color:#2e9b5b;
+}
+.redeemButtonArea:hover{
+	opacity: 0.5;
+}
+.redeemButtonArea{
+	position: absolute;
+	bottom: 0;
+	height:50px;
+	transition:1s opacity;
+	line-height: 50px;
+	vertical-align: middle;
+	font-size: 130%;
+	background: #6ae19a;
+	color:white;
+}
+.redeemCard{
+	-webkit-column-break-inside: avoid;
+	min-width: 200px;
+	min-height:350px;
+	border:1px solid #6ae19a;
+	margin-bottom: 10%;
+	cursor: pointer;
+
+}
+.historyPoint{
+	color:#6ae19a;
+}
+.redeemHistoryList:hover{
+  -webkit-animation: grow 3s infinite linear;
+}
+.redeemHistoryList{
+	margin-top:5%;
+  padding-bottom: 2%;
+	cursor: pointer;
+	border-bottom: 4px dotted lightgray;
+}
+.historyDescription{
+	font-size: 80%;
+}
+.historyDate{
+	font-size: 80%;
+	opacity: 0.8;
+}
+.historyContent{
+	text-align: left;
+}
+.historyImage{
+	width: 100%;
+}
+.redeemCard:hover{
+	-webkit-animation: grow 3s infinite linear;
+}
+.redeemImgSection{
+	position: relative;
+	height:200px;
+}
+.col-sm-12{
+
+	margin-left:0;
+	padding:0;
+}
 #uploadedImage{
 	max-height:400px;
 	max-width:400px;
@@ -40,210 +219,32 @@
 	text-align:center;
 }
 
+.redeemListSection{
+	-webkit-column-count: 3; /* Chrome, Safari, Opera */
+	-moz-column-count: 3; /* Firefox */
+	column-count: 3;
+ column-fill: balance;
+ -webkit-column-break-inside: avoid;
+          page-break-inside: avoid;
+               break-inside: avoid;
+}
 
+@-webkit-keyframes grow {
+   0%{
+		 -webkit-transform: scale(1.00);
+   }
+	 25%{
+		-webkit-transform: scale(1.04);
 
+	 }
+	 50%{
+		 -webkit-transform: scale(1.00);
+	 }
+   75%{
+	  -webkit-transform: scale(0.96);
+   }
 
-
-
-
-
-
-
-
-
-/* --- Product Card ---- */
-.make-3D-space{
-    position: relative;
-	float:left;
-	    margin-right: 3%;
-			margin-bottom:5%;
-    transition: transform 5s;
-
-}
-.product-front, .product-back{
-	width:335px;
-	height:500px;
-	background:#fff;
-	position:absolute;
-	left:-5px;
-	top:-5px;
-	-webkit-transition: all 100ms ease-out;
-       -moz-transition: all 100ms ease-out;
-         -o-transition: all 100ms ease-out;
-            transition: all 100ms ease-out;
-}
-.product-card.animate .product-back,.product-card.animate .product-front{
-	top:0px;
-	left:0px;
-	-webkit-transition: all 100ms ease-out;
-       -moz-transition: all 100ms ease-out;
-         -o-transition: all 100ms ease-out;
-            transition: all 100ms ease-out;
-}
-.product-card{
-	box-shadow:0px 13px 21px -5px rgba(0, 0, 0, 0.3);
-	width:325px;
-	margin-right:3%;
-	height:490px;
-	position:relative;
-	top:10px;
-	left:10px;
-	overflow:hidden;
-    transform-style: preserve-3d;
-	-webkit-transition:  100ms ease-out;
-       -moz-transition:  100ms ease-out;
-         -o-transition:  100ms ease-out;
-            transition:  100ms ease-out;
-}
-.product-card.animate{
-	top:5px;
-	left:5px;
-	width:335px;
-	height:500px;
-	box-shadow:0px 13px 21px -5px rgba(0, 0, 0, 0.3);
-	-webkit-transition:  100ms ease-out;
-       -moz-transition:  100ms ease-out;
-         -o-transition:  100ms ease-out;
-            transition:  100ms ease-out;
-}
-.stats-container{
-	background:#fff;
-	position:absolute;
-	top: 250px;
-	left:0;
-	width:100%;
-	height:300px;
-	padding:27px 35px 35px;
-	-webkit-transition: all 200ms ease-out;
-       -moz-transition: all 200ms ease-out;
-         -o-transition: all 200ms ease-out;
-            transition: all 200ms ease-out;
-}
-.product-card.animate .stats-container{
-	top:272px;
-	-webkit-transition: all 200ms ease-out;
-       -moz-transition: all 200ms ease-out;
-         -o-transition: all 200ms ease-out;
-            transition: all 200ms ease-out;
-}
-.stats-container .product_name{
-	font-size:22px;
-	color:#393c45;
-}
-.stats-container p{
-	font-size:16px;
-	color:#b1b1b3;
-	padding:2px 0 20px 0;
-}
-.stats-container .product_price{
-	float:right;
-	color:#48cfad;
-	font-size:22px;
-	font-weight:600;
-}
-.image_overlay{
-	position:absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	background:#48daa1;
-	opacity:0;
-}
-.product-card.animate .image_overlay{
-	opacity:0.7;
-	-webkit-transition: all 200ms ease-out;
-       -moz-transition: all 200ms ease-out;
-         -o-transition: all 200ms ease-out;
-            transition: all 200ms ease-out;
-}
-.product-options{
-	padding:2px 0 0;
-}
-.product-options strong{
-	font-weight:700;
-	color:#393c45;
-	font-size:14px;
-}
-.product-options span{
-	color:#969699;
-	font-size:14px;
-	display:block;
-	margin-bottom:8px;
-}
-.view_details{
-	position:absolute;
-	top:112px;
-	left:50%;
-	margin-left:-85px;
-	border:2px solid #fff;
-	color:#fff;
-	font-size:19px;
-	text-align:center;
-	text-transform:uppercase;
-	font-weight:700;
-	padding:10px 0;
-	width:172px;
-	opacity:0;
-	-webkit-transition: all 200ms ease-out;
-       -moz-transition: all 200ms ease-out;
-         -o-transition: all 200ms ease-out;
-            transition: all 200ms ease-out;
-}
-.view_details:hover{
-	background:#fff;
-	color:#48cfad;
-	cursor:pointer;
-
-}
-.product-card.animate .view_details{
-	opacity:1;
-	width:152px;
-	font-size:15px;
-	margin-left:-75px;
-	top:115px;
-	-webkit-transition: all 200ms ease-out;
-       -moz-transition: all 200ms ease-out;
-         -o-transition: all 200ms ease-out;
-            transition: all 200ms ease-out;
-}
-div.colors div{
-	margin-top:3px;
-	width:15px;
-	height:15px;
-	margin-right:5px;
-	float:left;
-}
-div.colors div span{
-	width:15px;
-	height:15px;
-	display:block;
-	border-radius:50%;
-}
-div.colors div span:hover{
-	width:17px;
-	height:17px;
-	margin:-1px 0 0 -1px;
-}
-div.c-blue span{background:#6e8cd5;}
-div.c-red span{background:#f56060;}
-div.c-green span{background:#44c28d;}
-div.c-white span{
-	background:#fff;
-	width:14px;
-	height:14px;
-	border:1px solid #e8e9eb;
-}
-div.shadow{
-	width:335px;height:520px;
-	opacity:0;
-	position:absolute;
-	top:0;
-	left:0;
-	z-index:3;
-	display:none;
-	background: -webkit-linear-gradient(left,rgba(0,0,0,0.1),rgba(0,0,0,0.2));
-    background: -o-linear-gradient(right,rgba(0,0,0,0.1),rgba(0,0,0,0.2));
-    background: -moz-linear-gradient(right,rgba(0,0,0,0.1),rgba(0,0,0,0.2));
-    background: linear-gradient(to right, rgba(0,0,0,0.1), rgba(0,0,0,0.2));
+   100{
+		-webkit-transform: scale(1.00);
+   }
 }
