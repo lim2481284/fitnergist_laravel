@@ -29,7 +29,15 @@
 				<img class='vector' src='assets/img/homeVector.png'/>
 			</div>
 			<div class='col-sm-12' >
-				<div class=' vector soilArea'></div>
+				<div class=' vector soilArea'>
+						<div class='dotBox'>
+							<center>
+								<img class='dot' src=""/>
+								<img class='dot_progress' src=""/>
+							</center>
+						</div>
+						<img  class='treasure' src='assets/img/treasure.png'/>
+				</div>
 			</div>
 		<center>
 	</div>

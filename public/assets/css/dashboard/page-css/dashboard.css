@@ -6,6 +6,8 @@
 }
 
 
+
+
 .scoreArrow_mobile{
     display:none;
 }
@@ -36,8 +38,18 @@ body{
 	background:white;
 	overflow-x:hidden;
 }
-
+.treasure{
+    width: 30%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    padding-left:2%;
+    -webkit-animation: glow 3s infinite;
+}
 .soilArea{
+  position: relative;
 	background-image: url('/assets/img/soilVector.png');
 	background-repeat: repeat;
 	margin-left:-1.5%;
@@ -51,7 +63,29 @@ body{
 	padding:0;
 	margin-top:5%;
 }
+.dot{
+  position:absolute;
+	background-image: url('/assets/img/dot_gray.png');
+	height:100%;
+	width:1vw;
+	background-size: cover;
+	background-repeat: no-repeat;
+  opacity:0.3;
 
+}
+.dot_progress{
+  position:absolute;
+	background-image: url('/assets/img/dot_yellow.png');
+	height:2%;
+	width:1vw;
+	background-size: cover;
+	background-repeat: no-repeat;
+
+}
+.dotBox{
+	position: relative;
+  height: 95%;
+}
 
 .menuLabel{
 
@@ -554,6 +588,17 @@ body{
 
 
 
+@keyframes glow {
+  0% {
+    -webkit-filter: drop-shadow(0px 0px 8px rgba(255, 249, 73, 0.8));
+  }
+  50% {
+    -webkit-filter: drop-shadow(0px 0px 40px rgba(255, 249, 73, 0.8));
+  }
+  100% {
+    -webkit-filter: drop-shadow(0px 0px 8px rgba(255, 249, 73, 0.8));
+  }
+}
 
 
 

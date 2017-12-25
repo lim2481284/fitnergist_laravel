@@ -1,3 +1,6 @@
+
+
+
 .topBannerSection{
 	width:100vw;
 	height:54vh;
@@ -13,7 +16,18 @@
     left: 0;
     right: 0;
 }
+.dot{
 
+	width:3vw;
+
+
+}
+.dot_progress{
+
+	width:3vw;
+
+
+}
 a#prev-link,#next-link{
 
 	display:none;
@@ -102,7 +116,7 @@ a#prev-link,#next-link{
 
 .ship-wrap {
 
-      margin-top:-30%;
+      margin-top:-1%;
 }
 @-webkit-keyframes float {
    0%{

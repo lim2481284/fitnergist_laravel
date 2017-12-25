@@ -1,0 +1,88 @@
+
+.popout {
+	margin:0;
+	border-radius:0px !important;
+	top:0;
+	background: #fff;
+	border-radius: 5px;
+	width: 100%;
+	height:100%;
+	position: relative;
+	padding-right:0;
+
+}
+.comment{
+	width: 100%;
+    float: left;
+}
+.userComment{
+	margin-bottom: 20%;
+	position: relative;
+    float: left;
+    width: 75%;
+}
+.userPicture {
+    width: 25%;
+    position: relative;
+    float: left;
+}
+.authorDateArea{
+	height:5vh;
+}
+.backBtnArea{
+	width:100%;
+	margin-top:30%;
+	margin-bottom:10%;
+}
+.forumContentSection{
+	width: 100%;
+}
+.authorDateArea .date {
+    font-size: 70%;
+}
+
+.box{
+	width: 100%;
+}
+.createForumArea{
+	position: relative;
+		padding-bottom: 70%
+}
+.createForum {
+    top: 70%;
+    padding: 6% 8% 6% 8%;
+}
+#bodyContent {
+	    width: 100%;
+	    margin: auto;
+}
+.forumList{
+	width:100%;
+}
+.forumListContent {
+    overflow: hidden;
+    position: relative;
+    height: 140px;
+    background: white;
+    margin: auto;
+}
+.forumImg,.forumImg_even {
+    width: 110px;
+}
+.forumBody {
+    padding-left: 100px;
+}
+.forumBody_even {
+    padding-right: 100px;
+}
+.forumTitleLabel {
+    font-size: 120%;
+}
+p{
+	margin-bottom:0;
+		margin-top:5px;
+}
+
+.forumFooter,.forumFooter_even {
+    font-size: 70%;
+}

@@ -3,8 +3,7 @@
 
 @section('css')
 
-<link href="assets/css/dashboard/page-css/dashboard.css" rel="stylesheet">
- 
+<link href="assets/css/admin/page-css/dashboard.css" rel="stylesheet">
 @stop
 
 
@@ -12,7 +11,7 @@
 @section('content')
 
 <label> Dashboard </label>
-	
+
 @stop
 
 
@@ -20,6 +19,6 @@
 
 @section('javascript')
 
- <script src="assets/js/dashboard/page-js/dashboard.js"></script>
- 
+ <script src="assets/js/admin/page-js/dashboard.js"></script>
+
 @stop

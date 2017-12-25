@@ -1,28 +1,26 @@
-
+ALL
+	- fix image upload problem
+	- cannot type @ error
 
 *********************************************************************
 Todo : admin side
 *********************************************************************
 - admin dashboard
+- add status to fitcamp, redeem, challenge, achievemtn ( optional )
 
 - attendance
 - fitcamp
-	- delete, edit
 	- time ( calander )
 	- assign coach
-- redeem
-	- edit , delete ( add status to column, should not delete directly )
-- chalelnge
- 	- edit , delete  ( add status to column, should not delete directly )
 - achievemnet
- 	- edit , delete  ( add status to column, should not delete directly )
- -forum
- 		- delete all
+	- calculation
+
+
 
 *********************************************************************
 Todo : trainer side
 *********************************************************************
--  same as admin first 
+-  only track, profile,forum,attendance and verify challenge
 
 *********************************************************************
 Todo : user side
@@ -37,7 +35,9 @@ Todo : user side
 
 - Dashboard
 			- goal progress
+				- hover it show goal description and current progress
 			- fitcamp timeline
+				 - start from today
 			- notify unlock achievement / challenge  https://ned.im/noty/#/
 
 - redeem
@@ -65,34 +65,45 @@ Todo : user side
 
 *********************************************************************
 
+-- flow : fitcamp
+	1 - admin create fitcamp
+	2 - user register fitcamp
+	3 - user timeline show fitcamp
+	4 - trainer confirm attandance
+	5 - trainer close fitcamp
+	6 - user summary display total reigstered fitcamp
+
+-- flow : achievement
+	1 - admin create achievement with specific calculation
+	2 - user join fitcamp
+	3 - trainer track user attirbute
+	4 - user acheive achievement condition and earn point
+	5 - timeline display achievement unlock
+	6 - dashboard display notification
+	7 - user summary display total achievemnt with icon
+
+-- flow : challenge
+	1 - admin create chalelnge
+	2 - user join fitcamp
+	3 - user compelte  chalelnge
+	4 - trainer verify the challenge
+	5 - timeline dislay challenge unlcok
+	6 - dashboard display notifiacton
+	7 - user summary display total completed challegne with icon
 
 
-
--- flow
-	1 - user register account			x
-	2 - user login account			x
-	3 - user setup profile
-	4 - user set fitness goal
-	5 - trainer verify user goal + record their attribute : first time attend fitcamp
-	6 - user able to view their goal on dashboard ( receive notification : email and popout message  )
-	7 - user achieve achievement
-	8 - user gain point ( receive notification )
-	9 - user achieve challenge
-	10 - trainer verify the challenge and add point to user
-	11 - user use point to redeem item
-	12 - user can view redeem history
-	13 - user cehck their ranking
-	14 - user can register fitcamp
-	15 -user can view their fitamp timeline in dahsboard
-	16 - user achieve their first goal
-	17 - user have to setup the next goal
-	18 - trainer verify user goal
-	19 - user share their story from forum
-
-
-
-
-
+-- flow : goal
+	1 - user reigster account
+	2 - user login account
+	3 - user setp rpoblem
+	4 - user setup goal with calculation
+	5 - user dashboard deactiavated
+	6 - user go to fitcamp
+	7 - admin/trainer verify user goal and first time tracking for the user
+	8 - user dashboard activated and recieve notification
+	9 - user go fitcamp again
+	10 - user improve the goal
+	11 - goal progress show in dashboard
 
 --------------------------------------------------
 1 - done registration and role swithcing

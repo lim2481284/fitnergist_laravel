@@ -55,14 +55,6 @@
 						<span  class="tabArrow tabArrow_second  glyphicon glyphicon-triangle-bottom"></span>
 					</li>
 					<li>
-						<a href="#">
-		          <div class='tabTitle'>
-		            <p class='tabLabel'> STATISTIC</p>
-		          </div>
-						</a>
-						<span  class="tabArrow tabArrow_second  glyphicon glyphicon-triangle-bottom"></span>
-					</li>
-					<li>
 						<a class='rankingTab' href="#">
 		          <div class='tabTitle'>
 		            <p class='tabLabel'> RANKING</p>
@@ -116,17 +108,11 @@
 
 
 
-		     <!-- second tabs_item -->
+		     <!-- summary tabs_item -->
 		    <div class="tabs_item">
 					<div class='col-sm-11 container container-top-menu summarySection'>
 					</div>
 		    </div>
-				<!-- third tabs_item -->
-			 <div class="tabs_item">
-				 <div class='col-sm-11 container container-top-menu statisticSection'>
-				 </div>
-			 </div>
-
 
 			 <!-- ranking item -->
 			<div class="tabs_item">

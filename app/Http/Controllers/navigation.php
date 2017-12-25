@@ -14,7 +14,7 @@ class navigation extends Controller
   public function ranking()
   {
 
-      $roleID =  $_COOKIE['userRole'];
+      $roleID =  $_COOKIE['roleID'];
       if($roleID == 1 )
       {
         return view('ranking_user');
@@ -26,7 +26,7 @@ class navigation extends Controller
   public function forum()
   {
 
-      $roleID =  $_COOKIE['userRole'];
+      $roleID =  $_COOKIE['roleID'];
       if($roleID == 1 )
       {
         return view('forum_user');
@@ -39,7 +39,7 @@ class navigation extends Controller
   public function fitcamp()
   {
 
-      $roleID =  $_COOKIE['userRole'];
+      $roleID =  $_COOKIE['roleID'];
       if($roleID == 1 )
       {
         return view('fitcamp_user');
@@ -51,7 +51,7 @@ class navigation extends Controller
     public function product()
     {
 
-        $roleID =  $_COOKIE['userRole'];
+        $roleID =  $_COOKIE['roleID'];
         if($roleID == 1 )
         {
           return view('product_user');
@@ -65,7 +65,7 @@ class navigation extends Controller
   public function redeem()
   {
 
-      $roleID =  $_COOKIE['userRole'];
+      $roleID =  $_COOKIE['roleID'];
       if($roleID == 1 )
       {
         return view('redeem_user');
@@ -79,7 +79,7 @@ class navigation extends Controller
     public function achievement()
     {
 
-        $roleID =  $_COOKIE['userRole'];
+        $roleID =  $_COOKIE['roleID'];
         if($roleID == 1 )
         {
           return view('achievement_user');
@@ -92,7 +92,7 @@ class navigation extends Controller
     public function challenge()
     {
 
-        $roleID =  $_COOKIE['userRole'];
+        $roleID =  $_COOKIE['roleID'];
         if($roleID == 1 )
         {
           return view('challenge_user');
@@ -104,7 +104,7 @@ class navigation extends Controller
     public function profile()
     {
 
-        $roleID =  $_COOKIE['userRole'];
+        $roleID =  $_COOKIE['roleID'];
         if($roleID == 1 )
         {
           return view('profile');
@@ -117,15 +117,16 @@ class navigation extends Controller
     public function dashboard()
     {
         if(isset( $_COOKIE['profiled'])){
-          $profile =  $_COOKIE['profiled'];
-          if($profile==0)
-            return view('profile');
-          $roleID =  $_COOKIE['userRole'];
+          $roleID =  $_COOKIE['roleID'];
           if($roleID == 1 )
           {
             return view('dashboard_user');
           }
           else {
+            $profile =  $_COOKIE['profiled'];
+            if($profile==0)
+              return view('profile');
+
             return view('dashboard');
           }
         }

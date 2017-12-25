@@ -11,10 +11,10 @@
     <link rel="stylesheet" type="text/css" href="assets/css/dashboard/lineicons.css">
     <link href="assets/css/dashboard/style.css" rel="stylesheet">
     <link href="assets/css/dashboard/style-responsive.css" rel="stylesheet">
-	<link href="assets/css/dashboard/main.css" rel="stylesheet">
-	<link href="assets/css/dashboard/responsive/main.css" rel="stylesheet"  media="screen and (max-width : 768px)">
-	<link rel="stylesheet" href="assets/css/dashboard/page-css/dashboard.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/dashboard/responsive/dashboard.css" media="screen and (max-width : 768px)">
+  	<link href="assets/css/dashboard/main.css" rel="stylesheet">
+  	<link href="assets/css/dashboard/responsive/main.css" rel="stylesheet"  media="screen and (max-width : 768px)">
+  	<link rel="stylesheet" href="assets/css/dashboard/page-css/dashboard.css">
+  	<link rel="stylesheet" type="text/css" href="assets/css/dashboard/responsive/dashboard.css" media="screen and (max-width : 768px)">
 
 	<!-- css for this page -->
 	@yield("css")

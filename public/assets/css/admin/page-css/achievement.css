@@ -1,0 +1,158 @@
+
+.achievementImg{
+  width:70px;
+}
+.container-top-menu{
+  margin-top:3%;
+}
+.tab {
+
+	text-align: center;
+  padding-top: 50px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  width: 70%;
+  margin: 0 auto;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #888;
+  -webkit-font-smoothing: antialiased;
+	padding-top:10%;
+}
+
+.tabs {
+  display: table;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  width: 100%;
+}
+.tabs li {
+  float: left;
+  line-height: 15px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  margin-right: 1%;
+}
+.tabArrow_second{
+	display: none;
+}
+.tabArrow{
+	color: lightgreen ;
+}
+.targetArrow{
+
+	color:#fc7d7d;
+}
+.tabTitle{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	line-height: 10px;
+	vertical-align: 15px;
+	height: 30px;
+}
+.tabs a {
+	height: 60px;
+	width: 120px;
+	position: relative;
+	text-align: center;
+  background-color: transparent;
+  color: lightgreen;
+  font-weight: 500;
+  display: block;
+  letter-spacing: 0;
+  outline: none;
+  padding: 0 40px;
+	font-size:85%;
+  text-decoration: none !important;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+	border:1px solid lightgreen;
+}
+
+.tabs .target{
+	color:#fc7d7d;
+	border:1px solid #fc7d7d;
+}
+
+.current .target{
+	color:white;
+	background: #fc7d7d;
+	border:1px solid #fc7d7d;
+}
+
+.tabs_item {
+  display: none;
+  padding: 30px 0;
+}
+.tabs_item h4 {
+  font-weight: bold;
+  color: blue;
+  font-size: 20px;
+}
+.tabs_item img {
+  width: 200px;
+	border-radius: 100%;
+  float: left;
+  margin-right: 30px;
+}
+.tabs_item:first-child {
+  display: block;
+}
+
+.current a {
+  color: #fff;
+	background: lightgreen;
+}
+
+
+
+
+
+.file-input-wrapper {
+	margin:auto;
+	width: 200px;
+	height: 40px;
+	overflow: hidden;
+	position: relative;
+}
+.file-input-wrapper > input[type="file"] {
+	font-size: 200px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: 0;
+
+}
+.file-input-wrapper > .btn-file-input {
+	display: inline-block;
+	width: 200px;
+	height: 40px;
+    background: #3DBAD9;
+    color: white;
+    outline: none;
+    border: none;
+}
+
+.profileFileUpload{
+	cursor:pointer;
+}
+
+#uploadedImage{
+	max-height:200px;
+	max-width:200px;
+}
+
+.imageSection{
+	margin-bottom:10%;
+	margin-top:10%;
+	text-align:center;
+}

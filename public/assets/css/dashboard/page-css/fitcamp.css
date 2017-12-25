@@ -377,7 +377,13 @@
   }
 
 
-
+.alt{
+	text-align: right;
+}
+.alt .description p:after{
+	right:0;
+	left:auto;
+}
 @-webkit-keyframes shake {
    0%{
 	  -webkit-transform: rotate(0deg);

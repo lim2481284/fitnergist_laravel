@@ -42,6 +42,7 @@
 		<div class='dotBox'>
 			<center>
 				<img class='dot' src=""/>
+
 			</center>
 		</div>
 		<div class='formBox'>
