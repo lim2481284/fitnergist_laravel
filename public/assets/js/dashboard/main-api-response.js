@@ -1,7 +1,10 @@
 $(document).ready(function () {
 
 
-
+	//	reload
+	$(document).off('reload').on('reload', function (e, data, status) {
+		location.reload();
+	});
 
 	/*=============================================
 
@@ -63,12 +66,12 @@ $(document).ready(function () {
 		});
 	});
 
-		// edit redeem API response
-		$(document).off('editRedeemAPIResponse').on('editRedeemAPIResponse', function (e, data, status) {
-			swal('Edit Redeem Success', "" ,"success").then(() => {
-				location.href='/redeem';
-			});
+	// edit redeem API response
+	$(document).off('editRedeemAPIResponse').on('editRedeemAPIResponse', function (e, data, status) {
+		swal('Edit Redeem Success', "" ,"success").then(() => {
+			location.href='/redeem';
 		});
+	});
 
 	// get redemm API response for admin
 	$(document).off('getAllRedeemAPIResponse_admin').on('getAllRedeemAPIResponse_admin', function (e, data, status) {
@@ -87,8 +90,8 @@ $(document).ready(function () {
 			<td class='redeemDescriptionForEdit'>`+redeem.description+`</td>
 			<td class='redeemPointForEdit'>`+redeem.point+`</td>
 			<td>
-				<button class='btn btn-default editRedeemBtn'  value='`+redeem.redeemID+`'>Edit </button>
-				<button class='btn btn-danger deleteRedeemBtn' value='`+redeem.redeemID+`'>Delete </button>
+			<button class='btn btn-default editRedeemBtn'  value='`+redeem.redeemID+`'>Edit </button>
+			<button class='btn btn-danger deleteRedeemBtn' value='`+redeem.redeemID+`'>Delete </button>
 			<td>
 			</tr>
 
@@ -274,32 +277,32 @@ $(document).ready(function () {
 	});
 
 
-		// get all achievement API response
-		$(document).off('getAllAchievementAPIResponse_admin').on('getAllAchievementAPIResponse_admin', function (e, data, status) {
-			var achievementList = data.body;
-			var count =achievementList.length;
-			for(var i =0;i <achievementList.length;i++)
-			{
-			  var achievement = achievementList[i];
-			  var img = "assets/img/achievement/"+achievement.img_url+".jpg";
-			  var achievementHTML = `
-			  <tr >
-			  <td>`+count+`</td>
-			  <td><img class='achievementImg' src="`+img+`" /></td>
-			  <td class='achievementTitleForEdit'>`+achievement.title+`</td>
-			  <td class='achievementDescriptionForEdit'>`+achievement.description+`</td>
-			  <td class='achievementPointForEdit'>`+achievement.score_point+`</td>
-			  <td>
-			    <button class='btn btn-default editAchievementBtn'  value='`+achievement.achievementID+`'>Edit </button>
-			    <button class='btn btn-danger deleteAchievementBtn' value='`+achievement.achievementID+`'>Delete </button>
-			  <td>
-			  </tr>
+	// get all achievement API response
+	$(document).off('getAllAchievementAPIResponse_admin').on('getAllAchievementAPIResponse_admin', function (e, data, status) {
+		var achievementList = data.body;
+		var count =achievementList.length;
+		for(var i =0;i <achievementList.length;i++)
+		{
+			var achievement = achievementList[i];
+			var img = "assets/img/achievement/"+achievement.img_url+".jpg";
+			var achievementHTML = `
+			<tr >
+			<td>`+count+`</td>
+			<td><img class='achievementImg' src="`+img+`" /></td>
+			<td class='achievementTitleForEdit'>`+achievement.title+`</td>
+			<td class='achievementDescriptionForEdit'>`+achievement.description+`</td>
+			<td class='achievementPointForEdit'>`+achievement.score_point+`</td>
+			<td>
+			<button class='btn btn-default editAchievementBtn'  value='`+achievement.achievementID+`'>Edit </button>
+			<button class='btn btn-danger deleteAchievementBtn' value='`+achievement.achievementID+`'>Delete </button>
+			<td>
+			</tr>
 
-			  `;
-			  count --;
-			  $('.achievementListSection').prepend(achievementHTML);
-			}
-		});
+			`;
+			count --;
+			$('.achievementListSection').prepend(achievementHTML);
+		}
+	});
 
 	// get all achievement API response
 	$(document).off('getAllAchievementAPIResponse').on('getAllAchievementAPIResponse', function (e, data, status) {
@@ -404,6 +407,51 @@ $(document).ready(function () {
 	Fitcamp API response section
 
 	==============================================*/
+	// get all fitcmap attedane API response
+	$(document).off('getAllFitcampRegisterAPIResponse').on('getAllFitcampRegisterAPIResponse', function (e, data, status) {
+		var fitcampList = data.body;
+		var count =fitcampList.length;
+		for(var i =0;i <fitcampList.length;i++)
+		{
+			var fitcamp = fitcampList[i];
+			var userID = fitcamp.userID;
+			$.get(fitnergistAPI.url+'api/users/profile/' + userID , function(data, status){
+				var user = data.body[0];
+				var fitcampHTML = `
+				<tr >
+				<td>`+count+`</td>
+				<td class='username'>`+user.username+`</td>
+				<td class='name'>`+user.name+`</td>
+				<td class='contact'>`+user.contact+`</td>
+				<td>
+				<input type='hidden' class='fitcampIDHidden' value='`+fitcamp.fitcampID+`'/>
+				`;
+				if(fitcamp.attendance == 1){
+					fitcampHTML+=`
+					<button class='btn btn-default cancelAttendanceBtn'  value='`+user.userID+`'>Cancel </button>
+					`;
+				}
+				else {
+					fitcampHTML+=`
+					<button class='btn btn-default confirmAttendanceBtn'  value='`+user.userID+`'>Attended </button>
+					`;
+				}
+
+
+				fitcampHTML+=`
+				<td>
+				</tr>
+
+				`;
+				count --;
+				$('.attendanceList').prepend(fitcampHTML);
+			});
+
+		}
+
+	});
+
+
 
 	// register fitcmap API response
 	$(document).off('createfitcampRegisterAPIResponse').on('createfitcampRegisterAPIResponse', function (e, data, status) {
@@ -430,6 +478,32 @@ $(document).ready(function () {
 		}
 	});
 
+	// close fitcmap API response
+	$(document).off('closeFitcampAPIResponse').on('closeFitcampAPIResponse', function (e, data, status) {
+		var fitcampID = data.body.fitcampID;
+		var point = data.body.point;
+		swal('Fitcamp Closed', "" ,"success").then(() => {
+			$.get(fitnergistAPI.url+'api/fitcamp/register/fitcampID/' + fitcampID, function(data, status){
+				var userList = data.body;
+				console.log(data);
+				for(var i =0; i <userList.length;i++){
+					var userID = userList[i].userID;
+					if(userList[i].attendance==1){
+						$.get(fitnergistAPI.url+'api/users/profile/' + userID , function(data, status){
+							var current_point = data.body[0].point;
+
+							point = current_point+point;
+							fitnergistAPI.updateFitcampPointForUserAPI(userID,point);
+						});
+
+					}
+				}
+			});
+
+
+		});
+	});
+
 
 	// create fitcmap API response
 	$(document).off('createFitcampAPIResponse').on('createFitcampAPIResponse', function (e, data, status) {
@@ -438,6 +512,24 @@ $(document).ready(function () {
 		});
 	});
 
+
+	// get all fitcmap API response for attendance
+	$(document).off('getAllFitcampAPIResponse_admin_attendance').on('getAllFitcampAPIResponse_admin_attendance', function (e, data, status) {
+		var fitcampList = data.body;
+		console.log(fitcampList);
+		for(var i =0;i <fitcampList.length;i++)
+		{
+			var fitcamp = fitcampList[i];
+			if(fitcamp.closed == 0 )
+			{
+				var fitcampHTML = `
+				<option value='`+fitcamp.fitcampID+`'>`+fitcamp.title+`</option>
+				`;
+				$('.fitcampListection').append(fitcampHTML);
+			}
+		}
+
+	});
 
 	// get all fitcmap API response for admin
 	$(document).off('getAllFitcampAPIResponse_admin').on('getAllFitcampAPIResponse_admin', function (e, data, status) {
@@ -460,6 +552,7 @@ $(document).ready(function () {
 			<td class='fitcampDescriptionForEdit'>`+fitcamp.description+`</td>
 			<td class='fitcampLocationForEdit'>`+fitcamp.location+`</td>
 			<td class='fitcampPriceForEdit'>`+fitcamp.price+`</td>
+			<td class='fitcampPointForEdit'>`+fitcamp.point+`</td>
 			<td class='fitcampStartDateForEdit'>`+fitcamp.start_date+`</td>
 			<td class='fitcampEndDateForEdit'>`+fitcamp.end_date+`</td>
 			<td>
@@ -498,48 +591,51 @@ $(document).ready(function () {
 			// if user didnt register yet
 			if(check == 0)
 			{
-				if(count%2==0)
-				fitcampHTML+='<div class="blog-card">';
-				else
-				fitcampHTML+='<div class="blog-card alt">';
-
-				fitcampHTML+=`
-				<div class="photo photo`+i+`"></div>
-				<ul class="details">
-				<li class="author"><a href="#">Coach : John</a></li>
-				<li class="startDate">Start : `+fitcamp.start_date+`</li>
-				<li class="endDate">End : `+fitcamp.end_date+`</li>
-				<li class="price">Price : RM `+fitcamp.price+`</li>
-				</ul>
-				<div class="description">
-				<h1>`+fitcamp.title+`</h1>
-				<h2>`+fitcamp.location+`</h2>
-				<p class="summary">`+fitcamp.description+`</p>
-				<a href="#" class='joinFitcampBtn' value='`+fitcamp.fitcampID+`'>Join now </a>
-				</div>
-				</div>
-
-				`;
-				$('.fitcampListection').prepend(fitcampHTML);
-				if(fitcamp.img_url=='default')
+				if(fitcamp.closed ==0 ) // If fitcamp didnt close yet
 				{
-					$('.photo'+i).css({
-						'background-image' : 'url("assets/img/fitcamp/'+fitcamp.img_url+'.gif")',
-						'background-repeat': 'no-repeat',
-						'backgroundPosition': 'center',
-						'background-size': 'cover'
-					});
+					if(count%2==0)
+					fitcampHTML+='<div class="blog-card">';
+					else
+					fitcampHTML+='<div class="blog-card alt">';
+
+					fitcampHTML+=`
+					<div class="photo photo`+i+`"></div>
+					<ul class="details">
+					<li class="author">Location :  `+fitcamp.location+`</li>
+					<li class="startDate">Start : `+fitcamp.start_date+`</li>
+					<li class="endDate">End : `+fitcamp.end_date+`</li>
+					<li class="price">Price : RM `+fitcamp.price+`</li>
+					</ul>
+					<div class="description">
+					<h1>`+fitcamp.title+`</h1>
+					<h2>`+fitcamp.description+`</h2>
+					<p class="summary">`+fitcamp.point+` PT</p>
+					<a href="#" class='joinFitcampBtn' value='`+fitcamp.fitcampID+`'>Join now </a>
+					</div>
+					</div>
+
+					`;
+					$('.fitcampListection').prepend(fitcampHTML);
+					if(fitcamp.img_url=='default')
+					{
+						$('.photo'+i).css({
+							'background-image' : 'url("assets/img/fitcamp/'+fitcamp.img_url+'.gif")',
+							'background-repeat': 'no-repeat',
+							'backgroundPosition': 'center',
+							'background-size': 'cover'
+						});
+					}
+					else
+					{
+						$('.photo'+i).css({
+							'background-image' : 'url("assets/img/fitcamp/'+fitcamp.img_url+'.jpg")',
+							'background-repeat': 'no-repeat',
+							'backgroundPosition': 'center',
+							'background-size': 'cover'
+						});
+					}
+					count++;
 				}
-				else
-				{
-					$('.photo'+i).css({
-						'background-image' : 'url("assets/img/fitcamp/'+fitcamp.img_url+'.jpg")',
-						'background-repeat': 'no-repeat',
-						'backgroundPosition': 'center',
-						'background-size': 'cover'
-					});
-				}
-				count++;
 			}
 
 			//If user already register
@@ -552,16 +648,30 @@ $(document).ready(function () {
 				fitcampHTML+=`
 				<div class="photo photo`+i+`"></div>
 				<ul class="details">
-				<li class="author"><a href="#">Coach : John</a></li>
+				<li class="author">Location :  `+fitcamp.location+`</li>
 				<li class="startDate">Start : `+fitcamp.start_date+`</li>
 				<li class="endDate">End : `+fitcamp.end_date+`</li>
 				<li class="price">Price : RM `+fitcamp.price+`</li>
 				</ul>
 				<div class="description">
 				<h1>`+fitcamp.title+`</h1>
-				<h2>`+fitcamp.location+`</h2>
-				<p class="summary">`+fitcamp.description+`</p>
-				<a href="#" class='quitFitcampBtn' value='`+fitcamp.fitcampID+`'>Cancel </a>
+				<h2>`+fitcamp.description+`</h2>
+				<p class="summary">`+fitcamp.point+` PT</p>`;
+
+				if(fitcamp.closed ==0 ) // If fitcamp didnt close yet
+				{
+					fitcampHTML+=`
+						<a href="#" class='quitFitcampBtn' value='`+fitcamp.fitcampID+`'>Cancel </a>
+					`;
+				}
+				else {
+					fitcampHTML+=`
+						<a href="#" disabled>Passed </a>
+					`;
+
+				}
+
+				fitcampHTML+=`
 				</div>
 				</div>
 
@@ -631,29 +741,29 @@ $(document).ready(function () {
 
 	// get all challenge API response
 	$(document).off('getAllChallengeAPIResponse_admin').on('getAllChallengeAPIResponse_admin', function (e, data, status) {
-			var challengeList = data.body;
-			var count =challengeList.length;
-			for(var i =0;i <challengeList.length;i++)
-			{
-			  var challenge = challengeList[i];
-			  var img = "assets/img/challenge/"+challenge.img_url+".jpg";
-			  var challengeHTML = `
-			  <tr >
-			  <td>`+count+`</td>
-			  <td><img class='challengeImg' src="`+img+`" /></td>
-			  <td class='challengeTitleForEdit'>`+challenge.title+`</td>
-			  <td class='challengeDescriptionForEdit'>`+challenge.description+`</td>
-			  <td class='challengePointForEdit'>`+challenge.score_point+`</td>
-			  <td>
-			    <button class='btn btn-default editChallengeBtn'  value='`+challenge.challengeID+`'>Edit </button>
-			    <button class='btn btn-danger deletechallengeBtn' value='`+challenge.challengeID+`'>Delete </button>
-			  <td>
-			  </tr>
+		var challengeList = data.body;
+		var count =challengeList.length;
+		for(var i =0;i <challengeList.length;i++)
+		{
+			var challenge = challengeList[i];
+			var img = "assets/img/challenge/"+challenge.img_url+".jpg";
+			var challengeHTML = `
+			<tr >
+			<td>`+count+`</td>
+			<td><img class='challengeImg' src="`+img+`" /></td>
+			<td class='challengeTitleForEdit'>`+challenge.title+`</td>
+			<td class='challengeDescriptionForEdit'>`+challenge.description+`</td>
+			<td class='challengePointForEdit'>`+challenge.score_point+`</td>
+			<td>
+			<button class='btn btn-default editChallengeBtn'  value='`+challenge.challengeID+`'>Edit </button>
+			<button class='btn btn-danger deletechallengeBtn' value='`+challenge.challengeID+`'>Delete </button>
+			<td>
+			</tr>
 
-			  `;
-				count --;
-				$('.challengeListSection').prepend(challengeHTML);
-			}
+			`;
+			count --;
+			$('.challengeListSection').prepend(challengeHTML);
+		}
 
 	});
 
@@ -1035,5 +1145,14 @@ $(document).ready(function () {
 
 	//Get username by given user id
 	function getUserNameByID(userID){
+
+	}
+
+	function getUserByID (userID){
+
+		$.get(fitnergistAPI.url+'api/users/profile/' + userID , function(data, status){
+			return data;
+		});
+
 
 	}

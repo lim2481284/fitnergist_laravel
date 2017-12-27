@@ -316,6 +316,7 @@ Route::delete('fitcamp/coach/{id}', 'API\fitcampController@deleteCoach');
 Route::get('fitcamp/register/fitcampID/{fitcamp_id}', 'API\fitcampController@getFitcampRegister');
 Route::get('fitcamp/register/userID/{user_id}', 'API\fitcampController@getUserRegister');
 Route::post('fitcamp/register/', 'API\fitcampController@addRegister');
+Route::put('fitcamp/register/fitcampID/{fitcamp_id}', 'API\fitcampController@confirmRegister');
 Route::delete('fitcamp/register/{id}', 'API\fitcampController@deleteRegister');
 
 

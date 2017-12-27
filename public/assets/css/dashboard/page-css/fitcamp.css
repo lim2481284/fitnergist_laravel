@@ -1,4 +1,10 @@
-
+.alt .description a
+{
+	float:left !important;
+}
+.author{
+	    width: 40%;
+}
 .tab {
 
 	text-align: center;

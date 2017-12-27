@@ -10,6 +10,18 @@ use Cookie;
 use Illuminate\Http\Response;
 class navigation extends Controller
 {
+  public function attendance()
+  {
+
+      $roleID =  $_COOKIE['roleID'];
+      if($roleID == 1 )
+      {
+        return view('404');
+      }
+      else {
+        return view('attendance');
+      }
+  }
 
   public function ranking()
   {
@@ -105,8 +117,12 @@ class navigation extends Controller
     {
 
         $roleID =  $_COOKIE['roleID'];
+        $profile =  $_COOKIE['profiled'];
         if($roleID == 1 )
         {
+          if($profile==0){  // First time login
+            return view('profile_setup');
+          }
           return view('profile');
         }
         else {

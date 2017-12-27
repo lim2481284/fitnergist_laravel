@@ -36,7 +36,14 @@
 								<img class='dot_progress' src=""/>
 							</center>
 						</div>
-						<img  class='treasure' src='assets/img/treasure.png'/>
+						<div class="tooltip">
+								<img  class='treasure' src='assets/img/treasure.png'/>
+								<span class="tooltiptext">
+										Goal description
+										<p>31 %</p>
+								</span>
+
+						</div>
 				</div>
 			</div>
 		<center>

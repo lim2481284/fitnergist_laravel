@@ -62,17 +62,12 @@
           </a>
         </li>
 
+
         <li class="sub-menu">
-          <a class='userMenu' href="javascript:;" >
-            <i class="fa fa-desktop"></i>
-            <span>User</span>
+          <a class='trackMenu' href="/track">
+            <i class="fa fa-dashboard"></i>
+            <span>Track</span>
           </a>
-          <ul class="sub">
-            <li><a  href="/trackingMenu">Track</a></li>
-            <li><a  href="/challenge">Challenge</a></li>
-            <li><a  href="/achievement">Achievement</a></li>
-            <li><a  href="/redeem">Redeem</a></li>
-          </ul>
         </li>
 
         <!-- product tab
@@ -83,11 +78,38 @@
           </a>
         </li>
       -->
+      <li class="sub-menu">
+        <a class='achievementMenu' href="/achievement">
+          <i class="fa fa-dashboard"></i>
+          <span>Achievement</span>
+        </a>
+      </li>
 
+      <li class="sub-menu">
+        <a class='challengeMenu' href="javascript:;" >
+          <i class="fa fa-desktop"></i>
+          <span>Challenge</span>
+        </a>
+        <ul class="sub">
+          <li><a  href="/challenge">Create</a></li>
+          <li><a  href="/challenge">Verify</a></li>
+        </ul>
+      </li>
+
+      <li class="sub-menu">
+        <a class='fitcampMenu' href="javascript:;" >
+          <i class="fa fa-desktop"></i>
+          <span>Fitcamp</span>
+        </a>
+        <ul class="sub">
+          <li><a  href="/fitcamp">Create</a></li>
+          <li><a  href="/attendance">Attendance</a></li>
+        </ul>
+      </li>
         <li class="sub-menu">
-          <a class='fitcampMenu' href="/fitcamp">
+          <a class='redeemMenu' href="/redeem">
             <i class="fa fa-dashboard"></i>
-            <span>Fitcamp</span>
+            <span>Redeem</span>
           </a>
         </li>
 

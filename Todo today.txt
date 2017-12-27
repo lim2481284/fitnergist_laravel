@@ -66,12 +66,13 @@ Todo : user side
 *********************************************************************
 
 -- flow : fitcamp
-	1 - admin create fitcamp
-	2 - user register fitcamp
+	1 - admin create fitcamp					x
+	2 - user register fitcamp					x
 	3 - user timeline show fitcamp
-	4 - trainer confirm attandance
-	5 - trainer close fitcamp
+	4 - trainer confirm attandance		x
+	5 - trainer close fitcamp					x
 	6 - user summary display total reigstered fitcamp
+	7 - user add point								x
 
 -- flow : achievement
 	1 - admin create achievement with specific calculation
@@ -83,9 +84,9 @@ Todo : user side
 	7 - user summary display total achievemnt with icon
 
 -- flow : challenge
-	1 - admin create chalelnge
-	2 - user join fitcamp
-	3 - user compelte  chalelnge
+	1 - admin create chalelnge					x
+	2 - user join fitcamp								x
+	3 - user compelte  chalelnge				x
 	4 - trainer verify the challenge
 	5 - timeline dislay challenge unlcok
 	6 - dashboard display notifiacton
@@ -93,8 +94,8 @@ Todo : user side
 
 
 -- flow : goal
-	1 - user reigster account
-	2 - user login account
+	1 - user reigster account							x
+	2 - user login account								x
 	3 - user setp rpoblem
 	4 - user setup goal with calculation
 	5 - user dashboard deactiavated

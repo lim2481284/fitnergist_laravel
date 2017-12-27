@@ -10,11 +10,11 @@ use App\Fitcamp_coach;
 
 class fitcampController extends Controller
 {
-	
+
 	/*
-		
-		Controller for the fitcamp section 
-	
+
+		Controller for the fitcamp section
+
 	*/
     public function ajaxImageUploadPost(Request $request)
 	{
@@ -23,28 +23,34 @@ class fitcampController extends Controller
 		$request->file('image')->move(
 			base_path() . '/public/assets/img/fitcamp/', $imageName
 		);
-		
-		return response()->json(['success'=>true,'message'=>'Image uploaded']); 
+
+		return response()->json(['success'=>true,'message'=>'Image uploaded']);
     }
-			
-	
+
+    public function confirmRegister(Request $request, $id)
+    {
+          $fitcamp = Fitcamp_register::where('fitcampID',$id);
+          $fitcamp->update($request->all());
+          return response()->json(['success'=>true,'message'=>'Fitcamp edited','body'=>$fitcamp]);
+    }
+
     public function getTotal()
-    {		
+    {
         $fitcamp = Fitcamp::all()->count();
 		return response()->json(['success'=>true,'total'=>$fitcamp]);
     }
-		
-	
+
+
     public function getFitcamp()
     {
-		
+
         $fitcamp = Fitcamp::all();
 		return response()->json(['success'=>true,'message'=>'','body'=>$fitcamp]);
     }
- 
+
     public function findFitcamp($id)
     {
-		$fitcamp = Fitcamp::find($id);		
+		$fitcamp = Fitcamp::find($id);
         return response()->json(['success'=>true,'message'=>'','body'=>$fitcamp]);
 
     }
@@ -70,23 +76,23 @@ class fitcampController extends Controller
         $fitcamp->delete();
         return response()->json(['success'=>true,'message'=>$fitcamp->title.' deleted']);
     }
-	
-	
-	
+
+
+
 	/*
-		
-		Controller for the fitcamp attendance section 
-	
+
+		Controller for the fitcamp attendance section
+
 	*/
     public function getFitcampAttendance(Request $request, $id)
-    {		
-        $attendance = Fitcamp_attendance::where('fitcampID',$id)->orderBy('created_at','DESC')->get();        
-		return response()->json(['success'=>true,'message'=>'','body'=>$attendance]);
+    {
+        $attendance = Fitcamp_attendance::where('fitcampID',$id)->orderBy('created_at','DESC')->get();
+		return response()->json(['success'=>true,'message'=>'Here is it','body'=>$attendance]);
     }
-	
+
     public function getUserAttendance($id)
     {
-		$attendance = Fitcamp_attendance::where('userID',$id)->orderBy('created_at','DESC')->get();        
+		$attendance = Fitcamp_attendance::where('userID',$id)->orderBy('created_at','DESC')->get();
 		return response()->json(['success'=>true,'message'=>'','body'=>$attendance]);
     }
 
@@ -104,32 +110,32 @@ class fitcampController extends Controller
 		if($request->has('userID'))
 		{
 			 $userID = $request->userID;
-			 $attendance = Fitcamp_attendance::where('fitcampID',$id)->where('userID',$userID); 
+			 $attendance = Fitcamp_attendance::where('fitcampID',$id)->where('userID',$userID);
 			 $attendance->delete();
-			 return response()->json(['success'=>true,'message'=>' deleted']);	
+			 return response()->json(['success'=>true,'message'=>' deleted']);
 		}
-		else 
+		else
 		{
 			 return response()->json(['success'=>false,'message'=>'Invalid request: userID not found.']);
 		}
-       
-    }	
-	
-	
+
+    }
+
+
 	/*
-		
-		Controller for the fitcamp coach section 
-	
+
+		Controller for the fitcamp coach section
+
 	*/
     public function getFitcampCoach(Request $request, $fitcamp_id) //Get all the coach from that fitcamp
-    {		
-        $coach = Fitcamp_coach::where('fitcampID',$fitcamp_id)->orderBy('created_at','DESC')->get();        
+    {
+        $coach = Fitcamp_coach::where('fitcampID',$fitcamp_id)->orderBy('created_at','DESC')->get();
 		return response()->json(['success'=>true,'message'=>'','body'=>$coach]);
     }
-	
-    public function getCoachFitcamp(Request $request, $coach_id)	//Get all the fitcamp of that coach 
+
+    public function getCoachFitcamp(Request $request, $coach_id)	//Get all the fitcamp of that coach
     {
-		$coach = Fitcamp_coach::where('coachID',$coach_id)->orderBy('created_at','DESC')->get();        
+		$coach = Fitcamp_coach::where('coachID',$coach_id)->orderBy('created_at','DESC')->get();
 		return response()->json(['success'=>true,'message'=>'','body'=>$coach]);
     }
 
@@ -147,33 +153,33 @@ class fitcampController extends Controller
 		if($request->has('userID'))
 		{
 			 $userID = $request->userID;
-			 $coach = Fitcamp_coach::where('fitcampID',$id)->where('coachID',$userID); 
+			 $coach = Fitcamp_coach::where('fitcampID',$id)->where('coachID',$userID);
 			 $coach->delete();
-			 return response()->json(['success'=>true,'message'=>' deleted']);	
+			 return response()->json(['success'=>true,'message'=>' deleted']);
 		}
-		else 
+		else
 		{
 			 return response()->json(['success'=>false,'message'=>'Invalid request: userID not found.']);
 		}
-       
-    }	
+
+    }
 
 
-	
+
 	/*
-		
-		Controller for the fitcamp register section 
-	
+
+		Controller for the fitcamp register section
+
 	*/
     public function getFitcampRegister($id) //Get all register from that fitcamp
-    {		
-        $register = Fitcamp_register::where('fitcampID',$id)->orderBy('created_at','DESC')->get();        
+    {
+        $register = Fitcamp_register::where('fitcampID',$id)->orderBy('created_at','DESC')->get();
 		return response()->json(['success'=>true,'message'=>'','body'=>$register]);
     }
-	
-    public function getUserRegister($id) // get all registered fitcamp from that user 
+
+    public function getUserRegister($id) // get all registered fitcamp from that user
     {
-		$register = Fitcamp_register::where('userID',$id)->orderBy('created_at','DESC')->get();        
+		$register = Fitcamp_register::where('userID',$id)->orderBy('created_at','DESC')->get();
 		return response()->json(['success'=>true,'message'=>'','body'=>$register]);
     }
 
@@ -190,15 +196,15 @@ class fitcampController extends Controller
 		if($request->has('userID'))
 		{
 			 $userID = $request->userID;
-			 $attendance = Fitcamp_register::where('fitcampID',$id)->where('userID',$userID); 
+			 $attendance = Fitcamp_register::where('fitcampID',$id)->where('userID',$userID);
 			 $attendance->delete();
-			 return response()->json(['success'=>true,'message'=>' deleted']);	
+			 return response()->json(['success'=>true,'message'=>' deleted']);
 		}
-		else 
+		else
 		{
 			 return response()->json(['success'=>false,'message'=>'Invalid request: userID not found.']);
 		}
-       
-    }	
-	
+
+    }
+
 }

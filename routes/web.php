@@ -36,6 +36,7 @@ Route::get('/fitcamp', 'navigation@fitcamp');
 Route::get('/forum', 'navigation@forum');
 Route::get('/tracking', 'navigation@tracking');
 Route::get('/ranking', 'navigation@ranking');
+Route::get('/attendance', 'navigation@attendance');
 
 
 Route::get('/trackinghistory', function () {

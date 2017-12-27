@@ -1,3 +1,17 @@
+$(function () {
+  $('#datetimepicker1').datetimepicker({
+		format : 'DD/MM/YYYY HH:mm'
+	});
+	$('#datetimepicker2').datetimepicker({
+		format : 'DD/MM/YYYY HH:mm'
+	});
+	$('#datetimepicker3').datetimepicker({
+		format : 'DD/MM/YYYY HH:mm'
+	});
+	$('#datetimepicker4').datetimepicker({
+		format : 'DD/MM/YYYY HH:mm'
+	});
+});
 
 //Onclick edit fitcamp button
 $(document).on('click','.editFitcampBtn',function(){
@@ -10,6 +24,7 @@ $(document).on('click','.editFitcampBtn',function(){
 	var fitcampPrice=$(this).parent().parent().find('.fitcampPriceForEdit').html();
 	var fitcampStart=$(this).parent().parent().find('.fitcampStartDateForEdit').html();
 	var fitcampEnd=$(this).parent().parent().find('.fitcampEndDateForEdit').html();
+  var fitcampPoint=$(this).parent().parent().find('.fitcampPointForEdit').html();
 	$('.fitcampID').val(fitcampID);
 	$('.editFitcampImg').attr('src',img_src);
 	$('.editFitcampName').val(fitcampTitle);
@@ -18,9 +33,10 @@ $(document).on('click','.editFitcampBtn',function(){
 	$('.editFitcampPrice').val(fitcampPrice);
 	$('.editFitcampStartDate').val(fitcampStart);
 	$('.editFitcampEndDate').val(fitcampEnd);
+  $('.editFitcampPoint').val(fitcampPoint);
 });
 
-//Datepicker 
+//Datepicker
 $(function () {
 		 $('#datetimepicker2').datetimepicker({
 				 locale: 'ru'

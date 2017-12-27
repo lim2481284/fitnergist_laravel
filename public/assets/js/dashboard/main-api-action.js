@@ -619,6 +619,45 @@ $(document).ready(function () {
 
 	===============================================*/
 
+	//Close  fitcamp action
+	$(document).on('click','.closeFitcampBtn',function () {
+			swal({
+				title: 'Are you sure?',
+				type: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Yes, close it!'
+			}).then((result) => {
+				var fitcampID = $('.fitcampListection').val();
+				fitnergistAPI.closeFitcampAPI(fitcampID);
+			})
+	});
+
+
+	//Confirm attendance fitcamp action
+	$(document).on('click','.confirmAttendanceBtn',function () {
+		$(this).html('Cancel');
+		$(this).attr('class','btn btn-default cancelAttendanceBtn')
+		var userID= $(this).attr('value');
+		var fitcampID= $('.fitcampIDHidden').attr('value');
+		fitnergistAPI.confirmFitcampRegisterAPI(fitcampID,userID);
+	});
+
+
+	//Cancel attendance fitcamp action
+	$(document).on('click','.cancelAttendanceBtn',function () {
+		$(this).html('Attended');
+		$(this).attr('class','btn btn-default confirmAttendanceBtn')
+		var userID= $(this).attr('value');
+		var fitcampID= $('.fitcampIDHidden').attr('value');
+		fitnergistAPI.cancelFitcampRegisterAPI(fitcampID,userID);
+	});
+
+	//Close fitcamp action
+	$(document).on('click','.joinFitcampBtn',function () {
+		var fitcampID= $(this).attr('value');
+		fitnergistAPI.createfitcampRegisterAPI(fitcampID);
+	});
+
 
 	//Register fitcamp action
 	$(document).on('click','.joinFitcampBtn',function () {
@@ -657,14 +696,15 @@ $(document).ready(function () {
 			var fitcampPrice = $('.editFitcampPrice').val();
 			var fitcampStartDate = $('.editFitcampStartDate').val();
 			var fitcampEndDate = $('.editFitcampEndDate').val();
+			var fitcampPoint = $('.editFitcampPoint').val();
 			var fitcampImg = $('.fitcampImg_edit').val();
 			if(!fitcampImg)
 					fitcampImg='default';
 
-			if(!fitcampName || !fitcampDescription || !fitcampLocation || !fitcampPrice || !fitcampStartDate|| !fitcampEndDate)
+			if(!fitcampPoint|| !fitcampName || !fitcampDescription || !fitcampLocation || !fitcampPrice || !fitcampStartDate|| !fitcampEndDate)
 			swal('Please fill in all the field' ,'','error');
 			else
-			fitnergistAPI.editFitcampAPI(fitcampImg,fitcampDescription,fitcampName,fitcampLocation,fitcampPrice,fitcampStartDate,fitcampEndDate,fitcampID);
+			fitnergistAPI.editFitcampAPI(fitcampImg,fitcampDescription,fitcampName,fitcampLocation,fitcampPrice,fitcampStartDate,fitcampEndDate,fitcampID, fitcampPoint);
 
 		});
 
@@ -679,13 +719,14 @@ $(document).ready(function () {
 		var fitcampStartDate = $('.fitcampStartDate').val();
 		var fitcampEndDate = $('.fitcampEndDate').val();
 		var fitcampImg = $('.fitcampImg').val();
+		var fitcampPoint = $('.fitcampPoint').val();
 		if(!fitcampImg)
 		fitcampImg='default';
 
-		if(!fitcampName || !fitcampDescription || !fitcampLocation || !fitcampPrice || !fitcampStartDate|| !fitcampEndDate)
+		if(!fitcampPoint|| !fitcampName || !fitcampDescription || !fitcampLocation || !fitcampPrice || !fitcampStartDate|| !fitcampEndDate)
 		swal('Please fill in all the field' ,'','error');
 		else
-		fitnergistAPI.createFitcampAPI(fitcampImg,fitcampDescription,fitcampName,fitcampLocation,fitcampPrice,fitcampStartDate,fitcampEndDate);
+		fitnergistAPI.createFitcampAPI(fitcampImg,fitcampDescription,fitcampName,fitcampLocation,fitcampPrice,fitcampStartDate,fitcampEndDate,fitcampPoint);
 
 	});
 

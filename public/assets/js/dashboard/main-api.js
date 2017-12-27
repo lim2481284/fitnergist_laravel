@@ -157,9 +157,6 @@ function Api() {
   }
 
 
-
-
-
   /* 				User goal API section 			*/
 
 
@@ -686,6 +683,27 @@ function Api() {
     }, this.deleteFitcampRegister);
   }
 
+  //Confirm attendance
+  this.confirmFitcampRegisterAPI = (fitcampID,userID) => {
+    var data = {
+      "userID":userID,
+      "attendance":1
+    };
+    $.putAjax(this.url+'api/fitcamp/register/fitcampID/' + fitcampID, data,(data, status, xhr) => {
+      $(document).trigger("confirmFitcampAPIResponse", [data, status]);
+    }, this.error);
+  }
+
+  //Cancel attendance
+  this.cancelFitcampRegisterAPI = (fitcampID,userID) => {
+    var data = {
+      "userID":userID,
+      "attendance":0
+    };
+    $.putAjax(this.url+'api/fitcamp/register/fitcampID/' + fitcampID, data,(data, status, xhr) => {
+      $(document).trigger("cancelFitcampRegisterAPIResponse", [data, status]);
+    }, this.error);
+  }
 
   //  Get all the register from that fitcamp id
   this.getAllFitcampRegisterAPI = (fitcampID) => {
@@ -780,7 +798,7 @@ function Api() {
 
   // Get all fitcamp attendance of that fitcamp
   this.getAllFitcampAttendanceAPI = (fitcampID) => {
-    $.getAjax(this.url+'api/fitcamp/attendance/' + fitcampID, (data, status, xhr) => {
+    $.getAjax(this.url+'api/fitcamp/attendance/fitcampID/' + fitcampID, (data, status, xhr) => {
       $(document).trigger("getAllFitcampAttendanceAPIResponse", [data, status,xhr]);
     }, this.error);
   }
@@ -788,7 +806,7 @@ function Api() {
 
   // Get all fitcamp attendance of that user
   this.getAllUserAttendanceAPI = (userID) => {
-    $.getAjax(this.url+'api/fitcamp/attendance/' + userID , (data, status, xhr) => {
+    $.getAjax(this.url+'api/fitcamp/attendance/userID/' + userID , (data, status, xhr) => {
       $(document).trigger("getAllUserAttendanceAPIResponse", [data, status,xhr]);
     }, this.error);
   }
@@ -803,7 +821,7 @@ function Api() {
 
 
   // Create fitcamp
-  this.createFitcampAPI = (img_url,description,title,fitcampLocation,price,start_date,end_date) => {
+  this.createFitcampAPI = (img_url,description,title,fitcampLocation,price,start_date,end_date,point) => {
 
     var data = {
       "img_url":img_url,
@@ -812,7 +830,8 @@ function Api() {
       "location":fitcampLocation,
       "price":price,
       "start_date":start_date,
-      "end_date":end_date
+      "end_date":end_date,
+      "point":point
     };
 
     $.postAjax(this.url + "api/fitcamp/", data, (data, status, xhr) => {
@@ -829,7 +848,7 @@ function Api() {
 
 
   //Edit fitcamp
-  this.editFitcampAPI = (img_url,description,title,fitcampLocation,expired_date,start_date,end_date,fitcampID) => {
+  this.editFitcampAPI = (img_url,description,title,fitcampLocation,expired_date,start_date,end_date,fitcampID,point) => {
     var data = {
       "img_url":img_url,
       "description":description,
@@ -837,10 +856,32 @@ function Api() {
       "location":fitcampLocation,
       "expired_date":expired_date,
       "start_date":start_date,
-      "end_date":end_date
+      "end_date":end_date,
+      "point":point
     };
     $.putAjax(this.url+'api/fitcamp/' + fitcampID, data,(data, status, xhr) => {
       $(document).trigger("editFitcampAPIResponse", [data, status]);
+    }, this.error);
+  }
+
+  // Update fitcamp user point
+  this.updateFitcampPointForUserAPI = (userID, point) => {
+    var data = {
+      "point":point
+    };
+    $.putAjax(this.url+'api/users/' + userID, data,(data, status, xhr) => {
+      $(document).trigger("reload", [data, status]);
+    }, this.error);
+  }
+
+
+  // Close fitcamp
+  this.closeFitcampAPI = (fitcampID) => {
+    var data = {
+      "closed":1
+    };
+    $.putAjax(this.url+'api/fitcamp/' + fitcampID, data,(data, status, xhr) => {
+      $(document).trigger("closeFitcampAPIResponse", [data, status]);
     }, this.error);
   }
 
@@ -864,6 +905,13 @@ function Api() {
   this.getAllFitcampAPI_admin = () => {
     $.getAjax(this.url+'api/fitcamp/' , (data, status, xhr) => {
       $(document).trigger("getAllFitcampAPIResponse_admin", [data, status,xhr]);
+    }, this.error);
+  }
+
+  // Get all fitcamp for attendance
+  this.getAllFitcampAPI_admin_attendance = () => {
+    $.getAjax(this.url+'api/fitcamp/' , (data, status, xhr) => {
+      $(document).trigger("getAllFitcampAPIResponse_admin_attendance", [data, status,xhr]);
     }, this.error);
   }
 
