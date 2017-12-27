@@ -96,7 +96,7 @@ Todo : user side
 -- flow : goal
 	1 - user reigster account							x
 	2 - user login account								x
-	3 - user setp rpoblem
+	3 - user set up profile										
 	4 - user setup goal with calculation
 	5 - user dashboard deactiavated
 	6 - user go to fitcamp

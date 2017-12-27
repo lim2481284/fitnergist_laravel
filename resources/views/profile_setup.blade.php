@@ -65,68 +65,106 @@
 						<div role="tabpanel" class="tab-pane" id="strategy">
 							<div class="design-process-content">
 								<!-- Text input-->
-								<div class="control-group">
-									<label class="control-label" for="textinput-0">Name</label>
-									<div class="controls">
-										<input id="textinput-0" name="textinput-0" type="text" placeholder="Text here ..." class="input-xlarge name">
+								<div class='detailSection'>
+									<div class="control-group">
+										<label class="control-label" for="textinput-0">Name</label>
+										<div class="controls">
+											<input id="textinput-0" name="textinput-0" type="text" placeholder="Text here ..." class="input-xlarge name">
 
-									</div>
-								</div>
-
-								<!-- Text input-->
-								<div class="control-group">
-									<label class="control-label" for="textinput-1">Email</label>
-									<div class="controls">
-										<input id="textinput-1" name="textinput-1" type="text" placeholder="Text here ..." class="input-xlarge email">
-
-									</div>
-								</div>
-
-								<!-- Text input-->
-								<div class="control-group">
-									<label class="control-label" for="textinput-2">Contact </label>
-									<div class="controls">
-										<input id="textinput-2" name="textinput-2" type="text" placeholder="Text here ..." class="input-xlarge contact">
-
-									</div>
-								</div>
-
-								<!-- Text input-->
-								<div class="control-group">
-									<label class="control-label" for="textinput-3">Age</label>
-									<div class="controls">
-										<input id="textinput-3" name="textinput-3" type="text" placeholder="" class="input-xlarge age">
-
-									</div>
-								</div>
-
-								<!-- Select Basic -->
-								<div class="control-group">
-									<label class="control-label" for="selectbasic-0">Gender</label>
-									<div class="controls">
-										<select id="selectbasic-0" name="selectbasic-0" class="input-xlarge gender">
-											<option value ='male' >Male</option>
-											<option value='female'>Female</option>
-										</select>
-									</div>
-								</div>
-
-								<!-- Textarea -->
-								<div class="control-group">
-									<label class="control-label" for="textarea-0">Address</label>
-									<div class="controls">
-										<textarea id="textarea-0" name="textarea-0" class='address'></textarea>
+										</div>
 									</div>
 
+									<!-- Text input-->
+									<div class="control-group">
+										<label class="control-label" for="textinput-1">Email</label>
+										<div class="controls">
+											<input id="textinput-1" name="textinput-1" type="text" placeholder="Text here ..." class="input-xlarge email">
+
+										</div>
+									</div>
+
+									<!-- Text input-->
+									<div class="control-group">
+										<label class="control-label" for="textinput-2">Contact </label>
+										<div class="controls">
+											<input id="textinput-2" name="textinput-2" type="text" placeholder="Text here ..." class="input-xlarge contact">
+
+										</div>
+									</div>
+
+									<!-- Text input-->
+									<div class="control-group">
+										<label class="control-label" for="textinput-3">Age</label>
+										<div class="controls">
+											<input id="textinput-3" name="textinput-3" type="text" placeholder="" class="input-xlarge age">
+
+										</div>
+									</div>
+
+									<!-- Select Basic -->
+									<div class="control-group">
+										<label class="control-label" >Gender</label>
+										<div class="controls">
+											<select>
+												<option value ='male' >Male</option>
+												<option value='female'>Female</option>
+											</select>
+										</div>
+									</div>
+
+									<!-- Textarea -->
+									<div class="control-group">
+										<label class="control-label" for="textarea-0">Address</label>
+										<div class="controls">
+											<textarea id="textarea-0" name="textarea-0" class='address'></textarea>
+										</div>
+
+									</div>
 								</div>
 							</div>
 						</div>
 						<div role="tabpanel" class="tab-pane" id="optimization">
 							<div class="design-process-content">
 								<div class="control-group">
+									<div class='detailSection'>
 
-									<div class="controls">
-										<button type='button' class='btn btn-default updateProfile'> Update profile </button>
+										<!-- Select Basic -->
+										<div class="control-group">
+											<label class="control-label" >I want to ... </label>
+											<div class="controls">
+												<select >
+													<option value ='lost' >Lost</option>
+													<option value='gain'>Gain</option>
+													<option value='maintain'>Maintain</option>
+												</select>
+											</div>
+										</div>
+
+										<!-- Select Basic -->
+										<div class="control-group">
+											<label class="control-label" >What  </label>
+											<div class="controls">
+												<select >
+													<option value ='weight' >Weight</option>
+													<option value='fat'>Fat</option>
+													<option value='water'>Water</option>
+													<option value='muscle'>Muscle</option>
+													<option value='visceral'>Visceral</option>
+													<option value='bmr'>BMR</option>
+													<option value='pr'>PR</option>
+												</select>
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label" for="textinput-3">How much / How long</label>
+											<div class="controls">
+												<input id="textinput-3" name="textinput-3" type="text" placeholder="" class="input-xlarge age">
+												<small id="emailHelp" class="form-text text-muted"><a href='#'> Need help ?</a> </small>
+											</div>
+										</div>
+									<div class="controls updateSection">
+										<button type='button' class='btn btn-default updateProfile'> Done !</button>
 									</div>
 								</div>
 							</div>

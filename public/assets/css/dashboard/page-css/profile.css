@@ -1,5 +1,25 @@
 
+.detailSection{
+	padding:3% 5%;
 
+}
+
+.detailSection input, .detailSection select {
+    width: 100%;
+    height: 30px !important;
+}
+.detailSection textarea{
+	width:100%;
+}
+.updateSection{
+	text-align: center;
+}
+
+small > a{
+
+	font-size: 85%;
+	color:gray !important;
+}
 .file-input-wrapper {
 	margin:auto;
 	text-align: center;
