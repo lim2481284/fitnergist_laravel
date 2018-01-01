@@ -105,7 +105,7 @@
 									<div class="control-group">
 										<label class="control-label" >Gender</label>
 										<div class="controls">
-											<select>
+											<select class='genderInput'>
 												<option value ='male' >Male</option>
 												<option value='female'>Female</option>
 											</select>
@@ -132,8 +132,8 @@
 										<div class="control-group">
 											<label class="control-label" >I want to ... </label>
 											<div class="controls">
-												<select >
-													<option value ='lost' >Lost</option>
+												<select  class='goalCondition' >
+													<option value ='lose' >Lose</option>
 													<option value='gain'>Gain</option>
 													<option value='maintain'>Maintain</option>
 												</select>
@@ -144,7 +144,7 @@
 										<div class="control-group">
 											<label class="control-label" >What  </label>
 											<div class="controls">
-												<select >
+												<select class='goalTarget' >
 													<option value ='weight' >Weight</option>
 													<option value='fat'>Fat</option>
 													<option value='water'>Water</option>
@@ -157,9 +157,9 @@
 										</div>
 
 										<div class="control-group">
-											<label class="control-label" for="textinput-3">How much / How long</label>
+											<label class="control-label">How much / How long</label>
 											<div class="controls">
-												<input id="textinput-3" name="textinput-3" type="text" placeholder="" class="input-xlarge age">
+												<input  name="goalValue" type="text" placeholder="" class="input-xlarge goalValue">
 												<small id="emailHelp" class="form-text text-muted"><a href='#'> Need help ?</a> </small>
 											</div>
 										</div>
@@ -190,4 +190,5 @@
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
 <script src="assets/js/dashboard/page-js/profile.js"></script>
+
 @stop

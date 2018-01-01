@@ -1,3 +1,54 @@
+//Get user ranking number
+
+var userRanking = 0;
+$.get('http://localhost:8000/api/ranking'  , function(data, status){
+  var count =0;
+  $.each(data, function (index, value)
+  {
+      count++;
+      if(value.userID == fitnergistAPI.userID)
+        return false;
+  });
+  userRanking = count;
+});
+
+
+//Changing ranking content
+$(document).ready(function() {
+
+    var rankingHTML=`
+          <div class="slider-single">
+            <img class="slider-single-image" src="test.png" alt="1" />
+            <a class="slider-single-download" href="javascript:void(0);">Rank 1 <i class="fa fa-download"></i></a>
+            <h1 class="slider-single-title">Username </h1>
+            <a class="slider-single-likes" href="javascript:void(0);">
+              <i class="fa fa-heart"></i>
+              <p>1,247</p>
+            </a>
+          </div>
+          <div class="slider-single">
+            <img class="slider-single-image" src="test.png" alt="2" />
+            <a class="slider-single-download" href="javascript:void(0);">Rank 1 <i class="fa fa-download"></i></a>
+            <h1 class="slider-single-title">Username </h1>
+            <a class="slider-single-likes" href="javascript:void(0);">
+              <i class="fa fa-heart"></i>
+              <p>1,247</p>
+            </a>
+          </div>
+          <div class="slider-single">
+            <img class="slider-single-image" src="test.png" alt="3" />
+            <a class="slider-single-download" href="javascript:void(0);">Rank 1 <i class="fa fa-download"></i></a>
+            <h1 class="slider-single-title">Username </h1>
+            <a class="slider-single-likes" href="javascript:void(0);">
+              <i class="fa fa-heart"></i>
+              <p>1,247</p>
+            </a>
+          </div>
+    `;
+  //  $('.rankingFrame').contents().find('.slider-content').html(rankingHTML);
+});
+
+
 $('.userMenu').attr('class','userMenu active');
 
 // script for tab steps
@@ -52,6 +103,7 @@ $(document).ready(function() {
 
 	//ranking function
 	$('.rankingTab').click(function(){
+        localStorage.setItem("ranking", userRanking);
 				$("html, body").animate({
 					 scrollTop: $('.scroll').offset().top
 				}, 2000);
@@ -60,5 +112,6 @@ $(document).ready(function() {
 
 });
 
-
+fitnergistAPI.viewUserGoal('profile');
 fitnergistAPI.getUserProfileAPI('profile');
+fitnergistAPI.getCurrentUserAttributeAPI();

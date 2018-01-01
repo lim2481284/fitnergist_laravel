@@ -10,6 +10,19 @@ use Cookie;
 use Illuminate\Http\Response;
 class navigation extends Controller
 {
+
+  public function tracking()
+  {
+
+      $roleID =  $_COOKIE['roleID'];
+      if($roleID == 1 )
+      {
+        return view('404');
+      }
+      else {
+        return view('track');
+      }
+  }
   public function attendance()
   {
 
@@ -132,18 +145,14 @@ class navigation extends Controller
 
     public function dashboard()
     {
-        if(isset( $_COOKIE['profiled'])){
+        if(isset( $_COOKIE['roleID'])){
           $roleID =  $_COOKIE['roleID'];
           if($roleID == 1 )
           {
             return view('dashboard_user');
           }
           else {
-            $profile =  $_COOKIE['profiled'];
-            if($profile==0)
-              return view('profile');
-
-            return view('dashboard');
+            return view('track');
           }
         }
         else {
@@ -151,6 +160,22 @@ class navigation extends Controller
 
         }
     }
+    public function verifyChallenge()
+    {
+        if(isset( $_COOKIE['roleID'])){
+          $roleID =  $_COOKIE['roleID'];
+          if($roleID == 1 )
+          {
+            return view('404');
+          }
+          else {
+            return view('verifyChallenge');
+          }
+        }
+        else {
+            return view('404');
 
+        }
+    }
 
 }

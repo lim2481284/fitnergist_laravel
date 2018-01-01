@@ -1,7 +1,40 @@
-
+label.titleSection {
+    margin-top: -2%;
+    padding-bottom: 2%;
+    text-decoration: underline;
+    color: lightgray;
+}
 .detailSection{
 	padding:3% 5%;
 
+}
+.circle {
+    width: 150px;
+    height: 150px;
+    border: 1px solid gray;
+    border-radius: 100%;
+    position: relative;
+    float: left;
+    margin-right: 3%;
+    margin-top: 5%;
+    margin-left:3%;
+}
+.circleValue{
+  font-size: 200%;
+  color:lightblue;
+}
+.circleLabel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .detailSection input, .detailSection select {
@@ -389,7 +422,7 @@ small > a{
 	padding:5% 2%;
 	width:100% !important;
 	border:3px dotted #f0f0f0;
-	margin-bottom: 10%;
+	margin-bottom: 3%;
 }
 
 .profileSection,.profileField, .profileFieldLabel{

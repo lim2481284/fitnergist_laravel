@@ -4,6 +4,7 @@
 
 @section('css')
 
+<link href="assets/css/pnotify.custom.min.css" rel="stylesheet">
 @stop
 
 
@@ -16,6 +17,16 @@
 	<label class='loader-label'> Loading ... </label>
 </div>
 <div id='bodyContent' class='fade-out'>
+	<div class='deactivate'>
+			<div class='text'>
+				<img src='/assets/img/deactivated.png'/>
+				<p>Deactivated</p>
+				<small>
+				Please join a fitcamp and verify your goal by trainer.
+			</small><br>
+				<a href='#'>Need help?</a>
+			</div>
+	</div>
 	<div class='col-sm-12 topBannerSection'>
 		<div class='col-sm-12 bannerLogo'>
 			<img class='logo' src='assets/img/logo.png'/>
@@ -39,8 +50,7 @@
 						<div class="tooltip">
 								<img  class='treasure' src='assets/img/treasure.png'/>
 								<span class="tooltiptext">
-										Goal description
-										<p>31 %</p>
+
 								</span>
 
 						</div>
@@ -76,8 +86,15 @@
 
 
 @section('javascript')
+
 <script type="text/javascript" src="assets/js/dashboard/timecube.jquery.js"></script>
 <script type="text/javascript" src="assets/js/dashboard/timecube.example.js"></script>
+<script src="assets/js/pnotify.custom.min.js"></script>
+<script>
+	fitnergistAPI.viewUserGoal('dashboard');
+	fitnergistAPI.getUserChallengeAPI('dashboard');
+	fitnergistAPI.getUserAchievementAPI('dashboard');
+</script>
 
 @stop
 

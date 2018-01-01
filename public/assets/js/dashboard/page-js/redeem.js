@@ -49,7 +49,6 @@ $(document).ready(function() {
 
 var userRegisterFitcampID = [];
 
-
 $('.userMenu').attr('class','userMenu active');
 fitnergistAPI.getAllRedeemAPI();
 fitnergistAPI.getUserRedeemAPI();

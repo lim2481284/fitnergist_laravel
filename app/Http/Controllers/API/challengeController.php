@@ -10,11 +10,11 @@ use App\Users_challenge;
 class challengeController extends Controller
 {
 	/*
-		
-		Controller for the challenge section 
-	
+
+		Controller for the challenge section
+
 	*/
-	
+
     public function ajaxImageUploadPost(Request $request)
 	{
 		$imageName = $request->name . '.jpg';
@@ -22,27 +22,27 @@ class challengeController extends Controller
 		$request->file('image')->move(
 			base_path() . '/public/assets/img/challenge/', $imageName
 		);
-		
-		return response()->json(['success'=>true,'message'=>'Image uploaded']); 
+
+		return response()->json(['success'=>true,'message'=>'Image uploaded']);
     }
-			
-	
+
+
     public function getTotal()
-    {		
+    {
         $challenge = Challenge::all()->count();
 		return response()->json(['success'=>true,'total'=>$challenge]);
     }
-	
-	
+
+
     public function getChallenge()
-    {		
+    {
         $challenge = Challenge::all();
 		return response()->json(['success'=>true,'message'=>'','body'=>$challenge]);
     }
- 
+
     public function findChallenge($id)
     {
-		$challenge = Challenge::find($id);		
+		$challenge = Challenge::find($id);
         return response()->json(['success'=>true,'message'=>'','body'=>$challenge]);
 
     }
@@ -68,18 +68,18 @@ class challengeController extends Controller
         $challenge->delete();
         return response()->json(['success'=>true,'message'=>$challenge->title.' deleted']);
     }
-	
-	
-	
+
+
+
 	/*
-		
-		Controller for the user challenge record section 
-	
+
+		Controller for the user challenge record section
+
 	*/
 
     public function getUserChallenge($id)
     {
-		$userChallenge = Users_challenge::where('userID',$id)->orderBy('created_at','DESC')->get();		
+		$userChallenge = Users_challenge::where('userID',$id)->orderBy('created_at','DESC')->get();
         return response()->json(['success'=>true,'message'=>'','body'=>$userChallenge]);
 
     }
@@ -105,7 +105,7 @@ class challengeController extends Controller
         $userChallenge->delete();
         return response()->json(['success'=>true,'message'=>$userChallenge->title.' deleted']);
     }
-		
-	
-	
+
+
+
 }

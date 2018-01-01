@@ -53,6 +53,7 @@ class userController extends Controller
 		}
 
 
+
     public function getProfile()
     {
         $user = Users::all();

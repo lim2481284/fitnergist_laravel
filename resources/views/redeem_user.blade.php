@@ -29,7 +29,7 @@
 				<li>
 					<a href="#">
 	            <div class='tabTitle'>
-	    					<p class='tabNumber_upcoming'>0 </p>
+	    					<p class='tabNumber_upcoming'></p>
 	    					<p class='tabLabel'>REDEEM </p>
 	            </div>
 					</a>
@@ -64,7 +64,7 @@
 	     <!-- second tabs_item -->
 	    <div class="tabs_item">
 				<div class='col-sm-11 container container-top-menu redeemHistory'>
-						
+
 				</div>
 	    </div>
 

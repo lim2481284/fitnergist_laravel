@@ -1,5 +1,36 @@
 /* Font declare */
+.notification{
 
+}
+
+.deactivate{
+  opacity: 0;
+  transition:1s all;
+  background: rgba(0,0,0,0.8);
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  color:white;
+  text-align: center;
+  font-size: 200%;
+}
+
+.deactivate .text{
+  position: absolute;
+  top:0;
+  left:0;
+  right: 0;
+  bottom: 0;
+  margin:auto;
+  height: 80%;
+}
+
+.deactivate .text a{
+  font-size: 60%;
+}
 @font-face {
     font-family: Hobo;
     src:url('/assets/fonts/Hobo.woff') format('woff');
@@ -7,7 +38,7 @@
 .tooltip {
     cursor: pointer;
     position: relative !important;
-    z-index: 1070;
+    z-index: 11;
     display: block;
     font-size: auto;
     line-height: auto;
@@ -18,12 +49,12 @@
 }
 .tooltiptext {
     visibility: hidden;
-    width: 120px;
+    width: auto;
     background-color: darksalmon;
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 5px 0;
+    padding: 5px 8px;
     top: -70px;
     left: 70%;
     /* Position the tooltip */
@@ -62,6 +93,7 @@
 
 
 body{
+  transition:3s all;
 	background:white;
 	overflow-x:hidden;
 }
@@ -643,6 +675,7 @@ body{
 	position: absolute;
 	top: 0px;
 	overflow: hidden;
+
 }
 
 /* OTHER STYLES */
@@ -659,6 +692,7 @@ a#next-link {
 	position: absolute;
 	left: 535px;
 	color:white;
+  z-index: 10;
 	-webkit-transition-property: opacity;
 	-webkit-transition-duration: 300ms;
 }
@@ -670,7 +704,7 @@ a#next-link.active, a#next-link.disabled {
 
 a#next-link, a#prev-link
 {
-
+  z-index: 100;
 }
 #content-wrapper{
   position: absolute;
@@ -678,6 +712,7 @@ a#next-link, a#prev-link
   margin-right: auto;
   left: 0;
   right: 0;
+  z-index: 1000 !important;
 }
 a#prev-link {
 	width: 65px;

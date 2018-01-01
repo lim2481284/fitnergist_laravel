@@ -55,12 +55,16 @@
     <div id="sidebar"  class="nav-collapse ">
       <!-- sidebar menu start-->
       <ul class="sidebar-menu" id="nav-accordion">
+
+        <!-- dashoard tab
         <li class="mt">
           <a class="dashboardMenu" href="/home">
             <i class="fa fa-dashboard"></i>
             <span>Dashboard</span>
           </a>
         </li>
+
+        -->
 
 
         <li class="sub-menu">
@@ -92,7 +96,7 @@
         </a>
         <ul class="sub">
           <li><a  href="/challenge">Create</a></li>
-          <li><a  href="/challenge">Verify</a></li>
+          <li><a  href="/verify">Verify</a></li>
         </ul>
       </li>
 

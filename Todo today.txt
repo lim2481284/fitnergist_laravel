@@ -1,110 +1,79 @@
 ALL
 	- fix image upload problem
 	- cannot type @ error
-
-*********************************************************************
-Todo : admin side
-*********************************************************************
-- admin dashboard
-- add status to fitcamp, redeem, challenge, achievemtn ( optional )
-
-- attendance
-- fitcamp
-	- time ( calander )
-	- assign coach
-- achievemnet
-	- calculation
+	- add background
+	- change pt to F coin
+	- display coin on the top menu
 
 
+-- flow : ranking																					x
+	1 - create multiple user																x
+	2 - before demo redeem  !! didnt put overall point			x
+	3 - show the ranking																		x
 
-*********************************************************************
-Todo : trainer side
-*********************************************************************
--  only track, profile,forum,attendance and verify challenge
-
-*********************************************************************
-Todo : user side
-*********************************************************************
-- all
-		- add background
-		- change pt to F coin
-		- display coin on the top menu
-
-- Homepage / Login  (done)
-			- Optional : Forgot password, email verification, remember me
-
-- Dashboard
-			- goal progress
-				- hover it show goal description and current progress
-			- fitcamp timeline
-				 - start from today
-			- notify unlock achievement / challenge  https://ned.im/noty/#/
-
-- redeem
-		 - point management
-
-
-- profile
-		- mobile screen
-		- point and user name on top
-		- ranking tab
-		- statistic tab
-				- attribute chart
-				- fitcamp attandance chart
-		- summary tab
-				- achievement
-				- challeneg
-				- fitcamp  : total
-		- profile tab
-				- goal
-				- edit
-		- setup
-				- 1 : picture
-				- 2 : detail
-				- 3 : goal
-
-*********************************************************************
+-- flow : redeem																					x
+	1 - user earn point																			x
+	2 - user redeem not enough point												x
+	3 - user redeem with enough point												x
 
 -- flow : fitcamp
 	1 - admin create fitcamp					x
 	2 - user register fitcamp					x
-	3 - user timeline show fitcamp
+	3 - user timeline show fitcamp		x
 	4 - trainer confirm attandance		x
 	5 - trainer close fitcamp					x
-	6 - user summary display total reigstered fitcamp
+	6 - user summary display total reigstered fitcamp		( optioanl )		x
 	7 - user add point								x
 
--- flow : achievement
-	1 - admin create achievement with specific calculation
-	2 - user join fitcamp
-	3 - trainer track user attirbute
-	4 - user acheive achievement condition and earn point
-	5 - timeline display achievement unlock
-	6 - dashboard display notification
-	7 - user summary display total achievemnt with icon
 
 -- flow : challenge
-	1 - admin create chalelnge					x
-	2 - user join fitcamp								x
-	3 - user compelte  chalelnge				x
-	4 - trainer verify the challenge
-	5 - timeline dislay challenge unlcok
-	6 - dashboard display notifiacton
-	7 - user summary display total completed challegne with icon
+	1 - admin create chalelnge									x
+	2 - user join fitcamp												x
+	3 - user compelte  chalelnge								x
+	4 - trainer verify the challenge						x
+			- user can check completed challenge		x
+	5 - timeline dislay challenge unlock			(optioanl)		x
+	6 - dashboard display notifiacton						x
+	7 - user summary display total completed challegne with icon ( optioanl )		x
+	8 - user add point													x
 
 
 -- flow : goal
 	1 - user reigster account							x
 	2 - user login account								x
-	3 - user set up profile										
-	4 - user setup goal with calculation
-	5 - user dashboard deactiavated
-	6 - user go to fitcamp
-	7 - admin/trainer verify user goal and first time tracking for the user
-	8 - user dashboard activated and recieve notification
-	9 - user go fitcamp again
-	10 - user improve the goal
-	11 - goal progress show in dashboard
+	3 - user set up profile								x
+	4 - user setup goal with calculation	x
+	5 - user dashboard deactiavated				x
+	6 - user go to fitcamp								x
+	7 - admin/trainer verify user goal and first time tracking for the user		x
+				- trainer select user																								x
+					- if user is first time																						x
+							- trainer can verify the user goal														x
+							- trainer reject the goal and modify the goal									x
+							- then trainer track user attribute														x
+					- else
+							- trainer track user attribute																x
+
+	8 - user dashboard activated and recieve notification											x
+			- user can check their attirbute in profile 													x
+	9 - user go fitcamp again																									x
+	10 - user improve the goal ( trainer tack user attirbute ) 								x
+	11 - goal progress show in dashboard  --- calculation											x
+			- hover display detail																			( show progress )x
+	12 - user achieve goal																										
+	13 - user reset goal -- end
+	14 - summmary display how many goal achieve 										( optioanl ) 	x
+	15 - add point to goal
+
+
+-- flow : achievement
+	1 - admin create achievement with specific calculation
+	2 - user join fitcamp								x
+	3 - trainer track user attirbute		x
+	4 - user acheive achievement condition and earn point
+	5 - timeline display achievement unlock			(optioanl)	x
+	6 - dashboard display notification					x
+	7 - user summary display total achievemnt with icon		( optioanl )		x
 
 --------------------------------------------------
 1 - done registration and role swithcing

@@ -108,7 +108,7 @@ body{
   display: inline-block;
   vertical-align: middle;
   margin: 0;
-  color: #ff6060;
+  color: blue;
 }
 .slider-container .slider-content .slider-single .slider-single-likes:hover, .slider-container .slider-content .slider-single .slider-single-likes:focus {
   outline: none;

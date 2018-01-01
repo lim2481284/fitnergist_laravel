@@ -126,6 +126,21 @@ function Api() {
   }
 
 
+  //Reduce Point / Add point
+  this.editUserPointAPI = (newPoint,userID='') => {
+    var data = {
+      "point":newPoint
+    };
+    var user_id='';
+    if(userID)
+        user_id = userID;
+    else
+       user_id = this.userID;
+
+    $.putAjax(this.url+'api/users/' +user_id, data,(data, status, xhr,newPoint) => {
+    }, this.error);
+  }
+
   // Login
   this.loginAPI = (username,pass) => {
 
@@ -136,9 +151,9 @@ function Api() {
 
 
   // Get all user
-  this.getAllUserAPI = () => {
-    $.getAjax(this.url+'api/user/' , (data, status, xhr) => {
-      $(document).trigger("getAllUserAPIResponse", [data, status,xhr]);
+  this.getAllUserAPI = (type) => {
+    $.getAjax(this.url+'api/users/' , (data, status, xhr) => {
+      $(document).trigger("getAllUserAPIResponse_"+type, [data, status,xhr]);
     }, this.error);
   }
 
@@ -160,7 +175,98 @@ function Api() {
   /* 				User goal API section 			*/
 
 
+    // Create user goal
+    this.createUserGoal = (goal_condition,description,goal_value) => {
 
+      var data = {
+        "goal_condition":goal_condition,
+        "description":description,
+        "userID":this.userID,
+        "goal_value":goal_value,
+        "current_value":0,
+        "verified":0,
+        "status":0
+      };
+
+      $.postAjax(this.url + "api/users/goal/", data, (data, status, xhr) => {
+        $(document).trigger("createUsersGoalResponse", [data, status]);
+      }, this.error );
+    }
+
+
+    // Edit current user goal -- Update value
+    this.updateUserGoalValue = (userID,current_value) => {
+      var data = {
+        "current_value":current_value
+      };
+
+      $.putAjax(this.url + "api/users/goal/"+userID, data, (data, status, xhr) => {
+        $(document).trigger("noResponse", [data, status]);
+      }, this.error );
+    }
+
+    // Edit current user goal -- Update verified
+    this.updateUserGoalVerified = (userID) => {
+      var data = {
+        "verified":1
+      };
+
+      $.putAjax(this.url + "api/users/goal/"+userID, data, (data, status, xhr) => {
+        $(document).trigger("editUsersGoalVerifiedResponse", [data, status,userID]);
+      }, this.error );
+    }
+
+    // Edit current user goal -- Update status
+    this.updateUserGoalStatus = (status) => {
+      var data = {
+        "status":status
+      };
+
+      $.putAjax(this.url + "api/users/goal/"+this.userID, data, (data, status, xhr) => {
+        $(document).trigger("editUsersGoalResponse", [data, status]);
+      }, this.error );
+    }
+
+    // Edit current user goal -- Update notification
+    this.updateUserGoalStatus = (status) => {
+      var data = {
+        "notification":1
+      };
+
+      $.putAjax(this.url + "api/users/goal/"+this.userID, data, (data, status, xhr) => {
+        $(document).trigger("editUsersGoalResponse", [data, status]);
+      }, this.error );
+    }
+    // Edit specific user goal
+    this.updateUserGoal = (userID, goal_condition,description,goal_value) => {
+      var data = {
+        "goal_condition":goal_condition,
+        "description":description,
+        "goal_value":goal_value,
+        "current_value":0
+      };
+
+      $.putAjax(this.url + "api/users/goal/"+userID, data, (data, status, xhr) => {
+        $(document).trigger("editUsersGoalResponse", [data, status]);
+      }, this.error );
+    }
+
+    // View current user goal
+    this.viewUserGoal = (type) => {
+      $.getAjax(this.url+'api/users/goal/' + this.userID, (data, status, xhr) => {
+        if(type=='profile')
+          $(document).trigger("viewUserGoalResponse_profile", [data, status,xhr]);
+        else if(type=='dashboard')
+          $(document).trigger("viewUserGoalResponse_dashboard", [data, status,xhr]);
+      }, this.error);
+    }
+
+    // View specific user goal
+    this.getSpecificUserGoal = (userID) => {
+      $.getAjax(this.url+'api/users/goal/' + userID, (data, status, xhr) => {
+          $(document).trigger("getSpecificUserGoalResponse", [data, status,xhr]);
+      }, this.error);
+    }
 
 
 
@@ -170,6 +276,7 @@ function Api() {
 
   // Create TrackingHistory
   this.createTrackingHistoryAPI = (userID,height,weight,water,visceral,fat,bmr,pr) => {
+
 
     var data = {
       "userID":userID,
@@ -181,6 +288,7 @@ function Api() {
       "bmr":bmr,
       "pr":pr
     };
+
 
     $.postAjax(this.url + "api/tracking/history/", data, (data, status, xhr) => {
       $(document).trigger("createTrackingHistoryAPIResponse", [data, status]);
@@ -233,18 +341,52 @@ function Api() {
 
   //Edit tracking
   this.editTrackingAPI = (userID,height,weight,water,visceral,fat,bmr,pr) => {
-    var data = {
-      "height":height,
-      "weight":weight,
-      "water":water,
-      "visceral":visceral,
-      "fat":fat,
-      "bmr":bmr,
-      "pr":pr
-    };
-    $.putAjax(this.url+'api/tracking/' + userID, data,(data, status, xhr) => {
-      $(document).trigger("editTrackingAPIResponse", [data, status]);
-    }, this.error);
+
+    /*
+      1 - check user goal type
+      2 - get current goal value
+      2 - new value =  current track - previous track
+      3 - current goal value += new value
+      3 - update current goal
+      4 - update track
+    */
+
+
+
+		$.get(this.url+'api/users/goal/' +userID , function(data, status){
+      console.log( data.body[0]);
+			var goalType = data.body[0].description;
+      var currentGoalValue =  data.body[0].current_value;
+      	$.get(fitnergistAPI.url+'api/track/' + userID , function(data, status){
+
+          var oldTrack = data.body[0];
+          var oldTrackValue = oldTrack[goalType];
+          var trackData = {
+            "height":height,
+            "weight":weight,
+            "water":water,
+            "visceral":visceral,
+            "fat":fat,
+            "bmr":bmr,
+            "pr":pr
+          };
+          var currentTrackValue = trackData[goalType];
+          console.log(currentTrackValue);
+
+          var newTrackValue = currentTrackValue-oldTrackValue;
+          console.log(newTrackValue);
+
+          newTrackValue = currentGoalValue+newTrackValue;
+          fitnergistAPI.updateUserGoalValue(userID, newTrackValue);
+
+          $.putAjax(fitnergistAPI.url+'api/tracking/' + userID, trackData,(trackData, status, xhr,userID) => {
+            $(document).trigger("editTrackingAPIResponse", [trackData, status,userID]);
+          }, this.error);
+        });
+
+		});
+
+
   }
 
 
@@ -255,6 +397,12 @@ function Api() {
     }, this.error);
   }
 
+  // Get current user attribute
+  this.getCurrentUserAttributeAPI = () => {
+    $.getAjax(this.url+'api/track/' + this.userID, (data, status, xhr) => {
+      $(document).trigger("getCurrentUserTrackingAPIResponse", [data, status,xhr]);
+    }, this.error);
+  }
 
   // Get all user attribute
   this.getAllTrackingAPI = () => {
@@ -462,11 +610,23 @@ function Api() {
     }, this.error);
   }
 
+  //Update user achievement notification
+  this.updateAchievementNotificationAPI = (userAchievementID) => {
+    var data = {
+      "notification":1
+    };
+    $.putAjax(this.url+'api/achievement/user/' +userAchievementID, data,(data, status, xhr) => {
+      $(document).trigger("noResponse", [data, status]);
+    }, this.error);
+  }
 
   // Get user achievement
-  this.getUserAchievementAPI = () => {
+  this.getUserAchievementAPI = (type='null') => {
     $.getAjax(this.url+'api/achievement/user/' + this.userID, (data, status, xhr) => {
-      $(document).trigger("getUserAchievementAPIResponse", [data, status,xhr]);
+        if(type=='dashboard')
+          $(document).trigger("getUserAchievementAPIResponse_dashboard", [data, status,xhr]);
+        else
+          $(document).trigger("getUserAchievementAPIResponse", [data, status,xhr]);
     }, this.error);
   }
 
@@ -576,14 +736,35 @@ function Api() {
   }
 
 
+
+    //Edit user challenge
+    this.updateChallengeNotification = (userChallengeID) => {
+      var data = {
+        "notification":1
+      };
+      $.putAjax(this.url+'api/challenge/user/' +userChallengeID, data,(data, status, xhr) => {
+        $(document).trigger("", [data, status]);
+      }, this.error);
+    }
+
+
   // Get current user completed challenge
-  this.getUserChallengeAPI = () => {
+  this.getUserChallengeAPI = (type='null') => {
     $.getAjax(this.url+'api/challenge/user/' + this.userID, (data, status, xhr) => {
-      $(document).trigger("getUserChallengeAPIResponse", [data, status,xhr]);
+      if(type=='dashboard')
+        $(document).trigger("getUserChallengeAPIResponse_dashboard", [data, status,xhr]);
+      else
+        $(document).trigger("getUserChallengeAPIResponse", [data, status,xhr]);
     }, this.error);
   }
 
 
+  // Get specific user completed challenge
+  this.getSpecificUserChallengeAPI = (userID) => {
+    $.getAjax(this.url+'api/challenge/user/' + userID, (data, status, xhr) => {
+      $(document).trigger("getUserChallengeAPIResponse", [data, status,xhr]);
+    }, this.error);
+  }
 
 
   /* 				Challenge API section 			*/
@@ -650,8 +831,12 @@ function Api() {
     }, this.error);
   }
 
-
-
+  // Get all challenge for verify
+  this.getAllChallengeAPI_verify = () => {
+    $.getAjax(this.url+'api/challenge/' , (data, status, xhr) => {
+      $(document).trigger("getAllChallengeAPIResponse_verify", [data, status,xhr]);
+    }, this.error);
+  }
 
 
 
@@ -706,9 +891,12 @@ function Api() {
   }
 
   //  Get all the register from that fitcamp id
-  this.getAllFitcampRegisterAPI = (fitcampID) => {
+  this.getAllFitcampRegisterAPI = (fitcampID,type='null') => {
     $.getAjax(this.url+'api/fitcamp/register/fitcampID/' + fitcampID, (data, status, xhr) => {
-      $(document).trigger("getAllFitcampRegisterAPIResponse", [data, status,xhr]);
+      if(type=='null')
+        $(document).trigger("getAllFitcampRegisterAPIResponse", [data, status,xhr]);
+      else
+          $(document).trigger("getAllFitcampRegisterAPIResponse_track", [data, status,xhr]);
     }, this.error);
   }
 

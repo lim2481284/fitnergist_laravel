@@ -9,22 +9,26 @@ use App\Users;
 |
 */
 
-Route::middleware('auth:api')
-    ->get('/usera', function (Request $request) {
-        return $request->user();
-    });
+  Route::middleware('auth:api')
+  ->get('/usera', function (Request $request) {
+    return $request->user();
+  });
 
-Route::get('/users', function() {
+  Route::get('/users', function() {
     return Users::all();
-});
+  });
+  Route::get('/ranking', function() {
 
+    $user = Users::all()->sortBy("point")->reverse();
+    return  array_values($user->toArray());
+  });
 
-
+  Route::post('/users/ranking', 'userController@ranking');
   Route::post('/register', 'Auth\RegisterController@register');
   Route::post('/login', 'Auth\LoginController@login');
   Route::group(['middleware' => ['web']], function () {
-	Route::post('/logout', 'Auth\LoginController@logout');
-});
+    Route::post('/logout', 'Auth\LoginController@logout');
+  });
 /*
 |--------------------------------------------------------------------------
 | Other section
@@ -40,7 +44,7 @@ Route::get('/users', function() {
 
 /*
 
-	Redeem API section
+Redeem API section
 
 */
 Route::get('redeem/total/', 'API\redeemController@getTotal');
@@ -53,7 +57,7 @@ Route::post('redeem/image/', 'API\redeemController@ajaxImageUploadPost');
 
 /*
 
-	User Redeem API section
+User Redeem API section
 
 */
 
@@ -75,7 +79,7 @@ Route::delete('redeem/user/{id}', 'API\redeemController@deleteUserRedeem');
 
 /*
 
-	Register API section
+Register API section
 
 */
 Route::post('register/', 'API\RegisterController@createAccount');
@@ -85,7 +89,7 @@ Route::post('register/', 'API\RegisterController@createAccount');
 
 /*
 
-	Login API section
+Login API section
 
 */
 
@@ -108,7 +112,7 @@ Route::delete('comment/{id}', 'API\forumController@deleteComment');
 
 /*
 
-	User goal API section
+User goal API section
 
 */
 Route::get('users/goal/', 'API\userController@getGoal');
@@ -119,9 +123,10 @@ Route::put('users/goal/{id}', 'API\userController@editGoal');
 
 /*
 
-	user profile API section
+user profile API section
 
 */
+
 Route::get('users/{user_id}', 'API\userController@loginAPI');
 Route::get('users/profile/', 'API\userController@getProfile');
 Route::get('users/profile/{id}', 'API\userController@getUserProfile');
@@ -142,7 +147,7 @@ Route::post('users/image/', 'API\userController@ajaxImageUploadPost');
 
 /*
 
-	Tracking history API section
+Tracking history API section
 
 */
 
@@ -153,11 +158,11 @@ Route::delete('tracking/history/{id}', 'API\trackingController@deleteTrackHistor
 
 /*
 
-	Tracking attribute API section
+Tracking attribute API section
 
 */
 Route::get('tracking/', 'API\trackingController@getTracking');
-Route::get('tracking/{id}', 'API\trackingController@findTracking');
+Route::get('track/{id}', 'API\trackingController@findTracking');
 Route::post('tracking/', 'API\trackingController@createTracking');
 Route::put('tracking/{id}', 'API\trackingController@editTracking');
 
@@ -173,7 +178,7 @@ Route::put('tracking/{id}', 'API\trackingController@editTracking');
 
 /*
 
-	Product API section
+Product API section
 
 */
 Route::get('product/total/', 'API\productController@getProductCount');
@@ -196,7 +201,7 @@ Route::post('product/image/', 'API\productController@ajaxImageUploadPost');
 
 /*
 
-	Challenge API section
+Challenge API section
 
 */
 
@@ -210,7 +215,7 @@ Route::post('challenge/image/', 'API\challengeController@ajaxImageUploadPost');
 
 /*
 
-	User Challenge API section
+User Challenge API section
 
 */
 
@@ -231,7 +236,7 @@ Route::delete('challenge/user/{id}', 'API\challengeController@deleteUserChalleng
 
 /*
 
-	Acheivement API section
+Acheivement API section
 
 */
 Route::get('achievement/total/', 'API\achievementController@getTotal');
@@ -243,7 +248,7 @@ Route::delete('achievement/{id}', 'API\achievementController@deleteAchievement')
 Route::post('achievement/image/', 'API\achievementController@ajaxImageUploadPost');
 /*
 
-	User achievement API section
+User achievement API section
 
 */
 
@@ -255,7 +260,7 @@ Route::delete('achievement/user/{id}', 'API\achievementController@deleteUserAchi
 
 /*
 
-	Achievement condition API section
+Achievement condition API section
 
 */
 
@@ -277,7 +282,7 @@ Route::delete('achievement/condition/{id}', 'API\achievementController@deleteAch
 
 /*
 
-	Fitcamp API section
+Fitcamp API section
 
 */
 Route::get('fitcamp/total/', 'API\fitcampController@getTotal');
@@ -290,7 +295,7 @@ Route::post('fitcamp/image/', 'API\fitcampController@ajaxImageUploadPost');
 
 /*
 
-	Fitcamp attendance API section
+Fitcamp attendance API section
 
 */
 Route::get('fitcamp/attendance/fitcampID/{fitcamp_id}', 'API\fitcampController@getFitcampAttendance');
@@ -300,7 +305,7 @@ Route::delete('fitcamp/attendance/{id}', 'API\fitcampController@deleteAttendance
 
 /*
 
-	Fitcamp coach API section
+Fitcamp coach API section
 
 */
 Route::get('fitcamp/coach/fitcampID/{fitcamp_id}', 'API\fitcampController@getFitcampCoach');
@@ -310,7 +315,7 @@ Route::delete('fitcamp/coach/{id}', 'API\fitcampController@deleteCoach');
 
 /*
 
-	Fitcamp register API section
+Fitcamp register API section
 
 */
 Route::get('fitcamp/register/fitcampID/{fitcamp_id}', 'API\fitcampController@getFitcampRegister');
@@ -330,7 +335,7 @@ Route::delete('fitcamp/register/{id}', 'API\fitcampController@deleteRegister');
 
 /*
 
-	Forum comment API section
+Forum comment API section
 
 */
 
@@ -343,7 +348,7 @@ Route::delete('comment/{id}', 'API\forumController@deleteComment');
 
 /*
 
-	Forum API section
+Forum API section
 
 */
 Route::get('forum/total/', 'API\forumController@getTotal');

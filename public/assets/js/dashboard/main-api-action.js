@@ -3,6 +3,121 @@ $(document).ready(function () {
 
 	/*=============================================
 
+	Tracking API action section
+
+	===============================================*/
+
+
+		//Update user tracking Btn action
+		$(document).on('click','.updateTrackBtn',function () {
+			var userID = $(this).val();
+			var pr =$('.pr').val();
+			var  bmr =$('.bmr').val();
+			var fat =$('.fat').val();
+			var visceral =$('.visceral').val();
+			var height =$('.height').val();
+			var water =$('.water').val();
+			var weight =$('.weight').val();
+			fitnergistAPI.editTrackingAPI(userID,height,weight,water,visceral,fat,bmr,pr);
+		});
+
+
+	//Confirm user goal btn action
+	$(document).on('click','.confirmGoalBtn',function () {
+		var userID = $(this).val();
+		setupAttribute(userID);
+
+	});
+
+
+
+	//Reject user goal Btn action
+	$(document).on('click','.rejectGoalBtn',function () {
+		var userID = $(this).val();
+		swal({
+			title: 'Edit user goal',
+			allowOutsideClick: false,
+			showCancelButton: true,
+			html:`
+			<p class='swal-label'>Goal condition</p>
+
+			<select  class='swal2-input goalCondition' >
+			<option value ='lose' >Lose</option>
+			<option value='gain'>Gain</option>
+			<option value='maintain'>Maintain</option>
+			</select>
+
+			<p class='swal-label'>Goal Type</p>
+
+			<select class='goalTarget swal2-input' >
+			<option value ='weight' >Weight</option>
+			<option value='fat'>Fat</option>
+			<option value='water'>Water</option>
+			<option value='muscle'>Muscle</option>
+			<option value='visceral'>Visceral</option>
+			<option value='bmr'>BMR</option>
+			<option value='pr'>PR</option>
+			</select>
+
+			<p class='swal-label'>Goal value</p>
+			<input  name="goalValue" type="text" placeholder="" class="input-xlarge goalValue swal2-input">
+			`,
+			focusConfirm: false
+		}).then(function (result) {
+		    var goalCondition = $('.goalCondition').val();
+				var goalTarget = $('.goalTarget').val();
+				var goalValue = $('.goalValue').val();
+				fitnergistAPI.updateUserGoal(userID,goalCondition,goalTarget,goalValue);
+				setupAttribute(userID);
+		}).catch(swal.noop)
+	});
+
+	function setupAttribute(userID){
+		swal({
+			title: 'Setup user attribute',
+			allowOutsideClick: false,
+			showCancelButton: true,
+			customClass:'customSwal',
+			html:`
+			<p class='swal-label'>Weight</p>
+			<input  name="goalValue" type="text" placeholder="" class="input-xlarge weight swal2-input">
+
+			<p class='swal-label'>Water</p>
+			<input  name="goalValue" type="text" placeholder="" class="input-xlarge water swal2-input">
+
+			<p class='swal-label'>Height</p>
+			<input  name="goalValue" type="text" placeholder="" class="input-xlarge height swal2-input">
+
+			<p class='swal-label'>Visceral</p>
+			<input  name="goalValue" type="text" placeholder="" class="input-xlarge visceral swal2-input">
+
+			<p class='swal-label'>Fat</p>
+			<input  name="goalValue" type="text" placeholder="" class="input-xlarge fat swal2-input">
+
+			<p class='swal-label'>BMR</p>
+			<input  name="goalValue" type="text" placeholder="" class="input-xlarge bmr swal2-input">
+
+			<p class='swal-label'>PR</p>
+			<input  name="goalValue" type="text" placeholder="" class="input-xlarge pr swal2-input">
+			`,
+			focusConfirm: false
+		}).then(function (result) {
+			var pr =$('.pr').val();
+			var  bmr =$('.bmr').val();
+			var fat =$('.fat').val();
+			var visceral =$('.visceral').val();
+			var height =$('.height').val();
+			var water =$('.water').val();
+			var weight =$('.weight').val();
+			fitnergistAPI.createTrackingAPI(userID,height,weight,water,visceral,fat,bmr,pr);
+			fitnergistAPI.updateUserGoalVerified(userID);
+		}).catch(swal.noop)
+
+	}
+
+
+	/*=============================================
+
 	Redeem API action section
 
 	===============================================*/
@@ -10,15 +125,32 @@ $(document).ready(function () {
 
 	//User redeem ction
 	$(document).on('click','.redeemButtonArea',function () {
-		swal({
-			title: 'Are you sure you want to redeem this item?',
-			type: 'info',
-			showCancelButton: true,
-			confirmButtonText: 'Yes!'
-		}).then((result) => {
-			var redeemID= $(this).attr('value');
-			fitnergistAPI.createUserRedeemAPI(redeemID);
-		})
+		var redeemID= $(this).attr('value');
+		var point = 0;
+		var currentPoint = $.cookie.get("point");
+		$.get(fitnergistAPI.url+'api/redeem/' + redeemID , function(data, status){
+				point = data.body.point;
+				if(currentPoint<point){
+					swal('You need more point to redeem this item ! ','','warning');
+				}
+				else {
+					swal({
+						title: 'Are you sure you want to redeem this item?',
+						type: 'info',
+						showCancelButton: true,
+						confirmButtonText: 'Yes!'
+					}).then((result) => {
+						var newPoint = currentPoint - point ;
+						Cookies.set('point', newPoint, { expires: 999 });
+						fitnergistAPI.createUserRedeemAPI(redeemID);
+						fitnergistAPI.editUserPointAPI(newPoint);
+					})
+
+				}
+		});
+
+
+
 
 	});
 
@@ -189,11 +321,23 @@ $(document).ready(function () {
 		var email = $('.email').val();
 		var contact = $('.contact').val();
 		var age = $('.age').val();
-		var gender = $('.gender').val();
+		var gender = $('.genderInput').val();
 		var address = $('.address').val();
 		var img_url = $('.userImg').val();
+		var goalCondition = $('.goalCondition').val();
+		var goalTarget = $('.goalTarget').val();
+		var goalValue = $('.goalValue').val();
 
-		fitnergistAPI.editUserAPI(name,email,contact,age,gender,address,img_url);
+		if(!name || !email || !contact || !age || !gender || !address || !goalCondition || ! goalTarget || !goalValue)
+		{
+			console.log(name + '+' + email   + '+' + contact   + '+' + age   + '+' + gender  + '+' +address + '+' +goalCondition + '+' + goalTarget  + '+' + goalValue );
+			swal('Please fill in all the field' ,'','error');
+		}else
+		{
+			fitnergistAPI.editUserAPI(name,email,contact,age,gender,address,img_url);
+			fitnergistAPI.createUserGoal(goalCondition,goalTarget,goalValue);
+		}
+
 
 	});
 
@@ -367,6 +511,29 @@ $(document).ready(function () {
 	Challenge API action section
 
 	===============================================*/
+
+
+	//Challenge challenge BTN action
+	$(document).on('click','.completeChallengeBtn',function () {
+			var userID = $('.userListSelect').val();
+			var challengeID =$(this).val();
+			var thisBtn = $(this);
+			var challengePoint = $(this).parent().parent().find('.challengePointForEdit').html();
+		  $.get(fitnergistAPI.url+'api/users/profile/' +userID , function(data, status){
+					//Add user point
+
+					var point = data.body[0].point;
+					var newPoint =parseInt(point) + parseInt(challengePoint) ;
+					fitnergistAPI.editUserPointAPI(newPoint,userID);
+
+					//Create user challenge
+					thisBtn.parent().parent().remove();
+					fitnergistAPI.createUserChallengeAPI(userID,challengeID);
+			});
+
+
+
+	});
 
 	//Remove achievement action
 	$(document).on('click','.deletechallengeBtn',function () {
@@ -621,15 +788,15 @@ $(document).ready(function () {
 
 	//Close  fitcamp action
 	$(document).on('click','.closeFitcampBtn',function () {
-			swal({
-				title: 'Are you sure?',
-				type: 'warning',
-				showCancelButton: true,
-				confirmButtonText: 'Yes, close it!'
-			}).then((result) => {
-				var fitcampID = $('.fitcampListection').val();
-				fitnergistAPI.closeFitcampAPI(fitcampID);
-			})
+		swal({
+			title: 'Are you sure?',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Yes, close it!'
+		}).then((result) => {
+			var fitcampID = $('.fitcampListection').val();
+			fitnergistAPI.closeFitcampAPI(fitcampID);
+		})
 	});
 
 
@@ -652,11 +819,6 @@ $(document).ready(function () {
 		fitnergistAPI.cancelFitcampRegisterAPI(fitcampID,userID);
 	});
 
-	//Close fitcamp action
-	$(document).on('click','.joinFitcampBtn',function () {
-		var fitcampID= $(this).attr('value');
-		fitnergistAPI.createfitcampRegisterAPI(fitcampID);
-	});
 
 
 	//Register fitcamp action
@@ -687,26 +849,26 @@ $(document).ready(function () {
 	});
 
 
-		//Edit fitcamp action
-		$(document).on("click", ".editFitcamp", function(){
-			var fitcampID = $('.fitcampID').val();
-			var fitcampName = $('.editFitcampName').val();
-			var fitcampDescription = $('.editFitcampDescription').val();
-			var fitcampLocation = $('.editFitcampLocation').val();
-			var fitcampPrice = $('.editFitcampPrice').val();
-			var fitcampStartDate = $('.editFitcampStartDate').val();
-			var fitcampEndDate = $('.editFitcampEndDate').val();
-			var fitcampPoint = $('.editFitcampPoint').val();
-			var fitcampImg = $('.fitcampImg_edit').val();
-			if(!fitcampImg)
-					fitcampImg='default';
+	//Edit fitcamp action
+	$(document).on("click", ".editFitcamp", function(){
+		var fitcampID = $('.fitcampID').val();
+		var fitcampName = $('.editFitcampName').val();
+		var fitcampDescription = $('.editFitcampDescription').val();
+		var fitcampLocation = $('.editFitcampLocation').val();
+		var fitcampPrice = $('.editFitcampPrice').val();
+		var fitcampStartDate = $('.editFitcampStartDate').val();
+		var fitcampEndDate = $('.editFitcampEndDate').val();
+		var fitcampPoint = $('.editFitcampPoint').val();
+		var fitcampImg = $('.fitcampImg_edit').val();
+		if(!fitcampImg)
+		fitcampImg='default';
 
-			if(!fitcampPoint|| !fitcampName || !fitcampDescription || !fitcampLocation || !fitcampPrice || !fitcampStartDate|| !fitcampEndDate)
-			swal('Please fill in all the field' ,'','error');
-			else
-			fitnergistAPI.editFitcampAPI(fitcampImg,fitcampDescription,fitcampName,fitcampLocation,fitcampPrice,fitcampStartDate,fitcampEndDate,fitcampID, fitcampPoint);
+		if(!fitcampPoint|| !fitcampName || !fitcampDescription || !fitcampLocation || !fitcampPrice || !fitcampStartDate|| !fitcampEndDate)
+		swal('Please fill in all the field' ,'','error');
+		else
+		fitnergistAPI.editFitcampAPI(fitcampImg,fitcampDescription,fitcampName,fitcampLocation,fitcampPrice,fitcampStartDate,fitcampEndDate,fitcampID, fitcampPoint);
 
-		});
+	});
 
 
 

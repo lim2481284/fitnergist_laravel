@@ -13,12 +13,13 @@ class ChallengeTable extends Migration
      */
     public function up()
     {
-        Schema::create('challenge', function (Blueprint $table) {					
+        Schema::create('challenge', function (Blueprint $table) {
             $table->increments('challengeID');
 			$table->string('img_url',150);
 			$table->string('title',150);
 			$table->string('description',150);
             $table->integer('score_point')->unsigned();
+
 			$table->dateTime('updated_at');
 			$table->dateTime('created_at');
         });

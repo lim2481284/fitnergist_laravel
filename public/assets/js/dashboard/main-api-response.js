@@ -6,11 +6,84 @@ $(document).ready(function () {
 		location.reload();
 	});
 
+
+
+
+	/*=============================================
+
+	Tracking  API response section
+
+	==============================================*/
+
+	$(document).off('editTrackingAPIResponse').on('editTrackingAPIResponse', function (e, data, status,userID) {
+		$('.attributeSection').html('');
+
+
+		swal('Tracked', "" ,"success").then(() => {
+
+		});
+	});
+
+
+	$(document).off('getCurrentUserTrackingAPIResponse').on('getCurrentUserTrackingAPIResponse', function (e, data, status,userID) {
+		console.log(data);
+		var track = data.body[0];
+		var trackHTML=`
+		<div class='circle'>
+		<div class='circleLabel'>
+		<p>Weight</p>
+		<p class='circleValue'>`+track.weight+`</p>
+		</div>
+		</div>
+		<div class='circle'>
+		<div class='circleLabel'>
+		<p>Height</p>
+		<p class='circleValue'>`+track.height+`</p>
+		</div>
+		</div>
+		<div class='circle'>
+		<div class='circleLabel'>
+		<p>Water</p>
+		<p class='circleValue'>`+track.water+`</p>
+		</div>
+		</div>
+		<div class='circle'>
+		<div class='circleLabel'>
+		<p>Fat</p>
+		<p class='circleValue'>`+track.fat+`</p>
+		</div>
+		</div>
+		<div class='circle'>
+		<div class='circleLabel'>
+		<p>BMR</p>
+		<p class='circleValue'>`+track.bmr+`</p>
+		</div>
+		</div>
+		<div class='circle'>
+		<div class='circleLabel'>
+		<p>PR</p>
+		<p class='circleValue'>`+track.pr+`</p>
+		</div>
+		</div>
+		<div class='circle'>
+		<div class='circleLabel'>
+		<p>Visceral</p>
+		<p class='circleValue'>`+track.visceral+`</p>
+		</div>
+		</div>
+		`;
+
+		$('.attributeList').html(trackHTML);
+	});
+
+
 	/*=============================================
 
 	Redeem API response section
 
 	==============================================*/
+
+
 
 	//User redeem API response
 	$(document).off('createUserRedeemAPIResponse').on('createUserRedeemAPIResponse', function (e, data, status) {
@@ -140,9 +213,194 @@ $(document).ready(function () {
 
 	/*=============================================
 
-	User  API response section
+	User API response section
 
 	==============================================*/
+
+
+		//Get all user for challenge verify
+		$(document).off('editUserPointAPIResponse').on('editUserPointAPIResponse', function (e, data, status,newPoint) {
+				Cookies.set('point', newPoint, { expires: 999 });
+		});
+
+
+	//Get all user for challenge verify
+	$(document).off('getAllUserAPIResponse_challenge').on('getAllUserAPIResponse_challenge', function (e, data, status) {
+		console.log(data);
+		var users= data;
+		for(var i = 0; i<users.length;i++)
+		{
+			if(users[i].profiled==1&& users[i].roleID==1)
+			{
+				var userHTML = `
+				<option value='`+users[i].userID+`'>`+users[i].name+`</option>
+				`;
+				$('.userListSelect').append(userHTML);
+			}
+		}
+
+	});
+
+
+	//Get user goal for profile response
+	$(document).off('viewUserGoalResponse_profile').on('viewUserGoalResponse_profile', function (e, data, status) {
+		console.log(data.body[0]);
+		var goal = data.body[0];
+		if(goal.verified==0)
+		$('.attributeSection').hide();
+		var measurement = 'KG';
+		$('.goal').html('I want to '+ goal.goal_condition+ ' ' + goal.goal_value+ ' ' + measurement+' of ' + goal.description);
+	});
+
+	//Get user goal for dashbaord response
+	$(document).off('viewUserGoalResponse_dashboard').on('viewUserGoalResponse_dashboard', function (e, data, status) {
+		console.log(data.body[0]);
+		var goal = data.body[0];
+
+		//If user goal havent verified yet
+		if(goal.verified==0)
+		{
+			$('.deactivate').fadeTo( "slow" , 1);
+
+		}
+		else {
+
+			//Calculate goal percentage
+			var goal_condition = goal.goal_condition;
+			var goal_value = goal.goal_value;
+			if(goal_condition =='lose')
+			{
+					goal_value= -(goal_value);
+
+
+			}
+
+			var current_goal_value = goal.current_value;
+			var goal_progress =current_goal_value/goal_value*100;
+
+			//Update goal progress
+			if(goal_progress<=2){
+					$('.dot_progress').css('height','2%');
+			}
+			else
+			{
+					$('.dot_progress').css('height',goal_progress+'%');
+			}
+
+
+			$('.deactivate').css('z-index',0);
+			//if user didnt receive notification yet
+			if(goal.notification==0){
+				new PNotify({
+					title: 'Success!',
+					addclass: 'notification',
+					text: 'Your goal has been verified.',
+					type: 'success'
+				});
+				fitnergistAPI.updateUserGoalStatus();
+			}
+
+			$('.tooltiptext').html(`
+					`+goal.goal_condition+` `+ goal.goal_value +` ` + goal.description+`
+					<p> `+goal_progress+` %</p>
+			`);
+		}
+	});
+
+
+	//Get specific user goal response
+	$(document).off('getSpecificUserGoalResponse').on('getSpecificUserGoalResponse', function (e, data, status) {
+		console.log(data.body[0]);
+		var user = data.body[0];
+
+		$('.attributeSection').html('');
+		//If user is first time user
+		if(user.verified==0){
+			var measurement = 'KG ';
+			var attirbuteHTML =`
+			<h2> First time user </h2>
+			<p> User goal : `+user.goal_condition+`  `+user.description+` `+user.goal_value+` `+measurement+` </p>
+			<br><br>
+			<button class='btn btn-success confirmGoalBtn' value='`+user.userID+`'>Confirm </button>
+			<button class='btn btn-danger rejectGoalBtn' value='`+user.userID+`'>Reject </button>
+			`;
+
+
+		}
+		else
+		{
+			var attirbuteHTML =`
+			<div class="control-group">
+			<label class="control-label">Weight</label>
+			<div class="controls">
+			<input  name="goalValue" type="text" placeholder="" class="form-control weight">
+			</div>
+			</div>
+			<br>
+			<div class="control-group">
+			<label class="control-label">Height</label>
+			<div class="controls">
+			<input  name="goalValue" type="text" placeholder="" class="form-control height">
+			</div>
+			</div>
+			<br>
+			<div class="control-group">
+			<label class="control-label">Water</label>
+			<div class="controls">
+			<input  name="goalValue" type="text" placeholder="" class="form-control water">
+			</div>
+			</div>
+			<br>
+			<div class="control-group">
+			<label class="control-label">Visceral</label>
+			<div class="controls">
+			<input  name="goalValue" type="text" placeholder="" class="form-control visceral">
+			</div>
+			</div>
+			<br>
+			<div class="control-group">
+			<label class="control-label">Fat</label>
+			<div class="controls">
+			<input  name="goalValue" type="text" placeholder="" class="form-control fat">
+			</div>
+			</div>
+			<br>
+			<div class="control-group">
+			<label class="control-label">BMR</label>
+			<div class="controls">
+			<input  name="goalValue" type="text" placeholder="" class="form-control bmr">
+			</div>
+			</div>
+			<br>
+			<div class="control-group">
+			<label class="control-label">PR</label>
+			<div class="controls">
+			<input  name="goalValue" type="text" placeholder="" class="form-control pr">
+			</div>
+			</div>
+			<br><br>
+			<button class='btn btn-info updateTrackBtn' value='`+user.userID+`'>Track</button>
+			`;
+		}
+		$('.attributeSection').html(attirbuteHTML);
+	});
+
+
+	//Create user goal
+	$(document).off('createUsersGoalResponse').on('createUsersGoalResponse', function (e, data, status) {
+		swal('Profile Updated', "" ,"success").then(() => {
+			location.reload();
+		});
+	});
+
+	//Edit  user goal verified response
+	$(document).off('editUsersGoalVerifiedResponse').on('editUsersGoalVerifiedResponse', function (e, data, status,userID) {
+		$('.attributeSection').html('');
+		swal('Tracked', "" ,"success").then(() => {
+
+		});
+	});
+
 
 	$(document).off('getUserProfileAPIResponse').on('getUserProfileAPIResponse', function (e, data, status) {
 		console.log(data);
@@ -205,10 +463,7 @@ $(document).ready(function () {
 
 	//Edit user profile  response
 	$(document).off('editUserAPIResponse').on('editUserAPIResponse', function (e, data, status) {
-		swal('Edit Success', "" ,"success").then(() => {
-			Cookies.set('profiled', 1, { expires: 999 });
-			location.reload();
-		});
+		Cookies.set('profiled', 1, { expires: 999 });
 	});
 
 
@@ -277,6 +532,31 @@ $(document).ready(function () {
 	});
 
 
+	// get current user acheivement for dashboard notificaiton
+	$(document).off('getUserAchievementAPIResponse_dashboard').on('getUserAchievementAPIResponse_dashboard', function (e, data, status) {
+
+		var achievement= data.body;
+		for(var i =0; i < achievement.length; i++)
+		{
+			if(achievement[i].notification ==0 ){
+
+				var userAchievementID = achievement[i].userAchieveID;
+				var achievementID =  achievement[i].achieveID;
+				$.get(fitnergistAPI.url+'api/achievement/' + achievementID , function(data, status){
+					var detail = data.body;
+					console.log(detail);
+					new PNotify({
+						title: 'Achievement achieved!',
+						addclass: 'notification',
+						text: detail.title +' has been completed with the point of ' + detail.score_point + ' !',
+						type: 'success'
+					});
+					fitnergistAPI.updateAchievementNotificationAPI(userAchievementID);
+				});
+
+			}
+		}
+	});
 	// get all achievement API response
 	$(document).off('getAllAchievementAPIResponse_admin').on('getAllAchievementAPIResponse_admin', function (e, data, status) {
 		var achievementList = data.body;
@@ -407,6 +687,33 @@ $(document).ready(function () {
 	Fitcamp API response section
 
 	==============================================*/
+
+
+
+
+
+	// get all fitcmap attedane API response for trakcing
+	$(document).off('getAllFitcampRegisterAPIResponse_track').on('getAllFitcampRegisterAPIResponse_track', function (e, data, status) {
+		var fitcampList = data.body;
+		var count =fitcampList.length;
+		for(var i =0;i <fitcampList.length;i++)
+		{
+			var fitcamp = fitcampList[i];
+			var userID = fitcamp.userID;
+			$.get(fitnergistAPI.url+'api/users/profile/' + userID , function(data, status){
+				var user = data.body[0];
+				console.log(user);
+				var fitcampHTML = `
+				<option value='`+user.userID+`'>`+user.name+`</option>
+				`;
+				$('.userListSelect').append(fitcampHTML);
+			});
+
+		}
+
+	});
+
+
 	// get all fitcmap attedane API response
 	$(document).off('getAllFitcampRegisterAPIResponse').on('getAllFitcampRegisterAPIResponse', function (e, data, status) {
 		var fitcampList = data.body;
@@ -661,12 +968,12 @@ $(document).ready(function () {
 				if(fitcamp.closed ==0 ) // If fitcamp didnt close yet
 				{
 					fitcampHTML+=`
-						<a href="#" class='quitFitcampBtn' value='`+fitcamp.fitcampID+`'>Cancel </a>
+					<a href="#" class='quitFitcampBtn' value='`+fitcamp.fitcampID+`'>Cancel </a>
 					`;
 				}
 				else {
 					fitcampHTML+=`
-						<a href="#" disabled>Passed </a>
+					<a href="#" disabled>Passed </a>
 					`;
 
 				}
@@ -715,6 +1022,13 @@ $(document).ready(function () {
 
 	==============================================*/
 
+	// complete challenge API response
+	$(document).off('createUserChallengeAPIResponse').on('createUserChallengeAPIResponse', function (e, data, status) {
+		swal('Challenge Updated', "" ,"success").then(() => {
+
+		});
+	});
+
 	// create challenge API response
 	$(document).off('createChallengeAPIResponse').on('createChallengeAPIResponse', function (e, data, status) {
 		swal('Create Challenge Success', "" ,"success").then(() => {
@@ -729,6 +1043,30 @@ $(document).ready(function () {
 			location.href='/challenge';
 		});
 	});
+
+	// Get current user completed challenge API response
+	$(document).off('getUserChallengeAPIResponse_dashboard').on('getUserChallengeAPIResponse_dashboard', function (e, data, status) {
+		var challenge= data.body;
+		for(var i =0; i < challenge.length; i++)
+		{
+			if(challenge[i].notification ==0 ){
+				var userChallengeID = challenge[i].userChallengeID;
+				var challengeID =  challenge[i].challengeID;
+				$.get(fitnergistAPI.url+'api/challenge/' + challengeID , function(data, status){
+					var challengeDetail = data.body;
+					new PNotify({
+						title: 'Challenge completed!',
+						addclass: 'notification',
+						text: challengeDetail.title +' has been completed with the point of ' + challengeDetail.score_point + ' !',
+						type: 'success'
+					});
+					fitnergistAPI.updateChallengeNotification(userChallengeID);
+				});
+
+			}
+		}
+	});
+
 
 	// Get current user completed challenge API response
 	$(document).off('getUserChallengeAPIResponse').on('getUserChallengeAPIResponse', function (e, data, status) {
@@ -766,6 +1104,58 @@ $(document).ready(function () {
 		}
 
 	});
+
+
+	// get all challenge API response for verify
+	$(document).off('getAllChallengeAPIResponse_verify').on('getAllChallengeAPIResponse_verify', function (e, data, status) {
+		var challengeList = data.body;
+		console.log(data);
+		$('.challengeListSection').html('');
+		var count_completed=0;
+		var count =1;
+		for(var i =0;i <challengeList.length;i++)
+		{
+			var challenge = challengeList[i];
+
+
+			var check = 0;
+			var fitcampHTML='';
+			//Check if user register the fitcamp
+			for(var j =0; j <userChallenge.length;j++)
+			{
+				if(challenge.challengeID == userChallenge[j]){
+					check++;
+					break;
+				}
+
+			}
+
+			var img = "assets/img/challenge/"+challenge.img_url+".jpg";
+			var challengeHTML = `
+			<tr >
+			<td>`+count+`</td>
+			<td><img class='challengeImg' src="`+img+`" /></td>
+			<td class='challengeTitleForEdit'>`+challenge.title+`</td>
+			<td class='challengeDescriptionForEdit'>`+challenge.description+`</td>
+			<td class='challengePointForEdit'>`+challenge.score_point+`</td>
+			<td>
+			<button class='btn btn-success completeChallengeBtn' value='`+challenge.challengeID+`'>Complete </button>
+			<td>
+			</tr>`;
+
+
+			// if user didnt complete challenge yet
+			if(check == 0)
+			{
+
+				$('.challengeListSection').append(challengeHTML);
+				count++;
+			}
+
+		}
+
+	});
+
 
 
 	// get all challenge API response
@@ -1137,16 +1527,6 @@ $(document).ready(function () {
 	==============================================*/
 
 
-	//Get exact date by given datetime format
-	function getDateByTime(dateTime){
-
-
-	}
-
-	//Get username by given user id
-	function getUserNameByID(userID){
-
-	}
 
 	function getUserByID (userID){
 
