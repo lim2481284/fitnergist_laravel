@@ -30,6 +30,44 @@ $(document).ready(function () {
 	});
 
 
+	// Reset goal / Create new goal btn action
+	$(document).on('click','.createNewGoalBtn',function () {
+		swal({
+			title: 'Create new user goal',
+			allowOutsideClick: false,
+			showCancelButton: true,
+			html:`
+			<p class='swal-label'>Goal condition</p>
+
+			<select  class='swal2-input goalCondition' >
+			<option value ='lose' >Lose</option>
+			<option value='gain'>Gain</option>
+			<option value='maintain'>Maintain</option>
+			</select>
+
+			<p class='swal-label'>Goal Type</p>
+
+			<select class='goalTarget swal2-input' >
+			<option value ='weight' >Weight</option>
+			<option value='fat'>Fat</option>
+			<option value='water'>Water</option>
+			<option value='muscle'>Muscle</option>
+			<option value='visceral'>Visceral</option>
+			<option value='bmr'>BMR</option>
+			<option value='pr'>PR</option>
+			</select>
+
+			<p class='swal-label'>Goal value</p>
+			<input  name="goalValue" type="text" placeholder="" class="input-xlarge goalValue swal2-input">
+			`,
+			focusConfirm: false
+		}).then(function (result) {
+				var goalCondition = $('.goalCondition').val();
+				var goalTarget = $('.goalTarget').val();
+				var goalValue = $('.goalValue').val();
+				fitnergistAPI.resetUserGoal(goalCondition,goalTarget,goalValue);
+		}).catch(swal.noop)
+	});
 
 	//Reject user goal Btn action
 	$(document).on('click','.rejectGoalBtn',function () {

@@ -1,10 +1,11 @@
 $(document).ready(function(){
 
+
   //Check user point and update
     $.get(fitnergistAPI.url+'api/users/profile/' +fitnergistAPI.userID , function(data, status){
         var point = data.body[0].point;
         Cookies.set('point', point, { expires: 999 });
-        
+
         //Change score
         $('.bannerScore').html($.cookie.get("point"));
 

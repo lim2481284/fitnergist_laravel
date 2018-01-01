@@ -12,6 +12,19 @@
 @section('content')
 
 
+<!-- firework -->
+<div class='firework'>
+	<div class='fireworkContent'>
+			<img src='assets/img/congrats.png'/>
+			<p> You have achieved your goal </p>
+			<button class='btn btn-success createNewGoalBtn'>Create new goal now !</button>
+	</div>
+	<div class="pyro">
+	  <div class="before"></div>
+	  <div class="after"></div>
+	</div>
+</div>
+
 <div class='loader'>
 	<img src='assets/img/logo.png'/>
 	<label class='loader-label'> Loading ... </label>
@@ -80,6 +93,15 @@
 			</div>
 		</div>
 </div>
+
+
+
+
+
+
+
+
+
 @stop
 
 

@@ -1,10 +1,15 @@
 ALL
 	- fix image upload problem
 	- cannot type @ error
-	- add background
 	- change pt to F coin
 	- display coin on the top menu
 
+-- left
+	- bug fix
+	- test
+	- goal point
+	- achievement
+	- timeline
 
 -- flow : ranking																					x
 	1 - create multiple user																x
@@ -60,13 +65,15 @@ ALL
 	10 - user improve the goal ( trainer tack user attirbute ) 								x
 	11 - goal progress show in dashboard  --- calculation											x
 			- hover display detail																			( show progress )x
-	12 - user achieve goal																										
-	13 - user reset goal -- end
+	12 - user achieve goal																										x
+	12 - display congrats 																										x
+	13 - user reset goal -- end																								x
 	14 - summmary display how many goal achieve 										( optioanl ) 	x
-	15 - add point to goal
+	15 - add point to goal																					(optional )
+				- very easy, easy , medium, hard, very hard
 
 
--- flow : achievement
+-- flow : achievement ( maybe skip )
 	1 - admin create achievement with specific calculation
 	2 - user join fitcamp								x
 	3 - trainer track user attirbute		x

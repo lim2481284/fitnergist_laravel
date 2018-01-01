@@ -9,7 +9,7 @@ $.get('http://localhost:8000/api/ranking'  , function(data, status){
       if(value.userID == fitnergistAPI.userID)
         return false;
   });
-  userRanking = count;
+  userRanking = count-1;
 });
 
 

@@ -241,6 +241,13 @@ $(document).ready(function () {
 
 	});
 
+	//reset user goal response
+	$(document).off('resetUsersGoalResponse').on('resetUsersGoalResponse', function (e, data, status) {
+			swal('Goal updated','','success').then(() => {
+					location.reload();
+
+			});
+	});
 
 	//Get user goal for profile response
 	$(document).off('viewUserGoalResponse_profile').on('viewUserGoalResponse_profile', function (e, data, status) {
@@ -261,6 +268,7 @@ $(document).ready(function () {
 		if(goal.verified==0)
 		{
 			$('.deactivate').fadeTo( "slow" , 1);
+			$('.menuBoxArea').css('z-index',101);
 
 		}
 		else {
@@ -268,6 +276,14 @@ $(document).ready(function () {
 			//Calculate goal percentage
 			var goal_condition = goal.goal_condition;
 			var goal_value = goal.goal_value;
+			var goal_status =goal.status;
+
+			if(goal_status==1){
+				$('.firework').css('opacity',1);
+				//fitnergistAPI.updateUserGoalStatus(2);
+
+			}
+
 			if(goal_condition =='lose')
 			{
 					goal_value= -(goal_value);
@@ -297,7 +313,7 @@ $(document).ready(function () {
 					text: 'Your goal has been verified.',
 					type: 'success'
 				});
-				fitnergistAPI.updateUserGoalStatus();
+				fitnergistAPI.updateUserGoalNotification();
 			}
 
 			$('.tooltiptext').html(`
