@@ -278,9 +278,14 @@ $(document).ready(function () {
 			var goal_value = goal.goal_value;
 			var goal_status =goal.status;
 
+			// release firework if acheive goal
 			if(goal_status==1){
 				$('.firework').css('opacity',1);
 				//fitnergistAPI.updateUserGoalStatus(2);
+
+			}
+			else {
+				$('.firework').hide();
 
 			}
 
