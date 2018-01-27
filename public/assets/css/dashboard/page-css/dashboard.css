@@ -2,7 +2,9 @@
 .notification{
 
 }
-
+.loader-label{
+    line-height: 55 !important;
+}
 .deactivate{
   opacity: 0;
   transition:1s all;

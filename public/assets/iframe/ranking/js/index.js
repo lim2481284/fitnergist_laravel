@@ -11,9 +11,15 @@ $(document).on('ready', function() {
     {
       if(value.roleID==1){
         count++;
+        var pic = value.img_url;
+        if(pic==null){
+          pic="default";
+        }
+
+
         $('.slider-content').append(`
           <div class="slider-single">
-          <img class="slider-single-image" src="test.png" alt="`+count+`" />
+          <img class="slider-single-image" src="/assets/img/profile/`+pic+`.jpg" alt="`+count+`" />
           <a class="slider-single-download" href="javascript:void(0);">Rank `+count+`</i></a>
           <h1 class="slider-single-title">`+value.username+` </h1>
           <a class="slider-single-likes" href="javascript:void(0);">

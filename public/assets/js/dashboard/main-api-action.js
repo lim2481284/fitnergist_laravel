@@ -259,7 +259,7 @@ $(document).ready(function () {
 	//Create redeem action
 	$(document).on("click", ".createRedeemBtn", function(){
 		var redeemName = $('.redeemName').val();
-		var redeemImg = $('.redeemImg').val();
+		var redeemImg = $('.redeemImg').attr('value');
 		var redeemDescription = $('.redeemDescription').val();
 		var redeemPoint = $('.redeemPoint').val();
 		if(!redeemImg)
@@ -352,7 +352,7 @@ $(document).ready(function () {
 
 
 
-	//Edit user  action
+	//Setup user profile  action
 	$(document).on("click", ".updateProfile", function(){
 
 		var name = $('.name').val();
@@ -384,14 +384,15 @@ $(document).ready(function () {
 	//Login user action
 	$(document).on("click", ".loginBtn", function(){
 
+		//Get user input
 		var username = $('.loginUsername').val();
 		var pass = $('.loginPass').val();
 
 		//validate input field
 		if(!username || !pass )
-		swal('Please fill in all the field' ,'','error');
+			swal('Please fill in all the field' ,'','error');	//Pop up error message
 		else
-		fitnergistAPI.loginAPI(username,pass);
+			fitnergistAPI.loginAPI(username,pass);	//Call login API
 
 	});
 
@@ -494,7 +495,7 @@ $(document).ready(function () {
 		var achievementName = $('.achievementName').val();
 		var achievementDescription = $('.achievementDescription').val();
 		var achievementPoint = $('.achievementPoint').val();
-		var achievementImg = $('.achievementImg').val();
+		var achievementImg = $('.achievementImg').attr('value');
 		if(!achievementImg)
 		achievementImg='default';
 
@@ -551,22 +552,27 @@ $(document).ready(function () {
 	===============================================*/
 
 
-	//Challenge challenge BTN action
+	//Complete challenge BTN action
 	$(document).on('click','.completeChallengeBtn',function () {
+
+			//Get user detail and challenge score point
 			var userID = $('.userListSelect').val();
 			var challengeID =$(this).val();
 			var thisBtn = $(this);
 			var challengePoint = $(this).parent().parent().find('.challengePointForEdit').html();
-		  $.get(fitnergistAPI.url+'api/users/profile/' +userID , function(data, status){
-					//Add user point
 
+			//Get user detail API call
+		  $.get(fitnergistAPI.url+'api/users/profile/' +userID , function(data, status){
+
+					//Add user point
 					var point = data.body[0].point;
 					var newPoint =parseInt(point) + parseInt(challengePoint) ;
 					fitnergistAPI.editUserPointAPI(newPoint,userID);
 
-					//Create user challenge
+					//Create user completed challenge record 
 					thisBtn.parent().parent().remove();
 					fitnergistAPI.createUserChallengeAPI(userID,challengeID);
+
 			});
 
 
@@ -610,7 +616,7 @@ $(document).ready(function () {
 		var challengeName = $('.challengeName').val();
 		var challengeDescription = $('.challengeDescription').val();
 		var challengePoint = $('.challengePoint').val();
-		var challengeImg = $('.challengeImg').val();
+		var challengeImg = $('.challengeImg').attr('value');
 		if(!challengeImg)
 		challengeImg='default';
 
@@ -734,10 +740,12 @@ $(document).ready(function () {
 	$(document).on("click", ".createForumBtn", function(){
 		var forumTitle = $('.forumTitleInput').val();
 		var forumContent = $('.forumContent').val();
-		var forumImg = $('.forumImg').val();
+		var forumImg = $('.forumImg').attr('value');
 		var forumUserID = $('.forumUserID').val();
-		if(!forumImg)
-		forumImg='default';
+		if(!forumImg){
+			forumImg='default';
+		}
+
 
 		if(!forumTitle || !forumContent)
 		swal('Please fill in all the field' ,'','error');
@@ -918,7 +926,7 @@ $(document).ready(function () {
 		var fitcampPrice = $('.fitcampPrice').val();
 		var fitcampStartDate = $('.fitcampStartDate').val();
 		var fitcampEndDate = $('.fitcampEndDate').val();
-		var fitcampImg = $('.fitcampImg').val();
+		var fitcampImg = $('.fitcampImg').attr('value');
 		var fitcampPoint = $('.fitcampPoint').val();
 		if(!fitcampImg)
 		fitcampImg='default';

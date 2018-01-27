@@ -402,7 +402,7 @@ function Api() {
 
           newTrackValue = currentGoalValue+newTrackValue;
           fitnergistAPI.updateUserGoalValue(userID, newTrackValue);
-
+          console.log(goalTarget);  
           //If goal achieved
           if(newTrackValue>= goalTarget)
           {
