@@ -8,7 +8,6 @@ $(document).ready(function () {
 
 
 
-
 	/*=============================================
 
 	Tracking  API response section
@@ -95,7 +94,7 @@ $(document).ready(function () {
 
 	//Get current User redeem API response
 	$(document).off('getUserRedeemAPIResponse').on('getUserRedeemAPIResponse', function (e, data, status) {
-		console.log(data);
+
 
 		var userRedeem = data.body;
 
@@ -104,7 +103,7 @@ $(document).ready(function () {
 			var redeemID = userRedeem[i].redeemID;
 			var redeemDate = userRedeem[i].updated_at;
 			$.get(fitnergistAPI.url+'api/redeem/'+ redeemID, function(data, status){
-				console.log(data);
+
 				var redeem = data.body;
 				var redeemTitle = redeem.title;
 				var redeemContent = redeem.description;
@@ -149,7 +148,7 @@ $(document).ready(function () {
 	// get redemm API response for admin
 	$(document).off('getAllRedeemAPIResponse_admin').on('getAllRedeemAPIResponse_admin', function (e, data, status) {
 		var redeemList = data.body;
-		console.log(redeemList);
+
 		var count =redeemList.length;
 		for(var i =0;i <redeemList.length;i++)
 		{
@@ -178,7 +177,7 @@ $(document).ready(function () {
 	// get product API response
 	$(document).off('getAllRedeemAPIResponse').on('getAllRedeemAPIResponse', function (e, data, status) {
 		var redeemList = data.body;
-		console.log(data);
+
 		for(var i =0;i <redeemList.length;i++)
 		{
 			var redeem = redeemList[i];
@@ -226,7 +225,7 @@ $(document).ready(function () {
 
 	//Get all user for challenge verify
 	$(document).off('getAllUserAPIResponse_challenge').on('getAllUserAPIResponse_challenge', function (e, data, status) {
-		console.log(data);
+
 		var users= data;
 		for(var i = 0; i<users.length;i++)
 		{
@@ -251,17 +250,18 @@ $(document).ready(function () {
 
 	//Get user goal for profile response
 	$(document).off('viewUserGoalResponse_profile').on('viewUserGoalResponse_profile', function (e, data, status) {
-		console.log(data.body[0]);
+
 		var goal = data.body[0];
-		if(goal.verified==0)
-		$('.attributeSection').hide();
-		var measurement = 'KG';
-		$('.goal').html('I want to '+ goal.goal_condition+ ' ' + goal.goal_value+ ' ' + measurement+' of ' + goal.description);
+		if(goal){
+			if(goal.verified==0)
+			$('.attributeSection').hide();
+			var measurement = 'KG';
+			$('.goal').html('I want to '+ goal.goal_condition+ ' ' + goal.goal_value+ ' ' + measurement+' of ' + goal.description);
+		}
 	});
 
 	//Get user goal for dashbaord response
 	$(document).off('viewUserGoalResponse_dashboard').on('viewUserGoalResponse_dashboard', function (e, data, status) {
-		console.log(data.body[0]);
 		var goal = data.body[0];
 
 		//If user goal havent verified yet
@@ -332,7 +332,7 @@ $(document).ready(function () {
 
 		//Get specific user goal response
 		$(document).off('getSpecificUserGoalResponse').on('getSpecificUserGoalResponse', function (e, data, status) {
-			console.log(data.body[0]);
+
 			var user = data.body[0];
 
 			$('.attributeSection').html('');
@@ -425,7 +425,7 @@ $(document).ready(function () {
 
 
 		$(document).off('getUserProfileAPIResponse').on('getUserProfileAPIResponse', function (e, data, status) {
-			console.log(data);
+
 			var user = data.body[0];
 			var name = user.name;
 			var email = user.email;
@@ -491,7 +491,7 @@ $(document).ready(function () {
 
 		//Login response
 		$(document).off('getUserAPIResponse').on('getUserAPIResponse', function (e, data, status) {
-			console.log(data.body);
+
 			if(data.success==false){
 				swal('Wrong username or password', "" ,"error").then(() => {
 					$('.loginUsername').val('');
@@ -566,7 +566,7 @@ $(document).ready(function () {
 					var achievementID =  achievement[i].achieveID;
 					$.get(fitnergistAPI.url+'api/achievement/' + achievementID , function(data, status){
 						var detail = data.body;
-						console.log(detail);
+
 						new PNotify({
 							title: 'Achievement achieved!',
 							addclass: 'notification',
@@ -609,7 +609,7 @@ $(document).ready(function () {
 		// get all achievement API response
 		$(document).off('getAllAchievementAPIResponse').on('getAllAchievementAPIResponse', function (e, data, status) {
 			var achievementList = data.body;
-			console.log(data);
+
 
 			var count =0;
 			var achieved_count = 0;
@@ -724,7 +724,7 @@ $(document).ready(function () {
 				var userID = fitcamp.userID;
 				$.get(fitnergistAPI.url+'api/users/profile/' + userID , function(data, status){
 					var user = data.body[0];
-					console.log(user);
+
 					var fitcampHTML = `
 					<option value='`+user.userID+`'>`+user.name+`</option>
 					`;
@@ -732,6 +732,7 @@ $(document).ready(function () {
 				});
 
 			}
+			$('.loader').hide();
 
 		});
 
@@ -740,6 +741,7 @@ $(document).ready(function () {
 		$(document).off('getAllFitcampRegisterAPIResponse').on('getAllFitcampRegisterAPIResponse', function (e, data, status) {
 			var fitcampList = data.body;
 			var count =fitcampList.length;
+			$('.attendanceList').empty();
 			for(var i =0;i <fitcampList.length;i++)
 			{
 				var fitcamp = fitcampList[i];
@@ -778,6 +780,8 @@ $(document).ready(function () {
 
 			}
 
+
+
 		});
 
 
@@ -814,7 +818,7 @@ $(document).ready(function () {
 			swal('Fitcamp Closed', "" ,"success").then(() => {
 				$.get(fitnergistAPI.url+'api/fitcamp/register/fitcampID/' + fitcampID, function(data, status){
 					var userList = data.body;
-					console.log(data);
+
 					for(var i =0; i <userList.length;i++){
 						var userID = userList[i].userID;
 						if(userList[i].attendance==1){
@@ -844,8 +848,12 @@ $(document).ready(function () {
 
 		// get all fitcmap API response for attendance
 		$(document).off('getAllFitcampAPIResponse_admin_attendance').on('getAllFitcampAPIResponse_admin_attendance', function (e, data, status) {
+			$('#bodyContent').removeClass('fade-out');
+			// Turn off loader
+			$('.loader').hide();
+
 			var fitcampList = data.body;
-			console.log(fitcampList);
+
 			for(var i =0;i <fitcampList.length;i++)
 			{
 				var fitcamp = fitcampList[i];
@@ -863,7 +871,6 @@ $(document).ready(function () {
 		// get all fitcmap API response for admin
 		$(document).off('getAllFitcampAPIResponse_admin').on('getAllFitcampAPIResponse_admin', function (e, data, status) {
 			var fitcampList = data.body;
-			console.log(fitcampList);
 			var count =fitcampList.length;
 			for(var i =0;i <fitcampList.length;i++)
 			{
@@ -1131,7 +1138,7 @@ $(document).ready(function () {
 		// get all challenge API response for verify
 		$(document).off('getAllChallengeAPIResponse_verify').on('getAllChallengeAPIResponse_verify', function (e, data, status) {
 			var challengeList = data.body;
-			console.log(data);
+
 			$('.challengeListSection').html('');
 			var count_completed=0;
 			var count =1;
@@ -1183,7 +1190,6 @@ $(document).ready(function () {
 		// get all challenge API response
 		$(document).off('getAllChallengeAPIResponse').on('getAllChallengeAPIResponse', function (e, data, status) {
 			var challengeList = data.body;
-			console.log(data);
 
 			var count_completed=0;
 			var count =0;
@@ -1299,13 +1305,12 @@ $(document).ready(function () {
 		// get forum comment API response
 		$(document).off('getCommentAPIResponse').on('getCommentAPIResponse', function (e, data, status) {
 			var commentList = data.body;
-			console.log(comment);
 
 			$('.commentSection').empty();
 			for(var i =0;i <commentList.length;i++)
 			{
 				var comment = commentList[i];
-				if(comment.userID == fitnergistAPI.userID){
+				if(comment.userID == fitnergistAPI.userID || $.cookie.get("roleID")==2){
 					var commentHTML = `
 					<div class='col-sm-12 comment'>
 					<input type='hidden' class='commentID'/>
@@ -1355,13 +1360,11 @@ $(document).ready(function () {
 		// get specific forum API response
 		$(document).off('getForumAPIResponse').on('getForumAPIResponse', function (e, data, status) {
 			var forum = data.body;
-			console.log(data);
 			//Check if forum is user created
 
 			if(forum.userID == fitnergistAPI.userID)
 			{
-				console.log(forum.userID);
-				console.log( fitnergistAPI.userID);
+
 				$('.backBtnArea').append(`
 					<button class='btn btn-default editForumBtn'  value='`+forum.forumID+`'>Edit </button>
 					<button class='btn btn-danger deleteForumBtn' value='`+forum.forumID+`'>Delete </button>
@@ -1512,7 +1515,6 @@ $(document).ready(function () {
 
 				for(var i =0;i <productList.length;i++)
 				{
-					console.log(productList[i]);
 					var product = productList[i];
 					var productHTML = `
 					<div class="make-3D-space">
@@ -1559,7 +1561,6 @@ $(document).ready(function () {
 				var img = data.body[0].img_url;
 				if(img==null)
 					img ='default';
-				console.log(img);
 				$('.commentImg_'+userID).attr('src','/assets/img/profile/'+img+'.jpg'	);
 			});
 
@@ -1568,7 +1569,6 @@ $(document).ready(function () {
 			function changeCommentUsername (userID){
 
 				$.get(fitnergistAPI.url+'api/users/profile/' + userID , function(data, status){
-					console.log(data.body[0]);
 						$('.comment_'+userID).html(data.body[0].username);
 				});
 
@@ -1578,7 +1578,7 @@ $(document).ready(function () {
 		function changeForumUsername (userID){
 
 			$.get(fitnergistAPI.url+'api/users/profile/' + userID , function(data, status){
-				console.log(data.body[0]);
+
 					$('.user_'+userID).html(data.body[0].username);
 			});
 

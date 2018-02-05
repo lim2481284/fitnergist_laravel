@@ -14,10 +14,13 @@
 	height:380px;
 }
 .blog-card .description{
-	width:90%;
+	width:100%;
 	padding-top:20px;
 }
 .blog-card .description a{
 
 	font-size: 140%;
+}
+.blog-card .details{
+	width:100%;
 }

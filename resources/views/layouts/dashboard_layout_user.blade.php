@@ -8,7 +8,7 @@
 	<!-- css for all page -->
     <link href="assets/css/dashboard/bootstrap.css" rel="stylesheet">
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="assets/css/dashboard/lineicons.css">
+
     <link href="assets/css/dashboard/style.css" rel="stylesheet">
     <link href="assets/css/dashboard/style-responsive.css" rel="stylesheet">
   	<link href="assets/css/dashboard/main.css" rel="stylesheet">
@@ -144,7 +144,6 @@
 	<script src="assets/js/dashboard/utility.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.all.min.js"></script>
 	<script class="include" type="text/javascript" src="assets/js/dashboard/jquery.dcjqaccordion.2.7.js"></script>
-	<script type="text/javascript" src="assets/js/dashboard/page-js/dashboard.js"></script>
 	<!-- js for this page -->
 	@yield("javascript")
 

@@ -89,7 +89,7 @@ Route::post('register/', 'API\RegisterController@createAccount');
 
 /*
 
-Login API section
+Comment API section
 
 */
 

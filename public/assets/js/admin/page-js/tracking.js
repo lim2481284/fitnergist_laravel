@@ -4,6 +4,7 @@ $('.fitcampListection').change(function(){
     var fitcampID = $(this).val();
     fitnergistAPI.getAllFitcampRegisterAPI(fitcampID,'track')
     $('.userListSection').show();
+    $('.loader').show();
 
 });
 

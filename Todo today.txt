@@ -1,89 +1,161 @@
-ALL
-	- fix image upload problem
-	- cannot type @ error
-	- change pt to F coin
-	- display coin on the top menu
+Minimum requirement
+	- Admin
+			- customize goal
+			- customize track
+			- goal add 2 more type : gain  / maintain
+			- loader
+							- loader for admin page
+			- achievement calculation
+				- walking step
+				- rank
+				- attribute calculation
+				- participate time
+				- login time
+				- number of goal achievement
+				- number of redeem
+	- trainer can give suggestion (food intake) to the user
+	- notification page , email notification, reason to delete
 
--- left
+
+If go real
 	- bug fix
-	- test
-	- goal point
-	- achievement
-	- timeline
+			- menu didnt hide from setup profile		: optional
+			- timeline bug			: Take care
+			- ranking not accurate bug		: Take care
+			- admin : in page loader 
 
--- flow : ranking																					x
-	1 - create multiple user																x
-	2 - before demo redeem  !! didnt put overall point			x
-	3 - show the ranking																		x
+	- improvement
+			- all notification by email : optional
+					- https://code.tutsplus.com/tutorials/how-to-send-emails-in-laravel--cms-30046
+			- piture auto crop
+					- https://foliotek.github.io/Croppie/
 
--- flow : redeem																					x
-	1 - user earn point																			x
-	2 - user redeem not enough point												x
-	3 - user redeem with enough point												x
+			- user
+				- score point should show at every page
+				- edit user profile and reset goal function
+				- setup add new data based on the form
+				- timeline add achievement, challenge...
 
--- flow : fitcamp
-	1 - admin create fitcamp					x
-	2 - user register fitcamp					x
-	3 - user timeline show fitcamp		x
-	4 - trainer confirm attandance		x
-	5 - trainer close fitcamp					x
-	6 - user summary display total reigstered fitcamp		( optioanl )		x
-	7 - user add point								x
+			- admin
+				- all the select bar change to auto search input
+				- add score to goal
+				- soft delete function
+				- verify, attendance
+					- admin can search when key in username / name
 
+			- fitcamp
+				- should show fitcamp and attendance history
+				- admin have to tell reason to the user if admin delete fitcamp and user already register fitcamp
+				- Date validation
+				- locaion chooser
 
--- flow : challenge
-	1 - admin create chalelnge									x
-	2 - user join fitcamp												x
-	3 - user compelte  chalelnge								x
-	4 - trainer verify the challenge						x
-			- user can check completed challenge		x
-	5 - timeline dislay challenge unlock			(optioanl)		x
-	6 - dashboard display notifiacton						x
-	7 - user summary display total completed challegne with icon ( optioanl )		x
-	8 - user add point													x
+			- forum
+				- admin have to give reason when delete post or comment : email
 
 
--- flow : goal
-	1 - user reigster account							x
-	2 - user login account								x
-	3 - user set up profile								x
-	4 - user setup goal with calculation	x
-	5 - user dashboard deactiavated				x
-	6 - user go to fitcamp								x
-	7 - admin/trainer verify user goal and first time tracking for the user		x
-				- trainer select user																								x
-					- if user is first time																						x
-							- trainer can verify the user goal														x
-							- trainer reject the goal and modify the goal									x
-							- then trainer track user attribute														x
-					- else
-							- trainer track user attribute																x
+			- challenge
+				- add period of time : optional
+				- view past challenge / deleted challenge
+				- Date validation
 
-	8 - user dashboard activated and recieve notification											x
-			- user can check their attirbute in profile 													x
-	9 - user go fitcamp again																									x
-	10 - user improve the goal ( trainer tack user attirbute ) 								x
-	11 - goal progress show in dashboard  --- calculation											x
-			- hover display detail																			( show progress )x
-	12 - user achieve goal																										x
-	12 - display congrats 																										x
-	13 - user reset goal -- end																								x
-	14 - summmary display how many goal achieve 										( optioanl ) 	x
-	15 - add point to goal																					(optional )
-				- very easy, easy , medium, hard, very hard
+			- security
+				- laravel authentication
+				- email verification
+				- role switching by using laravel plugin
+				- remember password, keep login
+				- forgot password
+				- role and permission and action
+
+	- new feature / requirement
+		- customize all tracking attribue + goal setting
+
+		- rank : junior, senior ...
+		- avatar , avatar management
+
+		- user profile statsitic and admin statsistic
+			- all user attribute statistic : line chart
+			- fitcamp participant statistic
+			- overall user improvement statistic
+
+		- calander for fitcamp , timeline put into profile tab
+		- feedback function for user side
+		- 404 page
+		- change 2 user to 3 user
+			- trainer
+				- forum
+				- profile
+				- fitcamp
+				- tracking
+
+			- admin
+				- user management
+					- create trainer account
+				- statistic management
+				- challenge and achievement managemnet
+				- redeem management
+				- registed fitcamp user report
+			- new changing
+				- fitcamp can assign trainer
 
 
--- flow : achievement ( maybe skip )
-	1 - admin create achievement with specific calculation
-	2 - user join fitcamp								x
-	3 - trainer track user attirbute		x
-	4 - user acheive achievement condition and earn point
-	5 - timeline display achievement unlock			(optioanl)	x
-	6 - dashboard display notification					x
-	7 - user summary display total achievemnt with icon		( optioanl )		x
+	- other
+		- convert to android
+		- host a server database
+		- user manual: after changing and adding new feature
+
+
+	- UX
+		- press enter UX
+		- different screen size UX
+		- menu icon with label : mobile
+
+		- track and attendance should combine, attendance should have note button
+			- validation, attendned but didnt track yet
+			- after track still can edit
+			- remain same button ...
+
+		- Homepage and setup
+			- deactivate help
+
+		- Challenge and achievement from user page
+			- Click outside will remove focus
+
+		- Loader
+			- wait picture load first
+			- loader for admin
+
+		- First time login
+			- next button
+			- help - define goal
+			- goal type change the much / long
+			- change the word to more user friend : water -> ?
+
+		-Admin side and forum
+			- limit the character size
+
+			New idea
+				- Egamify
+					- understand : customization, gamificaiton, fitness knowledge, requirement
+					- get some idea from here : https://iq.intel.com/gamification-apps-make-fitness-fun/
+					- care employee health ( emee )
+					- join and earn ?
+					- tracking data
+					- indirectly promote something
+					- user scope
+						- fitness and event and dance  ?
+						- sme cooperate with fitcamp ?
+						- sme ?
+						- university
+
+			Make it real
+				- brainstorm
+					- how to make it more flexible and less manual verification
+					- how to categories the calculation
+					- how to make calculation flexible : customize calculation
+					- how to achieve " everything gamify "
+
 
 --------------------------------------------------
 1 - done registration and role swithcing
 	https://laracasts.com/discuss/channels/tips/middleware-to-show-items-based-on-user-roles
 	http://laravelcode.com/post/laravel-passport-create-rest-api-with-authentication
-2 - done admin function

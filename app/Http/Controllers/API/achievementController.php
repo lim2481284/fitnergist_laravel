@@ -9,11 +9,11 @@ use App\Users_achievement;
 class achievementController extends Controller
 {
 	/*
-		
-		Controller for the achievement section 
-	
+
+		Controller for the achievement section
+
 	*/
-	
+
     public function ajaxImageUploadPost(Request $request)
 	{
 		$imageName = $request->name . '.jpg';
@@ -21,26 +21,26 @@ class achievementController extends Controller
 		$request->file('image')->move(
 			base_path() . '/public/assets/img/achievement/', $imageName
 		);
-		
-		return response()->json(['success'=>true,'message'=>'Image uploaded']); 
+
+		return response()->json(['success'=>true,'message'=>'Image uploaded']);
     }
-		
+
     public function getTotal()
-    {		
+    {
         $achievement = Achievement::all()->count();
 		return response()->json(['success'=>true,'total'=>$achievement]);
     }
-			
-	
+
+
     public function getAchievement()
-    {		
+    {
         $achieve = Achievement::all();
 		return response()->json(['success'=>true,'message'=>'','body'=>$achieve]);
     }
- 
+
     public function findAchievement($id)
     {
-		$achieve = Achievement::find($id);		
+		$achieve = Achievement::find($id);
         return response()->json(['success'=>true,'message'=>'','body'=>$achieve]);
     }
 
@@ -65,16 +65,16 @@ class achievementController extends Controller
     }
 
 
-	
+
 	/*
-		
-		Controller for the user achievement record section 
-	
+
+		Controller for the user achievement record section
+
 	*/
 
     public function getUserAchieve($id)
     {
-		$achieve = Users_achievement::where('userID',$id)->orderBy('created_at','DESC')->get();		
+		    $achieve = Users_achievement::where('userID',$id)->orderBy('created_at','DESC')->get();
         return response()->json(['success'=>true,'message'=>'','body'=>$achieve]);
 
     }
@@ -99,20 +99,20 @@ class achievementController extends Controller
 		$achieve = Users_achievement::find($id);
         $achieve->delete();
         return response()->json(['success'=>true,'message'=>$achieve->title.' deleted']);
-    
+
 	}
 
 
 
 	/*
-		
-		Controller for the achievement condition section 
-	
+
+		Controller for the achievement condition section
+
 	*/
 
     public function getAchieveCondition($id)
     {
-		$achieve = Achievement_condition::where('achievementID',$id)->orderBy('created_at','DESC')->get();		
+		$achieve = Achievement_condition::where('achievementID',$id)->orderBy('created_at','DESC')->get();
         return response()->json(['success'=>true,'message'=>'','body'=>$achieve]);
 
     }
@@ -139,7 +139,5 @@ class achievementController extends Controller
         return response()->json(['success'=>true,'message'=>$achieve->title.' deleted']);
     }
 
-	
+
 }
-
-

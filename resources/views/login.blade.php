@@ -41,7 +41,7 @@
 		</div>
 		<div class='dotBox'>
 			<center>
-				<img class='dot' src=""/>
+				<div class='dot' src=""/>
 
 			</center>
 		</div>
@@ -52,7 +52,7 @@
 					<div class='formInput loginForm formToggle'>
 						<input class='loginUsername' required placeholder='username'/>
 						<br><br>
-						<input class='loginPass' required placeholder='password'/>
+						<input  type='password' class='loginPass' required placeholder='password'/>
 						<br><br><br>
 						<button class='loginBtn active' type='button'> Login </button>
 						<br>
@@ -63,9 +63,9 @@
 						<br><br>
 						<input class='email' required placeholder='email'/>
 						<br><br>
-						<input class='registerPass' required placeholder='password'/>
+						<input  type='password' class='registerPass' required placeholder='password'/>
 						<br><br>
-						<input class='registerConPass' required placeholder='confirm password'/>
+						<input  type='password' class='registerConPass' required placeholder='confirm password'/>
 						<br><br><br>
 						<button class='createUserBtn active'   type='button'> Register </button>
 						<br>

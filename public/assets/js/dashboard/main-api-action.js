@@ -569,14 +569,10 @@ $(document).ready(function () {
 					var newPoint =parseInt(point) + parseInt(challengePoint) ;
 					fitnergistAPI.editUserPointAPI(newPoint,userID);
 
-					//Create user completed challenge record 
+					//Create user completed challenge record
 					thisBtn.parent().parent().remove();
 					fitnergistAPI.createUserChallengeAPI(userID,challengeID);
-
 			});
-
-
-
 	});
 
 	//Remove achievement action
@@ -611,7 +607,7 @@ $(document).ready(function () {
 	});
 
 
-	//Create product action
+	//Create challenge action
 	$(document).on("click", ".createChallengeBtn", function(){
 		var challengeName = $('.challengeName').val();
 		var challengeDescription = $('.challengeDescription').val();

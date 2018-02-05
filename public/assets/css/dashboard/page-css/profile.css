@@ -4,6 +4,10 @@ label.titleSection {
     text-decoration: underline;
     color: lightgray;
 }
+.profileArea,.goal{
+  font-family: 'Arial' !important;
+}
+
 .detailSection{
 	padding:3% 5%;
 

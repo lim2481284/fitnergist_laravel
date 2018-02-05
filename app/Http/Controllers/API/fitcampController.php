@@ -29,7 +29,8 @@ class fitcampController extends Controller
 
     public function confirmRegister(Request $request, $id)
     {
-          $fitcamp = Fitcamp_register::where('fitcampID',$id);
+          $userID = $request->userID;
+          $fitcamp = Fitcamp_register::where('fitcampID',$id)->where("userID",$userID);
           $fitcamp->update($request->all());
           return response()->json(['success'=>true,'message'=>'Fitcamp edited','body'=>$fitcamp]);
     }

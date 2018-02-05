@@ -19,25 +19,29 @@
 
 @section('content')
 
-
-<div style='width:96%' class='col-sm-12 container container-top-menu '>
-      <div class="form-group">
-         <select class="form-control fitcampListection"  >
-            <option value='' disabled selected>Choose fitcamp </option>
-         </select>
-      </div>
-			<div class="form-group userListSection">
-         <select class="form-control userListSelect"  >
-            <option value='' disabled selected>Choose user </option>
-         </select>
-				 <br><hr>
-      </div>
-			<div class='attributeSection'>
-
-			</div>
-
+<div class='loader'>
+	<img src='assets/img/logo.png'/>
+	<label class='loader-label'> Loading ... </label>
 </div>
+<div id='bodyContent' class='fade-out'>
+  <div style='width:96%' class='col-sm-12 container container-top-menu '>
+        <div class="form-group">
+           <select class="form-control fitcampListection"  >
+              <option value='' disabled selected>Choose fitcamp </option>
+           </select>
+        </div>
+  			<div class="form-group userListSection">
+           <select class="form-control userListSelect"  >
+              <option value='' disabled selected>Choose user </option>
+           </select>
+  				 <br><hr>
+        </div>
+  			<div class='attributeSection'>
 
+  			</div>
+
+  </div>
+</div>
 
 @stop
 

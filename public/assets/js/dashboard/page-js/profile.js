@@ -1,7 +1,7 @@
 //Get user ranking number
 
 var userRanking = 0;
-$.get('http://localhost:8000/api/ranking'  , function(data, status){
+$.get('http://192.168.0.102/api/ranking'  , function(data, status){
   var count =0;
   $.each(data, function (index, value)
   {
@@ -106,7 +106,7 @@ $(document).ready(function() {
         localStorage.setItem("ranking", userRanking);
 				$("html, body").animate({
 					 scrollTop: $('.scroll').offset().top
-				}, 2000);
+				}, 1000);
 				document.getElementById('targetFrame').contentWindow.myLoop();
 	});
 

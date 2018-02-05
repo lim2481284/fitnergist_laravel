@@ -13,7 +13,7 @@ function Api() {
   ==============================================*/
 
   //Declaration
-  this.url = "http://localhost:8000/";
+  this.url = "http://192.168.0.102/";
   this.userID = $.cookie.get("userID");
 
 
@@ -402,7 +402,7 @@ function Api() {
 
           newTrackValue = currentGoalValue+newTrackValue;
           fitnergistAPI.updateUserGoalValue(userID, newTrackValue);
-          console.log(goalTarget);  
+          console.log(goalTarget);
           //If goal achieved
           if(newTrackValue>= goalTarget)
           {
@@ -931,7 +931,7 @@ function Api() {
   //  Get all the register from that fitcamp id
   this.getAllFitcampRegisterAPI = (fitcampID,type='null') => {
     $.getAjax(this.url+'api/fitcamp/register/fitcampID/' + fitcampID, (data, status, xhr) => {
-      if(type=='null')
+      if(type=='null') // For attendance
         $(document).trigger("getAllFitcampRegisterAPIResponse", [data, status,xhr]);
       else
           $(document).trigger("getAllFitcampRegisterAPIResponse_track", [data, status,xhr]);

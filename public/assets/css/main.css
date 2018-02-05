@@ -8,6 +8,11 @@
 body {
     font-family: 'Hobo' !important;
 }
+
+.formArea{
+  font-family: 'Arial' !important;
+}
+
 input::placeholder{
 	color:#dadada;
 }
@@ -74,7 +79,7 @@ body{
 }
 
 input{
-	 font-family:Hobo;
+	 font-family:Arial;
 	outline: none;
     border: none;
     background: transparent;
@@ -129,7 +134,7 @@ input{
 	left: 0;
 	right: 0;
 	margin: auto;
-  -webkit-animation: beat 1s linear infinite;
+  -webkit-animation: beat 2s linear infinite;
 }
 .loginBox{
 	width:35vw;
@@ -214,10 +219,10 @@ input{
 
    }
    75%{
-	    width: 90%;
+	    width: 70%;
    }
    80%{
-	    width:100%;
+	    width:80%;
    }
    100{
 		width: 60%;

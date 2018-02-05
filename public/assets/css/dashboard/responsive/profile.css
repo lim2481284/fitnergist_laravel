@@ -1,4 +1,37 @@
 .tab{
+	width: 95%;
+	padding-top: 5%;
+}
+.profileSetupBg{
+	width: 80%;
+  opacity: 0.7;
+  -webkit-animation: grow 6s infinite linear;
+  margin-top: 10%;
+}
+
+.nav-tabs>li>a, .process-model li.visited a, .process-model li.visited a:hover, .process-model li.visited a:focus{
+	padding-left:0;
+}
+.process-model.more-icon-preocess{
+	width: 90%;
+}
+.more-icon-preocess.process-model li::after{
+	top:6vh;
+}
+.design-process-content{
+	width:100%;
+
+}
+.imageSection{
+	margin-top:15%;
+}
+
+.profileTopSection{
 	width: 100%;
-	padding-top: 30%;
+}
+iframe{
+	width: 100%;
+}
+.scroll{
+	display:none;
 }

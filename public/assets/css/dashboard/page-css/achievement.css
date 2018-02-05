@@ -95,8 +95,7 @@
 .tabs_item img {
   width: 200px;
 	border-radius: 100%;
-  float: left;
-  margin-right: 30px;
+
 }
 .tabs_item:first-child {
   display: block;

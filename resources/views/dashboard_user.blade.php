@@ -112,6 +112,7 @@
 <script type="text/javascript" src="assets/js/dashboard/timecube.jquery.js"></script>
 <script type="text/javascript" src="assets/js/dashboard/timecube.example.js"></script>
 <script src="assets/js/pnotify.custom.min.js"></script>
+<script src="assets/js/dashboard/page-js/dashboard.js"></script>
 <script>
 	fitnergistAPI.viewUserGoal('dashboard');
 	fitnergistAPI.getUserChallengeAPI('dashboard');

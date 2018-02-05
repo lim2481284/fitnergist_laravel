@@ -9,6 +9,61 @@ Premium: http://www.gridgum.com
 /* Import fonts */
 @import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
 
+.loader-label{
+		font-size: 120%;
+    margin-top: 1%;
+    color: #0c1525;
+    line-height: 48;
+}
+
+.loader{
+
+	line-height: 100vh;
+    text-align: center;
+	position:fixed;
+	width:100vw;
+	height:100vh;
+	background:white;
+	left:0;
+	top:0;
+	z-index:99123918203912890;
+	opacity:1;
+
+}
+.loader img{
+	z-index: -1;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	position:absolute;
+	margin:auto;
+	width:20%;
+	-webkit-animation: beat 1s infinite linear;
+
+}
+
+
+
+
+@-webkit-keyframes beat {
+   0%{
+	   width: 20%;
+
+   }
+   75%{
+	    width: 30%;
+   }
+   80%{
+	    width:40%;
+   }
+   100{
+		width: 20%;
+   }
+}
+
+
+
 #uploadedImage_edit{
   max-width: 200px;
   max-height: 200px;

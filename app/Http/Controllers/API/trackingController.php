@@ -29,14 +29,21 @@ class trackingController extends Controller
     public function createTracking(Request $request)
     {
         $track= Tracking::create($request->all());
+        $history= Tracking_history::create($request->all());
         return response()->json(['success'=>true,'message'=>'Track created','body'=>$track]);
     }
 
     public function editTracking(Request $request, $id)
     {
+       // Update user current attribute
 	     $track = Tracking::where('userID',$id);
-        $track->update($request->all());
+       $track->update($request->all());
        $track = Tracking::where('userID',$id)->get();
+
+
+       //Update history record
+       $request->request->add(['userID' => $id]);
+       $history= Tracking_history::create($request->all());
        return response()->json(['success'=>true,'message'=>'Tracked','body'=>$track]);
     }
 
